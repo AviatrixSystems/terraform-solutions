@@ -27,5 +27,3 @@ To implement any of the **Solutions** you will need to launch a Controller **fir
 
 Take a look in the [solutions](./solutions) directory and try them out.
 
-
-
