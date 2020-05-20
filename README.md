@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+# Terraform Solutions
 
-You can use the [editor on GitHub](https://github.com/AviatrixSystems/terraform-solutions/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Welcome to Aviatrix Terraform Solutions!
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+This repository will contain various examples of Aviatrix solutions implemented with Terraform. In general this is intended to assist you with building what you need or getting very close to it. 
 
-### Markdown
+## Prerequisites
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- Understanding of Terraform, how to setup your environment to use it and the Terraform workflow ```init, plan, apply, destry```
+- Understanding of the files associated with Terraform, including ```main.tf, variables.tf, terraform.tfvars``` and how to make changes needed for your requirements.
 
-```markdown
-Syntax highlighted code block
+## Getting Started
 
-# Header 1
-## Header 2
-### Header 3
+If you are new to Aviatrix the first thing you will need to do is launch a Controller. You may be operating in one Cloud today most organizations plan to operate in many *(Multicloud)*. Typically organizations will have a *Primary* Cloud where governance and other shared processes are centralized in. Wherever you are (AWS,Azure,OCI,GCP) is fine. 
 
-- Bulleted
-- List
+**One** Controller is all you need to deploy the solutions.
 
-1. Numbered
-2. List
+Take a look in the [controller-launch](./controller-launch) directory and launch one yourself.
 
-**Bold** and _Italic_ and `Code` text
+## Solutions
 
-[Link](url) and ![Image](src)
-```
+Aviatrix has a number of workflows to achieve advanced Cloud Networking configurations **(use cases)**. You can read more about them [here](https://docs.aviatrix.com/) or attend one of our live [events](https://aviatrix.com/events/).
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+The definition of a **Solution** in the scope of this repository is the Terraform code required to implement one or more of the **use cases** available through the [Aviatrix Terraform Provider](https://www.terraform.io/docs/providers/aviatrix/index.html).
 
-### Jekyll Themes
+To implement any of the **Solutions** you will need to launch a Controller **first**.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/AviatrixSystems/terraform-solutions/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Take a look in the [solutions](./solutions) directory and try them out.
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
