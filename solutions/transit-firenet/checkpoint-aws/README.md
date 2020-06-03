@@ -1,15 +1,17 @@
-# Transit Firenet 
+# Transit Firenet - CheckPoint AWS
 
 ## Description
 
 This example will build a transit firenet (Aviatrix Transit) including everything needed to run it.
 
 - VCNs, Transit Gateways, Spoke Gateways, FireNet Instances, and Policy
+- The *tfvars file specifies ```Check Point CloudGuard IaaS All-In-One``` you can change it to ```Check Point CloudGuard IaaS Next-Gen Firewall w. Threat Prevention & SandBlast BYOL``` if you like
+  
 
 ## Prerequisites
 
 - Aviatrix Controller with Access Account configured
-- Subscription through CSP Marketplace (AWS, Azure, etc.) for the NGFW Vendor product (CheckPoint, Palo Alto, etc.)
+- Subscription through AWS Marketplace for the NGFW Vendor product (CheckPoint)
   
 ## Runbook
 

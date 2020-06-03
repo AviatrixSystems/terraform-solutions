@@ -5,7 +5,7 @@
 # Aviatrix Controller
 username        = "tfadmin"
 password        = "Aviatrix123#"
-controller_ip   = "Your Controller IP"
+controller_ip   = "3.135.102.46"
 account_name    = "TM-AWS" # Your Access Account
 
 # Transit FireNet Variables
