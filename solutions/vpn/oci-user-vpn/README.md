@@ -14,6 +14,8 @@ Bastion hosts and proliferation of ssh keys are security risks.
 
 DBAs who need to manage databases, want an easy way to access the databases they are responsible for managing. 
 
+<div style="width: 960px; height: 720px; margin: 10px; position: relative;"><iframe src="https://app.lucidchart.com/documents/embeddedchart/bd95cda7-d6ed-476c-aa5b-283968436aa1" id="rD94HpEJKTll" frameborder="0" allowfullscreen="allowfullscreen" height="100%" width="100%"></iframe></div>
+
 ## Benefits
 
 OpenVPN deployment to the target VCN is automated, in addition to onboarding the users that need access. This solution can be deployed in about 5 minutes.
@@ -43,5 +45,5 @@ The Aviatrix VPN gateway will take ~3 minutes to provision, users will be onboar
 Users will recieve an email with the ```*.opvn``` file with instructions they can use with Tunnelblick or download the [Aviatrix VPN Client.](https://docs.aviatrix.com/Downloads/samlclient.html)
 
 ## VPN Users in Controller
-<img width="964" alt="VPN Users" src="https://github.com/aviatrixsystems/terraform-solutions/blob/master/img/oci-vpn-users.png">
+<img width="964" alt="VPN Users" src="https://github.com/AviatrixSystems/terraform-solutions/blob/master/solutions/img/oci-vpn-users.png">
 

@@ -3,7 +3,7 @@
 # Aviatrix Controller
 username                = "tfadmin"
 password                = "Aviatrix123#"
-controller_ip           = "3.135.102.46"
+controller_ip           = "3.135.102.99" # Replace with your Conroller IP
 oci_account_name        = "TM-OCI" # Your OCI Access Account name defined in Aviatrix Controller
 
 
