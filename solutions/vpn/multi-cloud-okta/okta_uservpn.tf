@@ -5,11 +5,12 @@ provider "okta" {
 }
 
 # Create user.
-resource "okta_user" "avx-user1" {
-  first_name = var.okta_user1_first_name
-  last_name  = var.okta_user1_last_name
-  login      = var.okta_user1_login
-  email      = var.okta_user1_email
+resource "okta_user" "vpn_users" {
+  for_each   = var.okta_vpn_users
+  first_name = each.value.first_name
+  last_name  = each.value.last_name
+  login      = each.value.login
+  email      = each.value.email
 }
 
 locals {
@@ -67,9 +68,12 @@ resource "okta_app_saml" "tf-uservpn" {
     ]
   }
 
-  users {
-    id       = okta_user.avx-user1.id
-    username = okta_user.avx-user1.login
+  dynamic users {
+    for_each = okta_user.vpn_users
+    content {
+      id       = users.value.id
+      username = users.value.login
+    }
   }
 }
 
