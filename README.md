@@ -25,7 +25,7 @@ If you are new to Aviatrix the first thing you will need to do is launch a Contr
 
 Take a look in the [controller-launch](./controller-launch) directory and launch one yourself.
 
-## Solutions
+## [Solutions](./solutions)
 
 Aviatrix has a number of workflows to achieve advanced Cloud Networking configurations **(use cases)**. You can read more about them [here](https://docs.aviatrix.com/) or attend one of our live [events](https://aviatrix.com/events/).
 
