@@ -21,7 +21,7 @@ export TF_VAR_OKTA_BASE_URL=$okta_base_url
 export TF_VAR_OKTA_API_TOKEN=$okta_api_token
 
 read -n 1 -r -s -p $'Now opening Terraform config. Edit your settings, save, and quit the text editor when you'"'"'re done.  Press any key to continue. '
-vim variables.tf
+emacs variables.tf
 
 read -n 1 -r -s -p $'\n\nNow running terraform init, press any key to continue. '
 terraform init
