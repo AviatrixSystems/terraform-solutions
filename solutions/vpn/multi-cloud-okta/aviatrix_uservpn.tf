@@ -50,17 +50,13 @@ resource "aviatrix_vpn_profile" "vpn_profile" {
     var.vpn_user
   ]
 
-  policy {
-    action = var.vpn_profile_policy1_action
-    proto  = var.vpn_profile_policy1_proto
-    port   = var.vpn_profile_policy1_port
-    target = var.vpn_profile_policy1_target
-  }
-
-  policy {
-    action = var.vpn_profile_policy2_action
-    proto  = var.vpn_profile_policy2_proto
-    port   = var.vpn_profile_policy2_port
-    target = var.vpn_profile_policy2_target
+  dynamic policy {
+    for_each = var.vpn_profile_policies
+    content {
+      action = policy.value.action
+      proto  = policy.value.proto
+      port   = policy.value.port
+      target = policy.value.target
+    }
   }
 }

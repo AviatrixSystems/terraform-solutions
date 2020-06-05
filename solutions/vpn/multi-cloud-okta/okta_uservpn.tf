@@ -11,6 +11,12 @@ resource "okta_user" "vpn_users" {
   last_name  = each.value.last_name
   login      = each.value.login
   email      = each.value.email
+  #  custom_profile_attributes = {
+  #    aviatrixProfile = "Developer-Profile"
+  #  }
+
+  #  custom_profile_attributes = "{\"aviatrixProfile\":\"Developer-Profile\"}"
+  custom_profile_attributes = "{\"aviatrixProfile\":\"${each.value.aviatrixProfile}\"}"
 }
 
 locals {

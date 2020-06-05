@@ -5,7 +5,7 @@ CMD ["/sbin/my_init"]
 
 # Dependencies
 RUN	apt-get -y update && \
-	apt-get -y install wget unzip emacs
+	apt-get -y install wget unzip emacs git
 
 # Terraform install
 RUN	wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip -P /tmp

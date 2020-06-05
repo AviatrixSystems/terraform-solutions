@@ -78,16 +78,22 @@ variable "vpn_user" { default = "aws-okta-shared-cert" }
 
 variable "vpn_profile_name" { default = "Developer-Profile" }
 variable "vpn_profile_base_rule" { default = "deny_all" }
-
-variable "vpn_profile_policy1_action" { default = "allow" }
-variable "vpn_profile_policy1_proto" { default = "all" }
-variable "vpn_profile_policy1_port" { default = "0:65535" }
-variable "vpn_profile_policy1_target" { default = "10.25.0.0/16" }
-
-variable "vpn_profile_policy2_action" { default = "allow" }
-variable "vpn_profile_policy2_proto" { default = "all" }
-variable "vpn_profile_policy2_port" { default = "0:65535" }
-variable "vpn_profile_policy2_target" { default = "10.26.0.0/16" }
+variable "vpn_profile_policies" {
+  default = {
+    policy1 = {
+      action = "allow"
+      proto  = "all"
+      port   = "0:65535"
+      target = "10.25.0.0/16"
+    }
+    policy2 = {
+      action = "allow"
+      proto  = "all"
+      port   = "0:65535"
+      target = "10.26.0.0/16"
+    }
+  }
+}
 
 variable "saml_endpoint_name" { default = "okta_uservpn" }
 
@@ -104,16 +110,18 @@ variable "okta_app_name" { default = "Aviatrix User VPN" }
 variable "okta_vpn_users" {
   default = {
     user1 = {
-      first_name = "Nicolas"
-      last_name  = "Prod"
-      login      = "nicolas_prod@abc.com"
-      email      = "nicolas_prod@abc.com"
+      first_name      = "Nicolas"
+      last_name       = "Prod"
+      login           = "nicolas_prod@abc.com"
+      email           = "nicolas_prod@abc.com"
+      aviatrixProfile = "Prod-Profile"
     }
     user2 = {
-      first_name = "John"
-      last_name  = "Dev"
-      login      = "john_dev@abc.com"
-      email      = "john_dev@abc.com"
+      first_name      = "John"
+      last_name       = "Dev"
+      login           = "john_dev@abc.com"
+      email           = "john_dev@abc.com"
+      aviatrixProfile = "Developer-Profile"
     }
   }
 }
