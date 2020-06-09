@@ -4,6 +4,9 @@ variable "region" { default = "eu-west-1" }
 ### AWS = 1, GCP = 4, Azure = 8, OCI = 16.
 variable "cloud_type" { default = 1 }
 
+variable "gcp_account_name" { default = "gcp-dev" }
+variable "gcp_region" { default = "europe-west1" }
+
 ### VPCs.
 variable "vpcs" {
   default = {
@@ -48,6 +51,21 @@ variable "vpcs" {
   }
 }
 
+variable "gcp_vpcs" {
+  default = {
+    gcp_saas_transit = {
+      name        = "gcp-ew1-saas-transit-vpc"
+      subnet_name = "gcp-ew1-saas-transit-subnet"
+      subnet_cidr = "10.140.0.0/16"
+    }
+    gcp_saas_services = {
+      name        = "gcp-ew1-saas-services-vpc"
+      subnet_name = "gcp-ew1-saas-services-subnet"
+      subnet_cidr = "10.141.0.0/16"
+    }
+  }
+}
+
 ### Transit gateway.
 variable "transit_gateway" {
   default = {
@@ -59,7 +77,7 @@ variable "transit_gateway" {
   }
 }
 
-### Shared services spoke gateway.
+### Shared services Spoke gateway.
 variable "services_spoke_gateway" {
   default = {
     name         = "AWS-EW1-Saas-Shared-Services-GW"
@@ -106,18 +124,42 @@ variable "s2c_gateways" {
   }
 }
 
+### GCP Transit gateway.
+variable "gcp_transit_gateway" {
+  default = {
+    name         = "gcp-ew1-saas-transit-gw"
+    size         = "n1-standard-1"
+    active_mesh  = true
+    single_az_ha = true
+    vpc          = "gcp_saas_transit"
+    zone         = "europe-west1-b"
+  }
+}
+
+### GCP shared services Spoke gateway.
+variable "gcp_services_spoke_gateway" {
+  default = {
+    name         = "gcp-ew1-saas-shared-services-gw"
+    size         = "n1-standard-1"
+    active_mesh  = true
+    single_az_ha = true
+    vpc          = "gcp_saas_services"
+    zone         = "europe-west1-b"
+  }
+}
+
 ### Customer S2C connections.
 variable "s2c_connections" {
   default = {
     customer1 = {
       name        = "AWS-EW1-SaaS-C1-S2C"
       remote_cidr = "192.168.0.0/24"
-      local_cidr  = "10.61.0.0/16,10.62.0.0/16"
+      local_cidr  = "10.61.0.0/16,10.141.0.0/16,10.62.0.0/16"
     }
     customer2 = {
       name        = "AWS-EW1-SaaS-C2-S2C"
       remote_cidr = "192.168.0.0/24"
-      local_cidr  = "10.61.0.0/16,10.63.0.0/16"
+      local_cidr  = "10.61.0.0/16,10.141.0.0/16,10.63.0.0/16"
     }
   }
 }
@@ -126,14 +168,28 @@ variable "s2c_connections" {
 variable "s2c_customized_snat_rules" {
   default = {
     customer1 = {
-      src_cidr = "0.0.0.0/0"
-      dst_cidr = "10.61.0.0/16" # Shared Services VPC CIDR
-      protocol = "all"
+      rule1 = {
+        src_cidr = "0.0.0.0/0"
+        dst_cidr = "10.61.0.0/16" # AWS Shared Services VPC CIDR
+        protocol = "all"
+      }
+      rule2 = {
+        src_cidr = "0.0.0.0/0"
+        dst_cidr = "10.141.0.0/16" # GCP Shared Services VPC CIDR
+        protocol = "all"
+      }
     }
     customer2 = {
-      src_cidr = "0.0.0.0/0"
-      dst_cidr = "10.61.0.0/16" # Shared Services VPC CIDR
-      protocol = "all"
+      rule1 = {
+        src_cidr = "0.0.0.0/0"
+        dst_cidr = "10.61.0.0/16" # AWS Shared Services VPC CIDR
+        protocol = "all"
+      }
+      rule2 = {
+        src_cidr = "0.0.0.0/0"
+        dst_cidr = "10.141.0.0/16" # GCP Shared Services VPC CIDR
+        protocol = "all"
+      }
     }
   }
 }
@@ -216,12 +272,12 @@ variable "test_customer_gateways" {
 }
 
 ### Static routes to be programmed on AWS VPN connections.
-### Shared services VPC CIDR + customer VPC CIDR.
+### Shared services VPC CIDR for both AWS and GCP, and customer VPC CIDR.
 ### Have to do like this until Terraform supports interpolation of
 ### variables.
 variable "aws_s2s_vpn_routes" {
   default = {
-    customer1 = ["10.61.0.0/16", "10.62.0.0/16"]
-    customer2 = ["10.61.0.0/16", "10.63.0.0/16"]
+    customer1 = ["10.61.0.0/16", "10.141.0.0/16", "10.62.0.0/16"]
+    customer2 = ["10.61.0.0/16", "10.141.0.0/16", "10.63.0.0/16"]
   }
 }

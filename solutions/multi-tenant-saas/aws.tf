@@ -102,7 +102,7 @@ resource "aws_vpn_connection_route" "s2s_vpn_static_routes_c2" {
   count = length(var.aws_s2s_vpn_routes.customer2)
 
   vpn_connection_id      = aws_vpn_connection.s2s_vpn_connections["customer2"].id
-  destination_cidr_block = var.aws_s2s_vpn_routes.customer1[count.index]
+  destination_cidr_block = var.aws_s2s_vpn_routes.customer2[count.index]
 }
 
 ### Program static routes in each VPC pointing to VGW.
