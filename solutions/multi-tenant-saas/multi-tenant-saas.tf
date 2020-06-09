@@ -69,3 +69,4 @@ resource "aviatrix_gateway" "customer_s2c_gws" {
   # subnets[3] is the first public subnet of a Spoke VPC, i.e., AZ-a.
   subnet = aviatrix_vpc.vpcs[each.value.customer].subnets[3].cidr
 }
+

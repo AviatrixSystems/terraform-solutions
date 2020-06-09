@@ -133,6 +133,22 @@ variable "test_ec2_instances" {
       key                         = "nicolas"
       associate_public_ip_address = true
     }
+    customer1_on_prem_vm = {
+      name                        = "Customer1-On-Prem-VM"
+      vpc                         = "customer1_on_prem"
+      ami                         = "ami-0b4b2d87bdd32212a"
+      size                        = "t2.micro"
+      key                         = "nicolas"
+      associate_public_ip_address = true
+    }
+    customer2_on_prem_vm = {
+      name                        = "Customer2-On-Prem-VM"
+      vpc                         = "customer2_on_prem"
+      ami                         = "ami-0b4b2d87bdd32212a"
+      size                        = "t2.micro"
+      key                         = "nicolas"
+      associate_public_ip_address = true
+    }
   }
 }
 
@@ -142,6 +158,7 @@ variable "test_vpn_gateways" {
     customer1 = {
       name = "C1-On-Prem-VGW"
       vpc  = "customer1_on_prem"
+
     }
     customer2 = {
       name = "C2-On-Prem-VGW"
@@ -163,5 +180,16 @@ variable "test_customer_gateways" {
       bgp_asn    = "65001"
       avx_s2c_gw = "customer2"
     }
+  }
+}
+
+### Static routes to be programmed on AWS VPN connections.
+### Shared services VPC CIDR + customer VPC CIDR.
+### Have to do like this until Terraform supports interpolation of
+### variables.
+variable "aws_s2s_vpn_routes" {
+  default = {
+    customer1 = ["10.61.0.0/16", "10.62.0.0/16"]
+    customer2 = ["10.61.0.0/16", "10.63.0.0/16"]
   }
 }
