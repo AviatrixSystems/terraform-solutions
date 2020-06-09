@@ -106,6 +106,38 @@ variable "s2c_gateways" {
   }
 }
 
+### Customer S2C connections.
+variable "s2c_connections" {
+  default = {
+    customer1 = {
+      name        = "AWS-EW1-SaaS-C1-S2C"
+      remote_cidr = "192.168.0.0/24"
+      local_cidr  = "10.61.0.0/16,10.62.0.0/16"
+    }
+    customer2 = {
+      name        = "AWS-EW1-SaaS-C2-S2C"
+      remote_cidr = "192.168.0.0/24"
+      local_cidr  = "10.61.0.0/16,10.63.0.0/16"
+    }
+  }
+}
+
+### Customized SNAT rules on S2C gateways.
+variable "s2c_customized_snat_rules" {
+  default = {
+    customer1 = {
+      src_cidr = "0.0.0.0/0"
+      dst_cidr = "10.61.0.0/16" # Shared Services VPC CIDR
+      protocol = "all"
+    }
+    customer2 = {
+      src_cidr = "0.0.0.0/0"
+      dst_cidr = "10.61.0.0/16" # Shared Services VPC CIDR
+      protocol = "all"
+    }
+  }
+}
+
 ### Test EC2 instances.
 variable "test_ec2_instances" {
   default = {

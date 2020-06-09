@@ -70,3 +70,60 @@ resource "aviatrix_gateway" "customer_s2c_gws" {
   subnet = aviatrix_vpc.vpcs[each.value.customer].subnets[3].cidr
 }
 
+### On every S2C gateway, create S2C connection to VGW.
+resource "aviatrix_site2cloud" "s2c_connections" {
+  for_each = var.s2c_connections
+
+  vpc_id                     = aviatrix_vpc.vpcs[each.key].vpc_id
+  connection_name            = each.value.name
+  connection_type            = "unmapped"
+  remote_gateway_type        = "aws"
+  tunnel_type                = "udp"
+  primary_cloud_gateway_name = var.s2c_gateways[each.key].name
+  # AWS VGW Site-to-Site
+  remote_gateway_ip          = aws_vpn_connection.s2s_vpn_connections[each.key].tunnel1_address
+  remote_subnet_cidr         = each.value.remote_cidr
+  local_subnet_cidr          = each.value.local_cidr
+  ha_enabled                 = false
+  private_route_encryption   = null
+  custom_algorithms          = true
+  phase_1_authentication     = "SHA-1"
+  phase_2_authentication     = "HMAC-SHA-1"
+  phase_1_dh_groups          = "2"
+  phase_2_dh_groups          = "2"
+  phase_1_encryption         = "AES-128-CBC"
+  phase_2_encryption         = "AES-128-CBC"
+  pre_shared_key             = aws_vpn_connection.s2s_vpn_connections[each.key].tunnel1_preshared_key
+  enable_dead_peer_detection = true
+}
+
+### Get the route table ID of the S2C gateways.
+data "aws_route_table" "s2c_route_tables" {
+  for_each = var.s2c_gateways
+
+  # Get the route table from the subnet ID of the gateway
+  subnet_id = aviatrix_vpc.vpcs[each.key].subnets[3].subnet_id
+}
+
+### On every S2C gateway, configure customized SNAT.
+resource "aviatrix_gateway_snat" "s2c_customized_snat" {
+  for_each = var.s2c_customized_snat_rules
+
+  gw_name   = var.s2c_gateways[each.key].name
+  snat_mode = "customized_snat"
+  snat_policy {
+    src_cidr   = each.value.src_cidr
+    dst_cidr   = each.value.dst_cidr
+    protocol   = each.value.protocol
+    interface  = "eth0"
+    connection = "None"
+    # Private IP of the S2C GW.
+    snat_ips = aviatrix_gateway.customer_s2c_gws[each.key].private_ip
+    # Important to exclude the route table. Upon Spoke GW attachment,
+    # the controller has programmed the shared services VPC CIDR to
+    # point to the Spoke GW. Without exclude route table, this would
+    # be overriden by dst_cidr.
+    exclude_rtb = data.aws_route_table.s2c_route_tables[each.key].id
+  }
+}
+
