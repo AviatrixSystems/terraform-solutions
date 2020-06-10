@@ -1,7 +1,7 @@
 # Multi-Tenant Multi-Cloud SaaS Architecture with Overlapping IPs
 
 ## Summary
-This solution deploys an Aviatrix multi-cloud, multi-tenant SaaS architecture with customized SNAT for overlapping on-prem data sources.  There is both both dedicated and shared services for end-customers.
+This solution deploys an Aviatrix multi-cloud, multi-tenant SaaS architecture with customized SNAT for overlapping on-prem data sources.  There is both dedicated and shared services for end-customers.
 
 <img alt="multi-tenant saas architecture" src="https://github.com/AviatrixSystems/terraform-solutions/raw/master/solutions/img/multi-tenant-saas.png">
 
