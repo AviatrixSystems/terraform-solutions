@@ -9,19 +9,11 @@ This solution deploys an Aviatrix multi-cloud User VPN architecture, using Okta 
 A demo can be found [here](https://youtu.be/DXdCYoC74sA).
 
 ## Scenario
-Multi-tenant SaaS provides services to different tenants i.e., end customers.  The services are hosted in the cloud.  There's two types of services:
-1. Shared services that are used by every customer.  Hosted in both AWS and GCP, in VPCs AWS-Saas-Services-VPC and gcp-ew1-saas-services-vpc.
-2. Local services that are isolated and specific to a given customer.  Hosted in a dedicated VPC that exists for every customer in AWS: AWS-EW1-SaaS-Cx-VPC.
+The center of gravity is shifting to the cloud and remote users now need to VPN directly into the cloud.  This is achieved with Aviatrix VPN gateways that connect back to an Aviatrix transit architecture to reach the cloud workloads.  The diagram shows AWS but the code can work with any type of cloud.  That's the power of Aviatrix: a multi-cloud platform exposed via a unique Terraform provider.
 
-Tenants send data to and access the services from on-prem.  Their dedicated VPC provides the entry point to the cloud via Site-to-Cloud (S2C) IPsec VPN connection landing on Aviatrix S2C gateways.
+Additionally, enterprises are deploying 3rd-party Identity Providers (IDPs) to store the user definitions and take care of user authentication.
 
-Local services are accessed directly since they're local in the VPC.  No NAT is required because they're only accessed by their customer.
-
-Shared services are reached via an Aviatrix transit network.  Aviatrix spoke gateways in the customer-specific VPC are connected via ActiveMesh to Aviatrix transit gateways.  The transit gateways provide connectivity to the AWS shared services in AWS via ActiveMesh peering, and to the GCP shared services via a transit peering.
-
-Customer can have overlapping IPs on prem.  Therefore, every Aviatrix S2C gateway is source-NATing the traffic destined to the shared services.  The packets coming from on-prem have their source IP change to the one of the S2C gateway.  S2C gateways have unique IPs since they reside in customer-local VPCs for which we control the CIDR and guarantee there is no overlap.
-
-The Aviatrix multi-cloud control plane performs learning and route propagation within AWS and GCP and across those clouds.
+Aviatrix seamlessly integrates with IDPs via SAML.  This particular code integrates with Okta.
 
 ## Benefits
 This deployment of this architecture is entirely automated with this Terraform script.
