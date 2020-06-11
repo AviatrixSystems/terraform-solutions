@@ -52,11 +52,18 @@ This is completely dynamic. The code retrieves all parameters from the VGW (IPs,
 - Terraform .12 on your workstation
 
 ## Getting Started
-- Modify ```terraform.tfvars``` to reflect your information for controller, VPCs, IP ranges, SNAT rules, etc.
-- ```terraform init```
-- ```terraform plan```
-- ```terraform apply```
-- To destroy: ```terraform destroy```
+* Set environment variables for your Aviatrix controller:
+  * export AVIATRIX_CONTROLLER_IP="your-controller-ip"
+  * export AVIATRIX_USERNAME="your-controller-usename"
+  * export AVIATRIX_PASSWORD="your-controller-password"
+* Modify ```terraform.tfvars``` to reflect your information for controller, VPCs, IP ranges, SNAT rules, etc.
+* ```terraform init```
+* ```terraform plan```
+* ```terraform apply```
+* To destroy: ```terraform destroy```
 
 ## What to expect
 The entire solution takes ~15 minutes to be deployed.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTc5ODYyNjE1OF19
+-->
