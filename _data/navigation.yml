@@ -1,5 +1,5 @@
 - name: Controller Launch
-  link: /controller-launch/README/
+  link: /pages/controller-launch/
 - name: Transit Networking
   link: /#
   dropdown:
