@@ -52,5 +52,6 @@ The Aviatrix VPN gateway will take ~3 minutes to provision, users will be onboar
 Users will recieve an email with the ```*.opvn``` file with instructions they can use with Tunnelblick or download the [Aviatrix VPN Client.](https://docs.aviatrix.com/Downloads/samlclient.html)
 
 ## VPN Users in Controller
-<img width="964" alt="VPN Users" src="https://github.com/AviatrixSystems/terraform-solutions/blob/master/solutions/img/oci-vpn-users.png">
+<img width="964" alt="VPN Users" src="https://github.com/AviatrixSystems/terraform-solutions/raw/master/solutions/img/oci-vpn-users.png">
+
 
