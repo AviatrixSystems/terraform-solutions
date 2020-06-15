@@ -1,5 +1,7 @@
 # Controller Launch
 
+<img alt="workflow" src="https://github.com/AviatrixSystems/terraform-solutions/raw/master/solutions/img/controller-launch-workflow.png">
+
 Aviatrix controller can be launched using Terraform in AWS, Azure, and OCI (Oracle Cloud Infrastructure).
 
 In order to remain **DRY**, this repo will only contain the source code for Azure but will have links to the repos where you will find AWS and OCI.

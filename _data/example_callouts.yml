@@ -1,0 +1,28 @@
+style: is-light
+height: is-medium
+items:
+  - title: Launch Controller
+    subtitle: Establish control plane
+    icon: fa-fighter-jet
+    description: >
+      Launch an Aviatrix Controller from your cloud Marketplace.
+      Takes about 30 minutes. 
+    call_to_action_name: Go
+    call_to_action_link: /controller-launch/README/
+  - title: Browse and Deploy Solutions
+    subtitle: Look through the menu
+    icon: fa-cogs
+    description: >
+      Quickly deploy solutions.
+      Find one you like and make it your own.
+      Fast Track POCs and take a victory lap.
+    call_to_action_name: Go
+    call_to_action_link: /pages/landing/
+  - title: Learn more about what we do
+    subtitle: See what's possible with Aviatrix
+    icon: fa-film
+    description: >
+      See for yourself from networking experts what is possible.
+      Build any of it with our Terraform Provider.
+    call_to_action_name: Go
+    call_to_action_link: /pages/mcna-video-series/
