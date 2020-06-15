@@ -1,0 +1,34 @@
+- name: Controller Launch
+  link: /controller-launch/README/
+- name: Transit Networking
+  link: /#
+  dropdown:
+    - name: OCI-Azure Transit
+      link: /pages/oci-azure-basic/
+    - name: AWS-GCP Transit (SaaS)
+      link: /pages/aws-gcp-saas/
+- name: Transit FireNet
+  link: /#
+  dropdown:
+    - name: Check Point AWS
+      link: /pages/checkpoint-aws/
+    - name: Palo Alto Azure
+      link: /pages/pan-azure/
+- name: User VPN
+  link: /#
+  dropdown:
+    - name: OCI User VPN
+      link: /pages/oci-user-vpn/
+    - name: AWS User VPN Okta SAML
+      link: /pages/aws-okta-vpn/
+- name: MCNA
+  link: /#
+  dropdown:
+    - name: Big Picture
+      link: /pages/mcna-big-picture/
+    - name: Interactive
+      link: /pages/mcna-interactive/
+    - name: Video Series
+      link: /pages/mcna-video-series/
+- name: Training
+  link: /pages/training/
