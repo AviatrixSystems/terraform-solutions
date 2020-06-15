@@ -1,6 +1,16 @@
-# Controller Launch
+---
+title: Controller Launch
+subtitle: Establish your Multi-Cloud network control plane
+layout: page
+show_sidebar: false
+---
+
+
+## Workflow
 
 <img alt="workflow" src="https://github.com/AviatrixSystems/terraform-solutions/raw/master/solutions/img/controller-launch-workflow.png">
+
+## Summary
 
 Aviatrix controller can be launched using Terraform in AWS, Azure, and OCI (Oracle Cloud Infrastructure).
 
