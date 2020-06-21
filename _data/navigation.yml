@@ -14,6 +14,8 @@
       link: /pages/checkpoint-aws/
     - name: Palo Alto Azure
       link: /pages/pan-azure/
+    - name: Check Point Azure
+      link: /pages/checkpoint-azure/
 - name: User VPN
   link: /#
   dropdown:
