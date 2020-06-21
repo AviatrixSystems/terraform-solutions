@@ -20,7 +20,9 @@ Example to build Aviatrix Transit Firenet (VNETs, GWs, Firewall instances, Inspe
 - appropriate cpu limits in region including ```Standard_B2ms``` and ```Standard_D3_v2``` compute shapes
 - terraform .12
 
-## To run it
+## Getting Started
+
+The code for this example can be found [here.](https://github.com/AviatrixSystems/terraform-solutions/tree/master/solutions/transit-firenet/checkpoint-azure)
 
 - ```terraform init```
 - ```terraform plan```
