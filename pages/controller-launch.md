@@ -32,7 +32,7 @@ Instructions on how to onboard AWS access accounts to the Controller can be foun
 
 ## Azure
 
-Terraform to launch a Controller in Azure can be found [here.]((https://github.com/AviatrixSystems/terraform-solutions/tree/master/controller-launch/aviatrix-azure-controller))
+Terraform to launch a Controller in Azure can be found [here.](https://github.com/AviatrixSystems/terraform-solutions/tree/master/controller-launch/aviatrix-azure-controller)
 
 Instructions on how to onboard Azure access accounts to the Controller can be found [here.](https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html)
 
