@@ -79,6 +79,7 @@ resource "aviatrix_firewall_instance" "firewall_instance_1" {
   management_subnet             = aviatrix_vpc.transit_firenet.subnets[2].cidr
   egress_subnet                 = aviatrix_vpc.transit_firenet.subnets[0].cidr
   username                      = "admin"
+  password                      = var.password
   depends_on = [aviatrix_spoke_gateway.avtx_spoke_gw]
 }
 
@@ -109,6 +110,7 @@ resource "aviatrix_firewall_instance" "firewall_instance_2" {
   management_subnet             = aviatrix_vpc.transit_firenet.subnets[3].cidr
   egress_subnet                 = aviatrix_vpc.transit_firenet.subnets[1].cidr
   username                      = "admin"
+  password                      = var.password
   depends_on = [aviatrix_spoke_gateway.avtx_spoke_gw]
 }
 
@@ -139,6 +141,7 @@ resource "aviatrix_firenet" "firewall_net" {
     management_interface = aviatrix_firewall_instance.firewall_instance_2.management_interface
     egress_interface     = aviatrix_firewall_instance.firewall_instance_2.egress_interface
   }
+  depends_on             = [aviatrix_firewall_instance.firewall_instance_1, aviatrix_firewall_instance.firewall_instance_2]
 }
 
 # Create an Aviatrix Transit FireNet Policy
