@@ -25,6 +25,20 @@ variable "vpn_gateways" {
   }
 }
 
+variable "spoke_gateways" {
+  default = {
+    spoke_gw1 = {
+      name                 = "AWS-UW2-VPN-Spoke-GW"
+      size                 = "t3.small"
+      active_mesh          = true
+      single_az_ha         = true
+      vpc                  = "uservpn_vpc"
+      subnet               = "10.22.80.0/20"
+      transit_gateway_name = "AWS-UW2-Transit-GW"
+    }
+  }
+}
+
 ### Example for GCP, uncomment as needed.
 # variable "account_name" { default = "gcp-network" }
 # variable "region" { default = "us-west1-a" }
@@ -71,7 +85,7 @@ variable "max_vpn_conn" { default = "50" }
 variable "enable_elb" { default = true }
 variable "enable_vpn_nat" { default = true }
 variable "split_tunnel" { default = true }
-variable "additional_cidrs" { default = "10.21.0.0/16,10.25.0.0/16,10.26.0.0/16" }
+variable "additional_cidrs" { default = "10.21.0.0/16,10.25.0.0/16,10.101.0.0/16" }
 variable "saml_enabled" { default = true }
 
 variable "vpn_user" { default = "aws-okta-shared-cert" }
@@ -90,7 +104,7 @@ variable "vpn_profile_policies" {
       action = "allow"
       proto  = "all"
       port   = "0:65535"
-      target = "10.26.0.0/16"
+      target = "10.101.0.0/16"
     }
   }
 }

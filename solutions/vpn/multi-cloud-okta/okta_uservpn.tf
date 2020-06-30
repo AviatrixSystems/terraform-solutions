@@ -6,11 +6,11 @@ provider "okta" {
 
 # Create user.
 resource "okta_user" "vpn_users" {
-  for_each   = var.okta_vpn_users
-  first_name = each.value.first_name
-  last_name  = each.value.last_name
-  login      = each.value.login
-  email      = each.value.email
+  for_each                  = var.okta_vpn_users
+  first_name                = each.value.first_name
+  last_name                 = each.value.last_name
+  login                     = each.value.login
+  email                     = each.value.email
   custom_profile_attributes = "{\"aviatrixProfile\":\"${each.value.aviatrixProfile}\"}"
 }
 

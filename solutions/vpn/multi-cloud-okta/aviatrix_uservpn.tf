@@ -1,5 +1,6 @@
+### Create the VPC.
 resource "aviatrix_vpc" "vpn_vpc" {
-  cloud_type           = 1
+  cloud_type           = var.cloud_type
   account_name         = var.account_name
   region               = var.region
   name                 = var.uservpn_vpc
@@ -8,8 +9,10 @@ resource "aviatrix_vpc" "vpn_vpc" {
   aviatrix_firenet_vpc = false
 }
 
+### Launch the Aviatrix VPN gateways.
 resource "aviatrix_gateway" "vpn_gws" {
-  for_each         = var.vpn_gateways
+  for_each = var.vpn_gateways
+
   cloud_type       = var.cloud_type
   account_name     = var.account_name
   gw_name          = each.value.name
@@ -27,6 +30,23 @@ resource "aviatrix_gateway" "vpn_gws" {
   saml_enabled     = var.saml_enabled
 }
 
+### Launch the Aviatrix Spoke gateways.
+### Attach it to the Aviatrix Transit gateway.
+resource "aviatrix_spoke_gateway" "spoke_gws" {
+  for_each = var.spoke_gateways
+
+  cloud_type         = var.cloud_type
+  account_name       = var.account_name
+  gw_name            = each.value.name
+  vpc_id             = aviatrix_vpc.vpn_vpc.vpc_id
+  vpc_reg            = var.region
+  gw_size            = each.value.size
+  enable_active_mesh = each.value.active_mesh
+  single_az_ha       = each.value.single_az_ha
+  subnet             = each.value.subnet
+  transit_gw         = each.value.transit_gateway_name
+}
+
 # Create the SAML endpoint.
 resource "aviatrix_saml_endpoint" "avx_saml_endpoint" {
   endpoint_name     = var.saml_endpoint_name
@@ -42,13 +62,11 @@ resource "aviatrix_vpn_user" "vpn_user" {
   saml_endpoint = var.saml_endpoint_name
 }
 
-# Create the profile and associate the user to it.
+# Create the profile. Don't associate the shared user to it, as the
+# user-to-profile association is defined on the IDP for specific users.
 resource "aviatrix_vpn_profile" "vpn_profile" {
   name      = var.vpn_profile_name
   base_rule = var.vpn_profile_base_rule
-  users = [
-    var.vpn_user
-  ]
 
   dynamic policy {
     for_each = var.vpn_profile_policies
