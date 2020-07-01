@@ -6,7 +6,7 @@ This solution deploys an Aviatrix multi-cloud User VPN architecture, using Okta 
 <img alt="multi-tenant saas architecture" src="https://github.com/AviatrixSystems/terraform-solutions/raw/master/solutions/img/okta-user-vpn.png">
 
 ## Demo
-A demo can be found [here](https://youtu.be/DXdCYoC74sA).
+A demo can be found [here](https://www.youtube.com/watch?v=uY5lnBxDI8E).
 
 ## Scenario
 The center of gravity is shifting to the cloud and remote users now need to VPN directly into the cloud.  This is achieved with Aviatrix VPN gateways that connect back to an Aviatrix transit architecture to reach the cloud workloads.  The diagram shows AWS but the code can work with any type of cloud.  That's the power of Aviatrix: a multi-cloud platform exposed via a unique Terraform provider.
