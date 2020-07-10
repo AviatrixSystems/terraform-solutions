@@ -97,10 +97,8 @@ def main():
     
     # email = input("Enter recovery email: ")
     email = os.environ['AVIATRIX_EMAIL']
-    print(email)
     # password = getpass.getpass("Enter new password: ")
     password = os.environ['AVIATRIX_PASSWORD']
-    print(password)
     ctrl_url = 'https://'+str(public_ip)+str("/v1/api")
 
     try:

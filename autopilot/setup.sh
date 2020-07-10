@@ -41,11 +41,11 @@ echo AWS_ACCOUNT: $AWS_ACCOUNT
 echo CONTROLLER_PRIVATE_IP: $CONTROLLER_PRIVATE_IP
 echo CONTROLLER_PUBLIC_IP: $CONTROLLER_PUBLIC_IP
 
-# echo "Waiting 5 minutes for the controller to come up..."
+echo "Waiting 5 minutes for the controller to come up..."
 timer 300
 
 ### Controller init.
-read -p 'Enter recovery email: ' email
+read -p '\nEnter recovery email: ' email
 export AVIATRIX_EMAIL=$email
 
 read -sp 'Enter new password: ' password
@@ -61,4 +61,5 @@ export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP
 
 ### Done.
 echo -e '\n--> Done.'
-cd /root/ace-controller-build
+cd /root/terraform-solutions/autopilot
+
