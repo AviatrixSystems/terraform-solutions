@@ -1,6 +1,6 @@
 provider "aws" {
-  profile = "dev-eu-west-1"
-  region  = "eu-west-1"
+  profile = var.profile
+  region  = var.region
 }
 
 ### Create AWS Security Group for test instances, in every VPC.

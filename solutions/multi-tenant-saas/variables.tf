@@ -1,4 +1,5 @@
 variable "account_name" { default = "aws-dev" }
+variable "profile" { default = "dev-eu-west-1" }
 variable "region" { default = "eu-west-1" }
 
 ### AWS = 1, GCP = 4, Azure = 8, OCI = 16.
