@@ -1,8 +1,13 @@
-variable "aws_account_name" { default = "aws-dev" }
+variable "aws_profile" { default = "default" }
+variable "aws_account_name" { default = "aws-account" }
 variable "aws_region" { default = "eu-west-1" }
 
 variable "azure_account_name" { default = "azure-network" }
 variable "azure_region" { default = "West Europe" }
+variable "azure_subscription_id" { default = "" }
+variable "azure_directory_id" { default = "" }
+variable "azure_application_id" { default = "" }
+variable "azure_application_key" { default = "" }
 
 ### VPCs.
 variable "aws_vpcs" {
@@ -118,46 +123,5 @@ variable "azure_spoke2_gateway" {
     single_az_ha = true
     vpc          = "azure_spoke2_vnet"
     subnet       = "10.102.0.0/20"
-  }
-}
-
-### Test EC2 instances.
-variable "test_ec2_instances" {
-  default = {
-    aws_spoke1_vm = {
-      name                        = "Spoke1-VM"
-      vpc                         = "aws_spoke1_vpc"
-      ami                         = "ami-0b4b2d87bdd32212a"
-      size                        = "t2.micro"
-      key                         = "nicolas"
-      private_ip                  = "10.61.64.4"
-      associate_public_ip_address = true
-    }
-    aws_spoke2_vm = {
-      name                        = "Spoke2-VM"
-      vpc                         = "aws_spoke2_vpc"
-      ami                         = "ami-0b4b2d87bdd32212a"
-      size                        = "t2.micro"
-      key                         = "nicolas"
-      private_ip                  = "10.62.64.4"
-      associate_public_ip_address = true
-    }
-  }
-}
-
-### Test Azure VMs.
-variable "test_azure_vms" {
-  default = {
-    azure_spoke1_vm = {
-      name                        = "Spoke1-VM"
-      rg                          = "Spoke1-VM-RG"
-      location                    = "West Europe"
-      vpc                         = "aws_spoke1_vpc"
-      ami                         = "ami-0b4b2d87bdd32212a"
-      size                        = "t2.micro"
-      key                         = "nicolas"
-      private_ip                  = "10.61.64.4"
-      associate_public_ip_address = true
-    }
   }
 }

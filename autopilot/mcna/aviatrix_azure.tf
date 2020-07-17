@@ -1,3 +1,13 @@
+### Onboard Azure account.
+resource "aviatrix_account" "azure_account" {
+  account_name        = var.azure_account_name
+  cloud_type          = 8 # Azure
+  arm_subscription_id = var.azure_subscription_id
+  arm_directory_id    = var.azure_directory_id
+  arm_application_id  = var.azure_application_id
+  arm_application_key = var.azure_application_key
+}
+
 resource "aviatrix_vpc" "azure_vnets" {
   for_each = var.azure_vnets
 

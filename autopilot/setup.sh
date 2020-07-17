@@ -26,10 +26,10 @@ read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn
 read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the controller. You can leave the defaults or change to your preferences. Press any key to continue.'
 vim variables.tf
 
-read -n 1 -r -s -p $'\n\n--> Now running terraform init, press any key to continue.'
+read -n 1 -r -s -p $'\n\n--> Now running terraform init, press any key to continue.\n'
 terraform init
 
-read -n 1 -r -s -p $'\n\n--> Now running terraform apply, press any key to continue.'
+read -n 1 -r -s -p $'\n\n--> Now running terraform apply, press any key to continue.\n'
 terraform apply
 
 # Store the outputs in environment variables for the controller init to use.
@@ -56,10 +56,20 @@ python3 controller_init.py
 
 
 ### MCNA launch.
+cd /root/terraform-solutions/autopilot/mcna
 export AVIATRIX_USERNAME="admin"
 export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP
+
+read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the multi-cloud deployment. You can leave the defaults or change to your preferences. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/autopilot.png to view what is going to be launched.  Press any key to continue.\n'
+vim variables.tf
+
+read -n 1 -r -s -p $'\n\n--> Now running terraform init, press any key to continue.\n'
+terraform init
+
+read -n 1 -r -s -p $'\n\n--> Now running terraform apply, press any key to continue.\n'
+terraform apply
+
 
 ### Done.
 echo -e '\n--> Done.'
 cd /root/terraform-solutions/autopilot
-
