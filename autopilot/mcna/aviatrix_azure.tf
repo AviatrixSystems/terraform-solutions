@@ -18,6 +18,7 @@ resource "aviatrix_vpc" "azure_vnets" {
   cidr                 = each.value.cidr
   aviatrix_transit_vpc = each.value.is_transit
   aviatrix_firenet_vpc = each.value.is_firenet
+  depends_on = [aviatrix_account.azure_account]
 }
 
 # ### Launch the Aviatrix Transit gateway in the Azure Transit VNet.
