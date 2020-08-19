@@ -5,7 +5,7 @@ CMD ["/sbin/my_init"]
 
 # Dependencies.
 RUN	apt-get -y update && \
-	apt-get -y install wget unzip emacs git python3-pip
+	apt-get -y install wget unzip emacs git python3-pip sysvbanner screen
 
 # Awscli install.
 RUN	wget "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -P /tmp
