@@ -14,7 +14,7 @@ timer()
 
 banner Aviatrix Kickstart
 
-read -n 1 -r -s -p $'--> Going to run aws configure to set your AWS settings. They stay local to this container and are not shared. Press any key to continue.\n'
+read -n 1 -r -s -p $'--> Going to run aws configure to set your AWS settings. They stay local to this container and are not shared. Access keys can be created in AWS console under Account -> My Security Credentials -> Access keys for CLI, SDK, & API access. Default region name and Default output format can be left to None. Press any key to continue.\n'
 echo
 aws configure
 
