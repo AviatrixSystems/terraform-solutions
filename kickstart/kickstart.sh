@@ -19,7 +19,7 @@ echo
 aws configure
 
 ### Controller launch.
-cd controller
+cd /root/terraform-solutions/kickstart/controller
 read -n 1 -r -s -p $'\n--> Going to generate SSH keys for the controller. You can use an empty passphrase. Press any key to continue.\n'
 ssh-keygen -t rsa -f ctrl_key -C "controller_public_key"
 
@@ -66,7 +66,6 @@ while true; do
 done
 export AVIATRIX_PASSWORD=$password
 
-read -n 1 -r -s -p $'\n\n--> Now going to initialize controller. Press any key to continue.\n'
 python3 controller_init.py
 
 echo "Controller is ready."
@@ -76,7 +75,7 @@ cd /root/terraform-solutions/kickstart/mcna
 export AVIATRIX_USERNAME="admin"
 export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP
 
-read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the multi-cloud deployment. You can leave the defaults or change to your preferences. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. If you are not in Azure, you can ignore the Azure credentials. If you are in Azure, perform the pre-requisites at https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html. Press any key to continue.\n'
+read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the multi-cloud deployment. You can leave the defaults or change to your preferences. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. If you are not in Azure, you can ignore the Azure credentials. If you are in Azure, perform the pre-requisites at https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html. Press any key to continue. In the text editor, press :wq when done.\n'
 vim variables.tf
 
 read -n 1 -r -s -p $'\n\n--> Now going to launch gateways in AWS. Press any key to continue.\n'

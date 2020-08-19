@@ -21,7 +21,7 @@ RUN	unzip /tmp/terraform_0.12.24_linux_amd64.zip -d /usr/local/sbin/
 
 # Terraform Aviatrix solutions.
 RUN	mkdir /root/terraform-solutions
-ADD     autopilot /root/terraform-solutions/autopilot
+ADD     kickstart /root/terraform-solutions/kickstart
 ADD	controller-launch /root/terraform-solutions
 ADD	solutions /root/terraform-solutions
 

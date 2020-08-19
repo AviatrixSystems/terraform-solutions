@@ -1,7 +1,6 @@
 provider "aviatrix" {
   # Make sure to keep the version up to date with the controller version.
-  # https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs/gu
-ides/release-compatibility.
+  # https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs/guides/release-compatibility.
   version = "~> 2.15.1"
 }
 resource "aviatrix_vpc" "aws_vpcs" {
