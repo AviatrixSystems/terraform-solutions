@@ -80,6 +80,7 @@ mcna_init()
     cd /root/terraform-solutions/kickstart/mcna
     export AVIATRIX_USERNAME="admin"
     export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP
+    export TF_VAR_ec2_key=""
 
     read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the multi-cloud deployment. You can leave the defaults or change to your preferences. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. If you are not in Azure, you can ignore the Azure credentials. If you are in Azure, perform the pre-requisites at https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html. Press any key to continue. In the text editor, press :wq when done.\n'
     vim variables.tf
