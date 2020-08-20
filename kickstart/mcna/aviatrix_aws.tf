@@ -3,6 +3,7 @@ provider "aviatrix" {
   # https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs/guides/release-compatibility.
   version = "~> 2.15.1"
 }
+
 resource "aviatrix_vpc" "aws_vpcs" {
   for_each = var.aws_vpcs
 

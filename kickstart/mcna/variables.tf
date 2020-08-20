@@ -33,12 +33,32 @@ variable "aws_vpcs" {
   }
 }
 
+### Test EC2 instances.
+variable "test_ec2_instances" {
+  default = {
+    spoke1_vm = {
+      name                        = "Spoke1-VM"
+      vpc                         = "aws_spoke1_vpc"
+      ami                         = "ami-0b4b2d87bdd32212a"
+      size                        = "t2.micro"
+      associate_public_ip_address = true
+    }
+    spoke2_vm = {
+      name                        = "Spoke2-VM"
+      vpc                         = "aws_spoke2_vpc"
+      ami                         = "ami-0b4b2d87bdd32212a"
+      size                        = "t2.micro"
+      associate_public_ip_address = true
+    }
+  }
+}
+
 variable "azure_vnets" {
   default = {
     azure_transit_vnet = {
       name       = "AZ-WE-Transit-VNet"
       cidr       = "10.100.0.0/16"
-      is_transit = false  # Not a typo, is_transit = true only applies to AWS.
+      is_transit = false # Not a typo, is_transit = true only applies to AWS.
       is_firenet = false
     }
     azure_spoke1_vnet = {
