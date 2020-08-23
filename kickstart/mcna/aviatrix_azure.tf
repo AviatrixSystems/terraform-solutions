@@ -18,10 +18,10 @@ resource "aviatrix_vpc" "azure_vnets" {
   cidr                 = each.value.cidr
   aviatrix_transit_vpc = each.value.is_transit
   aviatrix_firenet_vpc = each.value.is_firenet
-  depends_on = [aviatrix_account.azure_account]
+  depends_on           = [aviatrix_account.azure_account]
 }
 
-# ### Launch the Aviatrix Transit gateway in the Azure Transit VNet.
+### Azure Transit gateway.
 resource "aviatrix_transit_gateway" "azure_transit_gw" {
   cloud_type         = 8
   account_name       = var.azure_account_name
@@ -32,35 +32,24 @@ resource "aviatrix_transit_gateway" "azure_transit_gw" {
   connected_transit  = true
   enable_active_mesh = var.azure_transit_gateway.active_mesh
   single_az_ha       = var.azure_transit_gateway.single_az_ha
-  subnet             = var.azure_transit_gateway.subnet
+  # The first subnet is always a public subnet for gateways.
+  subnet = aviatrix_vpc.azure_vnets[var.azure_transit_gateway.vpc].subnets[0].cidr
 }
 
-### Launch the Azure Spoke1 gateway.
-### Attach it to the Transit gateway.
-resource "aviatrix_spoke_gateway" "azure_spoke1_gw" {
-  cloud_type         = 8
-  account_name       = var.azure_account_name
-  gw_name            = var.azure_spoke1_gateway.name
-  vpc_id             = aviatrix_vpc.azure_vnets[var.azure_spoke1_gateway.vpc].vpc_id
-  vpc_reg            = var.azure_region
-  gw_size            = var.azure_spoke1_gateway.size
-  enable_active_mesh = var.azure_spoke1_gateway.active_mesh
-  single_az_ha       = var.azure_spoke1_gateway.single_az_ha
-  subnet             = var.azure_spoke1_gateway.subnet
-  transit_gw         = var.azure_transit_gateway.name
-}
+### Azure Spoke gateways and attachment to Azure Transit gateway.
+resource "aviatrix_spoke_gateway" "azure_spoke_gws" {
+  for_each = var.azure_spoke_gateways
 
-### Launch the Azure Spoke2 gateway.
-### Attach it to the Transit gateway.
-resource "aviatrix_spoke_gateway" "azure_spoke2_gw" {
   cloud_type         = 8
   account_name       = var.azure_account_name
-  gw_name            = var.azure_spoke2_gateway.name
-  vpc_id             = aviatrix_vpc.azure_vnets[var.azure_spoke2_gateway.vpc].vpc_id
+  gw_name            = each.value.name
+  vpc_id             = aviatrix_vpc.azure_vnets[each.value.vpc].vpc_id
   vpc_reg            = var.azure_region
-  gw_size            = var.azure_spoke2_gateway.size
-  enable_active_mesh = var.azure_spoke2_gateway.active_mesh
-  single_az_ha       = var.azure_spoke2_gateway.single_az_ha
-  subnet             = var.azure_spoke2_gateway.subnet
-  transit_gw         = var.azure_transit_gateway.name
+  gw_size            = each.value.size
+  enable_active_mesh = each.value.active_mesh
+  single_az_ha       = each.value.single_az_ha
+  # The first subnet is always a public subnet for gateways.
+  subnet     = aviatrix_vpc.azure_vnets[each.value.vpc].subnets[0].cidr
+  transit_gw = var.azure_transit_gateway.name
+  depends_on = [aviatrix_transit_gateway.azure_transit_gw]
 }

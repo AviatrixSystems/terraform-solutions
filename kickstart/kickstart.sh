@@ -21,7 +21,7 @@ aws_configure()
 
 controller_launch()
 {
-    cd /root/terraform-solutions/kickstart/controller
+    cd /root/controller
     read -n 1 -r -s -p $'\n--> Going to generate SSH keys for the controller. You can use an empty passphrase. Press any key to continue.\n'
     ssh-keygen -t rsa -f ctrl_key -C "controller_public_key"
 
@@ -56,7 +56,7 @@ controller_launch()
 
 controller_init()
 {
-    cd /root/terraform-solutions/kickstart/controller
+    cd /root/controller
     echo
     read -p 'Enter recovery email: ' email
     export AVIATRIX_EMAIL=$email
@@ -77,10 +77,9 @@ controller_init()
 
 mcna_init()
 {
-    cd /root/terraform-solutions/kickstart/mcna
+    cd /root/mcna
     export AVIATRIX_USERNAME="admin"
     export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP
-    export TF_VAR_ec2_key=""
 
     read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the multi-cloud deployment. You can leave the defaults or change to your preferences. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. If you are not in Azure, you can ignore the Azure credentials. If you are in Azure, perform the pre-requisites at https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html. Press any key to continue. In the text editor, press :wq when done.\n'
     vim variables.tf
@@ -88,50 +87,71 @@ mcna_init()
 
 mcna_aws_transit()
 {
-    cd /root/terraform-solutions/kickstart/mcna
+    cd /root/mcna
     read -n 1 -r -s -p $'\n\n--> Now going to launch gateways in AWS. Press any key to continue.\n'
     terraform init
-    terraform apply -target=aviatrix_transit_gateway.aws_transit_gw -target=aviatrix_spoke_gateway.aws_spoke1_gw -target=aviatrix_spoke_gateway.aws_spoke2_gw -auto-approve
+    terraform apply -target=aviatrix_transit_gateway.aws_transit_gw -target=aviatrix_spoke_gateway.aws_spoke_gws -auto-approve
 }
 
 input_aws_keypair()
 {
-    read -p $'\n\n--> Enter your AWS keypair name you want to use for the test EC2 instances. If needed, go to EC2 -> Network & Security -> Key Pairs to create one.\nKeypair: ' keypair
-    export TF_VAR_ec2_key=$keypair
+    read -n 1 -r -s -p $'\n\n--> Re-opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. Press any key to continue.\n'
+    vim variables.tf
 }
 
 mcna_aws_test_instances()
 {
-    cd /root/terraform-solutions/kickstart/mcna
-    read -p $'\n\n--> Do you want to lauch test EC2 instances in the AWS Spoke VPCs? (y/n)? ' answer
-    if [ "$answer" != "${answer#[Yy]}" ] ; then
-	input_aws_keypair
-	terraform apply -target=aws_instance.test_instances -auto-approve
-    else
-	echo "Skipping test EC2 instances"
-    fi
+    cd /root/mcna
+    input_aws_keypair
+    echo "--> Launching instances now"
+    terraform apply -target=aws_instance.test_instances -auto-approve
 }
 
 mcna_azure_transit()
 {
-    cd /root/terraform-solutions/kickstart/mcna
-    read -p $'\n\n--> Do you want to lauch gateways in Azure, and peer AWS and Azure (y/n)? ' answer
-    if [ "$answer" != "${answer#[Yy]}" ] ; then
-	terraform apply -target=aviatrix_transit_gateway.azure_transit_gw -target=aviatrix_spoke_gateway.azure_spoke1_gw -target=aviatrix_spoke_gateway.azure_spoke2_gw -auto-approve
-	terraform apply -target=aviatrix_transit_gateway_peering.aws_azure -auto-approve
-    else
-	echo "Skipping Azure"
-    fi
+    cd /root/mcna
+    terraform apply -target=aviatrix_transit_gateway.azure_transit_gw -target=aviatrix_spoke_gateway.azure_spoke_gws -auto-approve
+}
+
+peering()
+{
+    cd /root/mcna
+    terraform apply -target=aviatrix_transit_gateway_peering.aws_azure -auto-approve
 }
 
 banner Aviatrix Kickstart
+
 aws_configure
-controller_launch
-controller_init
-mcna_init
-mcna_aws_transit
-mcna_aws_test_instances
-mcna_azure_transit
+
+read -p $'\n\n--> Do you want to launch the controller? (y/n)? ' answer
+if [ "$answer" != "${answer#[Yy]}" ] ; then
+    controller_launch
+    controller_init
+fi
+
+read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? (y/n)? ' answer
+if [ "$answer" != "${answer#[Yy]}" ] ; then
+    read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the AWS deployment. You can leave the defaults or change to your preferences. You only need to complete the AWS settings. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. In the text editor, press :wq when done.\n'
+    mcna_init
+    mcna_aws_transit
+fi
+
+read -p $'\n\n--> Do you want to launch test EC2 instances in the AWS Spoke VPCs? (y/n)? ' answer
+if [ "$answer" != "${answer#[Yy]}" ] ; then
+    mcna_aws_test_instances
+fi
+
+read -p $'\n\n--> Do you want to launch the Aviatrix transit in Azure? (y/n)? ' answer
+if [ "$answer" != "${answer#[Yy]}" ] ; then
+    read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the Azure deployment. You can leave the defaults or change to your preferences. You only need to complete the Azure settings. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. Perform the pre-requisites at https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html. Press any key to continue. In the text editor, press :wq when done.\n'
+    mcna_init
+    mcna_azure_transit
+fi
+
+read -p $'\n\n--> Do you want to build a transit peering between AWS and Azure? (y/n)? ' answer
+if [ "$answer" != "${answer#[Yy]}" ] ; then
+    peering
+fi
 
 echo -e "\n--> Aviatrix Kickstart is done. Your controller IP is $CONTROLLER_PUBLIC_IP"
-cd /root/terraform-solutions/kickstart
+cd /root

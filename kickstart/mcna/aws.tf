@@ -3,9 +3,9 @@ provider "aws" {
   region  = var.aws_region
 }
 
-### Create AWS Security Group for test instances, in every VPC.
+### Create AWS Security Group for test instances, in every Spoke VPC.
 resource "aws_security_group" "icmp_ssh" {
-  for_each = aviatrix_vpc.aws_vpcs
+  for_each = aviatrix_vpc.aws_spoke_vpcs
 
   name        = "ICMP-SSH-SG"
   description = "ICMP-SSH-SG"
@@ -39,24 +39,32 @@ resource "aws_security_group" "icmp_ssh" {
   }
 }
 
-### Create test instances.
-variable "ec2_key" {
-  type = string
+### Get the latest AMI of Amazon Linux.
+data "aws_ami" "amazon-linux-2" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-ebs"]
+  }
 }
 
+### Test EC2 instances.
 resource "aws_instance" "test_instances" {
   for_each = var.test_ec2_instances
 
   tags = {
     Name = each.value.name
   }
-  ami           = each.value.ami
+  ami           = data.aws_ami.amazon-linux-2.id
   instance_type = each.value.size
   # Public subnet.
-  subnet_id                   = aviatrix_vpc.aws_vpcs[each.value.vpc].subnets[3].subnet_id
+  subnet_id                   = aviatrix_vpc.aws_spoke_vpcs[each.value.vpc].subnets[length(data.aws_availability_zones.az_available.names)].subnet_id
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.icmp_ssh[each.value.vpc].id]
-  key_name                    = var.ec2_key
+  key_name                    = var.aws_ec2_key_name
+  depends_on                  = [aws_security_group.icmp_ssh]
 }
 
 output "test_ec2_instances_public_ips" {
