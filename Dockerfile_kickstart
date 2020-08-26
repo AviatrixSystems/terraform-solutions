@@ -23,6 +23,7 @@ RUN	unzip /tmp/terraform_0.12.24_linux_amd64.zip -d /usr/local/sbin/
 ADD     kickstart/controller /root/controller
 ADD	kickstart/mcna /root/mcna
 ADD	kickstart/kickstart.sh /root/
+ADD	kickstart/.plane /root/
 
 # Misc. configuration
 RUN	mkdir -p /root/.emacs.d/lisp
