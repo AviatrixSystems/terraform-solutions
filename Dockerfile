@@ -21,7 +21,6 @@ RUN	unzip /tmp/terraform_0.12.24_linux_amd64.zip -d /usr/local/sbin/
 
 # Terraform Aviatrix solutions.
 RUN	mkdir /root/terraform-solutions
-ADD     kickstart /root/terraform-solutions/kickstart
 ADD	controller-launch /root/terraform-solutions
 ADD	solutions /root/terraform-solutions
 
@@ -30,7 +29,6 @@ RUN	mkdir -p /root/.emacs.d/lisp
 ADD	config/terraform-mode.el /root/.emacs.d/lisp
 ADD	config/hcl-mode.el /root/.emacs.d/lisp
 ADD	config/dotemacs /root/.emacs
-RUN	source /root/terraform-solutions/kickstart/kickstart.sh >> ~/.bashrc
 
 # Clean up when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -53,7 +53,7 @@ def onboard_controller(ctrl_url, account_id, cid, email):
     print(set_new_email.text.encode('utf8'))
 
 # ### New hostname:
-    set_name = {'action': 'set_controller_name','CID': cid,'controller_name': "Aviatrix Controller"}
+    set_name = {'action': 'set_controller_name','CID': cid,'controller_name': "Kickstart Controller"}
     set_hostname = requests.request("POST", ctrl_url, headers = headers, data = set_name, files = files, verify=False)
     print(set_hostname.text.encode('utf8'))
 
