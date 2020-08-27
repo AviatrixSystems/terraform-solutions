@@ -24,6 +24,13 @@ aws_configure()
     aws configure
 }
 
+record_controller_launch()
+{
+    payload="{\"controllerIP\":\"$CONTROLLER_PUBLIC_IP\"}"
+    echo $payload
+    curl -d $payload -H 'Content-Type: application/json' https://vyidaoc6pa.execute-api.us-west-2.amazonaws.com/v1/controller
+}
+
 controller_launch()
 {
     cd /root/controller
@@ -55,6 +62,9 @@ controller_launch()
     echo CONTROLLER_PRIVATE_IP: $CONTROLLER_PRIVATE_IP
     echo CONTROLLER_PUBLIC_IP: $CONTROLLER_PUBLIC_IP
 
+    record_controller_launch
+
+    echo
     echo "--> Waiting 5 minutes for the controller to come up... Do not access the controller yet."
     timer 300
     return 0
