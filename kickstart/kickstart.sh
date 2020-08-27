@@ -19,9 +19,11 @@ aws_configure()
 	echo "--> .aws exists, skipping aws configure."
 	return 0
     fi
-    read -n 1 -r -s -p $'--> Going to run aws configure to set your AWS settings. They stay local to this container and are not shared. Access keys can be created in AWS console under Account -> My Security Credentials -> Access keys for CLI, SDK, & API access. Default region name and Default output format can be left to None. Press any key to continue.\n'
-    echo
-    aws configure
+    echo "--> Going to get your AWS API access keys. They are required to launch the Aviatrix controller in AWS. They stay local to this container and are not shared. Access keys can be created in AWS console under Account -> My Security Credentials -> Access keys for CLI, SDK, & API access."
+    read -p '--> Enter AWS access key ID: ' key_id
+    read -p '--> Enter AWS secret access key: ' secret_key
+    aws configure set aws_access_key_id $key_id
+    aws configure set aws_secret_access_key $secret_key
 }
 
 record_controller_launch()
@@ -34,15 +36,21 @@ record_controller_launch()
 controller_launch()
 {
     cd /root/controller
-    read -n 1 -r -s -p $'\n--> Going to generate SSH keys for the controller. You can use an empty passphrase. Press any key to continue.\n'
-    ssh-keygen -t rsa -f ctrl_key -C "controller_public_key"
+    echo "--> Generating SSH key for the controller..."
+    ssh-keygen -t rsa -f ctrl_key -C "controller_public_key" -q -N ""
+    if [ $? -eq 0 ]; then
+	echo "--> Done."
+    else
+	echo "--> SSH key generation failed, aborting." >&2
+	return 1
+    fi
 
     read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k and subscribe to the Aviatrix platform. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
 
     read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the controller. You can leave the defaults or change to your preferences. Press any key to continue. In the text editor, press :wq when done.\n'
     vim variables.tf
 
-    read -n 1 -r -s -p $'\n\n--> The controller user configuration is now complete. Now going to launch the controller instance in AWS. Press any key to continue. Close the window, or press Ctrl-C to abort.\n'
+    read -n 1 -r -s -p $'\n\n--> The controller user configuration is now complete. Now going to launch the controller instance in AWS. The public IP of the controller will be shared with Aviatrix for tracking purposes. Press any key to continue. Close the window, or press Ctrl-C to abort.\n'
     terraform init
     terraform apply -auto-approve
 
@@ -57,7 +65,16 @@ controller_launch()
     export AWS_ACCOUNT=$(terraform output aws_account)
     export CONTROLLER_PRIVATE_IP=$(terraform output controller_private_ip)
     export CONTROLLER_PUBLIC_IP=$(terraform output controller_public_ip)
-
+    export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP
+    
+    # Keep them in .bashrc in case the container gets restarted.
+    f=/root/.kickstart_restore
+    echo 'cd /root/controller' > $f
+    echo 'export AWS_ACCOUNT=$(terraform output aws_account)' >> $f
+    echo 'export CONTROLLER_PRIVATE_IP=$(terraform output controller_private_ip)' >> $f
+    echo 'export CONTROLLER_PUBLIC_IP=$(terraform output controller_public_ip)' >> $f
+    echo 'export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP' >> $f
+    
     echo AWS_ACCOUNT: $AWS_ACCOUNT
     echo CONTROLLER_PRIVATE_IP: $CONTROLLER_PRIVATE_IP
     echo CONTROLLER_PUBLIC_IP: $CONTROLLER_PUBLIC_IP
@@ -76,7 +93,9 @@ controller_init()
     echo
     read -p '--> Enter recovery email: ' email
     export AVIATRIX_EMAIL=$email
-
+    f=/root/.kickstart_restore
+    echo "export AVIATRIX_EMAIL=$email" >> $f
+    
     while true; do
 	read -s -p "--> Enter new password: " password
 	echo
@@ -86,7 +105,11 @@ controller_init()
 	echo "--> Passwords don't match, please try again."
     done
     export AVIATRIX_PASSWORD=$password
+    echo "export AVIATRIX_PASSWORD=$password" >> $f
 
+    export AVIATRIX_USERNAME=admin
+    echo 'export AVIATRIX_USERNAME=admin' >> $f
+    
     python3 controller_init.py
     echo "--> Controller is ready. Do not manually change the controller version while Kickstart is running."
 }
@@ -94,8 +117,6 @@ controller_init()
 mcna_init()
 {
     cd /root/mcna
-    export AVIATRIX_USERNAME="admin"
-    export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP
     vim variables.tf
 }
 

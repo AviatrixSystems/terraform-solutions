@@ -32,6 +32,7 @@ ADD	config/hcl-mode.el /root/.emacs.d/lisp
 ADD	config/dotemacs /root/.emacs
 
 # Run Kickstart when starting container
+RUN	echo 'source /root/.kickstart_restore' >> ~/.bashrc
 RUN	echo 'source /root/kickstart.sh' >> ~/.bashrc
 
 # Clean up when done.
