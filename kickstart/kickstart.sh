@@ -33,15 +33,34 @@ record_controller_launch()
     curl -d $payload -H 'Content-Type: application/json' https://vyidaoc6pa.execute-api.us-west-2.amazonaws.com/v1/controller
 }
 
-controller_launch()
+generate_controller_ssh_key()
 {
     cd /root/controller
+    if [ -f "ctrl_key" ]; then
+	echo "--> Controller SSH key already exists, skipping."
+	return 0
+    fi
+	
     echo "--> Generating SSH key for the controller..."
     ssh-keygen -t rsa -f ctrl_key -C "controller_public_key" -q -N ""
     if [ $? -eq 0 ]; then
 	echo "--> Done."
+	return 0
     else
 	echo "--> SSH key generation failed, aborting." >&2
+	return 1
+    fi
+}
+
+controller_launch()
+{
+    cd /root/controller
+    
+    generate_controller_ssh_key
+    if [ $? -eq 0 ]; then
+	echo "--> OK."
+    else
+	echo "--> Aborting." >&2
 	return 1
     fi
 
@@ -105,7 +124,8 @@ controller_init()
 	echo "--> Passwords don't match, please try again."
     done
     export AVIATRIX_PASSWORD=$password
-    echo "export AVIATRIX_PASSWORD=$password" >> $f
+    str="export AVIATRIX_PASSWORD='$password'"
+    echo $str >> $f
 
     export AVIATRIX_USERNAME=admin
     echo 'export AVIATRIX_USERNAME=admin' >> $f
