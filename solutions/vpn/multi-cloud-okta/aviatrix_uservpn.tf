@@ -1,3 +1,9 @@
+provider "aviatrix" {
+  # Make sure to keep the version up to date with the controller version.
+  # https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs/guides/release-compatibility.
+  version = "~> 2.16.2"
+}
+
 ### Create the VPC.
 resource "aviatrix_vpc" "vpn_vpc" {
   cloud_type           = var.cloud_type
@@ -56,10 +62,12 @@ resource "aviatrix_saml_endpoint" "avx_saml_endpoint" {
 
 # Create the user with shared certificate, associated to the SAML endpoint.
 resource "aviatrix_vpn_user" "vpn_user" {
-  vpc_id        = aviatrix_vpc.vpn_vpc.vpc_id
-  gw_name       = aviatrix_gateway.vpn_gws["gw1"].elb_name
-  user_name     = var.vpn_user
-  saml_endpoint = var.saml_endpoint_name
+  vpc_id                 = aviatrix_vpc.vpn_vpc.vpc_id
+  gw_name                = aviatrix_gateway.vpn_gws["gw1"].elb_name
+  user_name              = var.vpn_user
+  saml_endpoint          = var.saml_endpoint_name
+  manage_user_attachment = true
+  profiles               = ["Default-Deny-Profile"]
 }
 
 # Create the profile. Don't associate the shared user to it, as the
