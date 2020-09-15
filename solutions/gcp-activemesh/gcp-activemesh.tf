@@ -30,7 +30,7 @@ resource "aviatrix_transit_gateway" "gcp_bu_transit_gateway" {
   enable_active_mesh = var.gcp_bu_transit_gateway.active_mesh
   single_az_ha       = var.gcp_bu_transit_gateway.single_az_ha
   subnet             = var.gcp_vpcs[var.gcp_bu_transit_gateway.vpc].subnet_cidr
-  local_as_number    = var.gcp_central_it_transit_gateway.asn
+  local_as_number    = var.gcp_bu_transit_gateway.asn
 }
 
 resource "aviatrix_transit_gateway" "gcp_central_it_transit_gateway" {
@@ -51,6 +51,7 @@ resource "aviatrix_transit_gateway" "gcp_central_it_transit_gateway" {
 resource "aviatrix_transit_gateway_peering" "peering" {
   transit_gateway_name1 = var.gcp_bu_transit_gateway.name
   transit_gateway_name2 = var.gcp_central_it_transit_gateway.name
+  depends_on            = [aviatrix_transit_gateway.gcp_bu_transit_gateway, aviatrix_transit_gateway.gcp_central_it_transit_gateway]
 }
 
 ### GCP BU Spoke gateways.
@@ -89,13 +90,17 @@ resource "aviatrix_spoke_gateway" "gcp_it_spoke_gws" {
   depends_on                       = [aviatrix_transit_gateway.gcp_central_it_transit_gateway]
 }
 
-### S2C on Central-IT Transit gateway.
-resource "aviatrix_transit_external_device_conn" "central_it_s2c" {
-  vpc_id            = aviatrix_vpc.gcp_vpcs[var.gcp_central_it_transit_gateway.vpc].vpc_id
-  connection_name   = var.central_it_s2c.name
-  gw_name           = var.gcp_central_it_transit_gateway.name
-  connection_type   = "bgp"
-  bgp_local_as_num  = var.gcp_central_it_transit_gateway.asn
-  bgp_remote_as_num = var.central_it_s2c.remote_asn
-  remote_gateway_ip = var.central_it_s2c.remote_ip
+data "aviatrix_vpc" "gcp_it_transit_vpc" {
+  name = "gcp-central-it-transit-vpc"
 }
+
+### S2C on Central-IT Transit gateway.
+# resource "aviatrix_transit_external_device_conn" "central_it_s2c" {
+#   vpc_id            = data.aviatrix_vpc.gcp_it_transit_vpc.vpc_id
+#   connection_name   = var.central_it_s2c.name
+#   gw_name           = var.gcp_central_it_transit_gateway.name
+#   connection_type   = "bgp"
+#   bgp_local_as_num  = var.gcp_central_it_transit_gateway.asn
+#   bgp_remote_as_num = var.central_it_s2c.remote_asn
+#   remote_gateway_ip = var.central_it_s2c.remote_ip
+# }

@@ -56,7 +56,7 @@ variable "gcp_central_it_transit_gateway" {
     active_mesh  = true
     single_az_ha = true
     vpc          = "central_it_transit"
-    zone         = "us-west3-a"
+    zone         = "us-west3-c"
     asn          = "65161"
   }
 }
@@ -96,7 +96,7 @@ variable "gcp_it_spoke_gateways" {
       active_mesh               = true
       single_az_ha              = true
       vpc                       = "db"
-      zone                      = "us-west3-a"
+      zone                      = "us-west3-c"
       customized_spoke_vpc_cidr = "10.160.6.0/24,10.160.7.0/24"
       transit_gw                = "gcp-central-it-transit-gw"
     }
@@ -107,7 +107,7 @@ variable "gcp_it_spoke_gateways" {
 variable "central_it_s2c" {
   default = {
     name       = "gcp-central-it-washington-s2c"
-    remote_asn = "65162"
+    remote_asn = "65051"
     remote_ip  = "54.204.224.4"
   }
 }
