@@ -95,12 +95,12 @@ data "aviatrix_vpc" "gcp_it_transit_vpc" {
 }
 
 ### S2C on Central-IT Transit gateway.
-# resource "aviatrix_transit_external_device_conn" "central_it_s2c" {
-#   vpc_id            = data.aviatrix_vpc.gcp_it_transit_vpc.vpc_id
-#   connection_name   = var.central_it_s2c.name
-#   gw_name           = var.gcp_central_it_transit_gateway.name
-#   connection_type   = "bgp"
-#   bgp_local_as_num  = var.gcp_central_it_transit_gateway.asn
-#   bgp_remote_as_num = var.central_it_s2c.remote_asn
-#   remote_gateway_ip = var.central_it_s2c.remote_ip
-# }
+resource "aviatrix_transit_external_device_conn" "central_it_s2c" {
+  vpc_id            = data.aviatrix_vpc.gcp_it_transit_vpc.vpc_id
+  connection_name   = var.central_it_s2c.name
+  gw_name           = var.gcp_central_it_transit_gateway.name
+  connection_type   = "bgp"
+  bgp_local_as_num  = var.gcp_central_it_transit_gateway.asn
+  bgp_remote_as_num = var.central_it_s2c.remote_asn
+  remote_gateway_ip = var.central_it_s2c.remote_ip
+}
