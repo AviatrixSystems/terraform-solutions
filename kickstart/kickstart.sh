@@ -28,9 +28,10 @@ aws_configure()
 
 record_controller_launch()
 {
-    payload="{\"controllerIP\":\"$CONTROLLER_PUBLIC_IP\"}"
+    d=$(date)
+    payload="{\"controllerIP\":\"$CONTROLLER_PUBLIC_IP\", \"timestamp\":\"$d\"}"
     echo $payload
-    curl -d $payload -H 'Content-Type: application/json' https://vyidaoc6pa.execute-api.us-west-2.amazonaws.com/v1/controller
+    curl -d "$payload" -H 'Content-Type: application/json' https://vyidaoc6pa.execute-api.us-west-2.amazonaws.com/v1/controller
 }
 
 generate_controller_ssh_key()
