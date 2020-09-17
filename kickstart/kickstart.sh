@@ -28,9 +28,10 @@ aws_configure()
 
 record_controller_launch()
 {
+    echo
+    read -p '--> Enter email for Aviatrix support to reach out in case of issues: ' email_support
     d=$(date)
-    payload="{\"controllerIP\":\"$CONTROLLER_PUBLIC_IP\", \"timestamp\":\"$d\"}"
-    echo $payload
+    payload="{\"controllerIP\":\"$CONTROLLER_PUBLIC_IP\", \"email\":\"$email_support\", \"timestamp\":\"$d\"}"
     curl -d "$payload" -H 'Content-Type: application/json' https://vyidaoc6pa.execute-api.us-west-2.amazonaws.com/v1/controller
 }
 
@@ -111,7 +112,7 @@ controller_init()
 {
     cd /root/controller
     echo
-    read -p '--> Enter recovery email: ' email
+    read -p '--> Enter email for controller password recovery: ' email
     export AVIATRIX_EMAIL=$email
     f=/root/.kickstart_restore
     echo "export AVIATRIX_EMAIL=$email" >> $f
