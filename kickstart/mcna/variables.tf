@@ -1,11 +1,11 @@
 variable "aws_profile" { default = "default" }
 variable "aws_account_name" { default = "aws-account" }
-variable "aws_region" { default = "eu-west-1" }
+variable "aws_region" { default = "us-east-2" }
 # Only needed if you want to launch test EC2 instances.
 variable "aws_ec2_key_name" { default = "nicolas" }
 
 variable "azure_account_name" { default = "azure-network" }
-variable "azure_region" { default = "West Europe" }
+variable "azure_region" { default = "East US" }
 variable "azure_subscription_id" { default = "" }
 variable "azure_directory_id" { default = "" }
 variable "azure_application_id" { default = "" }

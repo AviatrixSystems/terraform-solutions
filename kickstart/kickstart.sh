@@ -68,10 +68,7 @@ controller_launch()
 
     read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k and subscribe to the Aviatrix platform. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
 
-    read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the controller. You can leave the defaults or change to your preferences. Press any key to continue. In the text editor, press :wq when done.\n'
-    vim variables.tf
-
-    read -n 1 -r -s -p $'\n\n--> The controller user configuration is now complete. Now going to launch the controller instance in AWS. The public IP of the controller will be shared with Aviatrix for tracking purposes. Press any key to continue. Close the window, or press Ctrl-C to abort.\n'
+    read -n 1 -r -s -p $'\n\n--> Now going to launch the controller instance in AWS us-east-1 region. The public IP of the controller will be shared with Aviatrix for tracking purposes. To abort, close the window or press Ctrl-C. To continue, press any key.\n'
     terraform init
     terraform apply -auto-approve
 
@@ -136,16 +133,9 @@ controller_init()
     echo "--> Controller is ready. Do not manually change the controller version while Kickstart is running."
 }
 
-mcna_init()
-{
-    cd /root/mcna
-    vim variables.tf
-}
-
 mcna_aws_transit()
 {
     cd /root/mcna
-    read -n 1 -r -s -p $'\n\n--> Now going to launch gateways in AWS. Press any key to continue.\n'
     terraform init
     terraform apply -target=aviatrix_transit_gateway.aws_transit_gw -target=aviatrix_spoke_gateway.aws_spoke_gws -auto-approve
     return $?
@@ -153,7 +143,7 @@ mcna_aws_transit()
 
 input_aws_keypair()
 {
-    read -n 1 -r -s -p $'\n\n--> Re-opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. This is your own key pair, not Aviatrix keys for controller or gateways. Also make sure you are in the region where you launched the Spoke gateways. Press any key to continue.\n'
+    read -n 1 -r -s -p $'\n\n--> Opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. This is your own key pair, not Aviatrix keys for controller or gateways. Also make sure you are in us-east-2 where the Spoke gateways were launched. Press any key to continue.\n'
     vim variables.tf
 }
 
@@ -204,10 +194,8 @@ else
     fi
 fi
 
-read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? (y/n)? ' answer
+read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Region will be us-east-1. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. (y/n)? ' answer
 if [ "$answer" != "${answer#[Yy]}" ] ; then
-    read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the AWS deployment. You can leave the defaults or change to your preferences. You only need to complete the AWS settings. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. In the text editor, press :wq when done.\n'
-    mcna_init
     mcna_aws_transit
     if [ $? != 0 ]; then
 	echo "--> Failed to launch AWS transit, aborting." >&2
@@ -222,8 +210,8 @@ fi
 
 read -p $'\n\n--> Do you want to launch the Aviatrix transit in Azure? (y/n)? ' answer
 if [ "$answer" != "${answer#[Yy]}" ] ; then
-    read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the Azure deployment. You can leave the defaults or change to your preferences. You only need to complete the Azure settings. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. Perform the pre-requisites at https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html. Press any key to continue. In the text editor, press :wq when done.\n'
-    mcna_init
+    read -n 1 -r -s -p $'\n\n--> Now opening the settings file for the Azure deployment. Your need to enter your Azure API keys. You can leave the rest to defaults or change to your preferences. You only need to complete the Azure settings. Perform the pre-requisites at https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html. Press any key to continue. In the text editor, press :wq when done.\n'
+    vim /root/mcna/variables.tf
     mcna_azure_transit
     if [ $? != 0 ]; then
 	echo "--> Failed to launch Azure transit, aborting." >&2
