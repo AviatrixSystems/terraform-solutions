@@ -194,7 +194,7 @@ else
     fi
 fi
 
-read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Region will be us-east-1. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. (y/n)? ' answer
+read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Region will be us-east-2. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. (y/n)? ' answer
 if [ "$answer" != "${answer#[Yy]}" ] ; then
     mcna_aws_transit
     if [ $? != 0 ]; then
