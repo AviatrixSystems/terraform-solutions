@@ -29,7 +29,7 @@ aws_configure()
 record_controller_launch()
 {
     echo
-    read -p '--> Enter email for Aviatrix support to reach out in case of issues: ' email_support
+    read -p '--> Enter email for Aviatrix support to reach out in case of issues (the email will be shared with Aviatrix): ' email_support
     d=$(date)
     payload="{\"controllerIP\":\"$CONTROLLER_PUBLIC_IP\", \"email\":\"$email_support\", \"timestamp\":\"$d\"}"
     curl -d "$payload" -H 'Content-Type: application/json' https://vyidaoc6pa.execute-api.us-west-2.amazonaws.com/v1/controller
@@ -130,7 +130,14 @@ controller_init()
     echo 'export AVIATRIX_USERNAME=admin' >> $f
     
     python3 controller_init.py
-    echo "--> Controller is ready. Do not manually change the controller version while Kickstart is running."
+    if [ $? != 0 ]; then
+	echo "--> Controller init failed"
+	return 1
+    fi
+
+    export KICKSTART_CONTROLLER_INIT_DONE=true
+    echo 'export KICKSTART_CONTROLLER_INIT_DONE=true' >> $f
+    echo "--> Controller init has completed. Controller is ready. Do not manually change the controller version while Kickstart is running."
 }
 
 mcna_aws_transit()
@@ -186,11 +193,17 @@ else
 	    echo "--> Controller launch failed, aborting."
 	    return 1
 	fi
+    fi
+fi
+
+# If controller was already initialized in this container, skip.
+if [[ -v KICKSTART_CONTROLLER_INIT_DONE ]]; then
+    echo "--> Controller already initialized, skipping."
+else
+    controller_init
+    if [ $? != 0 ]; then
+	echo "--> Controller init failed, retrying."
 	controller_init
-	if [ $? != 0 ]; then
-	    echo "--> Controller init failed, aborting."
-	    return 1
-	fi
     fi
 fi
 
