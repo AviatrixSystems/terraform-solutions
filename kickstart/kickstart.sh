@@ -68,7 +68,18 @@ controller_launch()
 
     read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k and subscribe to the Aviatrix platform. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
 
-    read -n 1 -r -s -p $'\n\n--> Now going to launch the controller instance in AWS us-east-1 region. The public IP of the controller will be shared with Aviatrix for tracking purposes. To abort, close the window or press Ctrl-C. To continue, press any key.\n'
+    # Advanced mode.
+    if [ ! -z $KS_ADVANCED ]; then
+	read -n 1 -r -s -p $'\n--> Opening controller settings file. Press any key to continue.\n'
+	vim variables.tf
+    fi
+
+    echo -e "\n--> Now going to launch the controller. The public IP of the controller will be shared with Aviatrix for tracking purposes."
+    if [ -z $KS_ADVANCED ]; then
+	echo "--> The controller will be launched in us-east-1."
+    fi
+
+    read -n 1 -r -s -p $'--> To abort, close the window or press Ctrl-C. To continue, press any key.\n'
     terraform init
     terraform apply -auto-approve
 
@@ -99,8 +110,7 @@ controller_launch()
 
     record_controller_launch
 
-    echo
-    echo "--> Waiting 5 minutes for the controller to come up... Do not access the controller yet."
+    echo -e "\n--> Waiting 5 minutes for the controller to come up... Do not access the controller yet."
     timer 300
     return 0
 }
@@ -137,12 +147,19 @@ controller_init()
 
     export KICKSTART_CONTROLLER_INIT_DONE=true
     echo 'export KICKSTART_CONTROLLER_INIT_DONE=true' >> $f
-    echo "--> Controller init has completed. Controller is ready. Do not manually change the controller version while Kickstart is running."
+    echo -e "\n--> Controller init has completed. Controller is ready. Do not manually change the controller version while Kickstart is running."
 }
 
 mcna_aws_transit()
 {
     cd /root/mcna
+
+    # Advanced mode.
+    if [ ! -z $KS_ADVANCED ]; then
+	read -n 1 -r -s -p $'\n--> Opening settings file. Press any key to continue.\n'
+	vim variables.tf
+    fi
+
     terraform init
     terraform apply -target=aviatrix_transit_gateway.aws_transit_gw -target=aviatrix_spoke_gateway.aws_spoke_gws -auto-approve
     return $?
@@ -150,7 +167,7 @@ mcna_aws_transit()
 
 input_aws_keypair()
 {
-    read -n 1 -r -s -p $'\n\n--> Opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. This is your own key pair, not Aviatrix keys for controller or gateways. Also make sure you are in us-east-2 where the Spoke gateways were launched. Press any key to continue.\n'
+    read -n 1 -r -s -p $'\n\n--> Opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. This is your own key pair, not Aviatrix keys for controller or gateways. Also make sure you are in the region where the Spoke gateways were launched (if using defaults, us-east-2). Press any key to continue.\n'
     vim variables.tf
 }
 
@@ -166,6 +183,13 @@ mcna_aws_test_instances()
 mcna_azure_transit()
 {
     cd /root/mcna
+
+    # Advanced mode.
+    if [ ! -z $KS_ADVANCED ]; then
+	read -n 1 -r -s -p $'\n--> Opening settings file. You can change the region and other settings like VNet and gateways. Press any key to continue.\n'
+	vim variables.tf
+    fi
+
     terraform apply -target=aviatrix_transit_gateway.azure_transit_gw -target=aviatrix_spoke_gateway.azure_spoke_gws -auto-approve
     return $?
 }
@@ -207,7 +231,11 @@ else
     fi
 fi
 
-read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Region will be us-east-2. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. (y/n)? ' answer
+if [ -z $KS_ADVANCED ]; then
+    read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Region will be us-east-2. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. (y/n)? ' answer
+else
+    read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. You can change the settings in the next step (y/n)? ' answer
+fi
 if [ "$answer" != "${answer#[Yy]}" ] ; then
     mcna_aws_transit
     if [ $? != 0 ]; then
