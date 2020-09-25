@@ -37,7 +37,12 @@ record_controller_launch()
 
 generate_controller_ssh_key()
 {
-    cd /root/controller
+    if [ -z $KS_GOVCLOUD ]; then
+	cd /root/controller
+    else
+	echo "--> AWS GovCloud SSH key generation"
+	cd /root/controller-govcloud
+    fi
     if [ -f "ctrl_key" ]; then
 	echo "--> Controller SSH key already exists, skipping."
 	return 0
@@ -56,7 +61,12 @@ generate_controller_ssh_key()
 
 controller_launch()
 {
-    cd /root/controller
+    if [ -z $KS_GOVCLOUD ]; then
+	cd /root/controller
+    else
+	echo "--> AWS GovCloud controller launch"
+	cd /root/controller-govcloud
+    fi
     
     generate_controller_ssh_key
     if [ $? -eq 0 ]; then
@@ -66,16 +76,21 @@ controller_launch()
 	return 1
     fi
 
-    read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k and subscribe to the Aviatrix platform. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
-
-    # Advanced mode.
-    if [ ! -z $KS_ADVANCED ]; then
+    if [ -z $KS_GOVCLOUD ]; then
+	read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k and subscribe to the Aviatrix platform. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
+    else
+	read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k and subscribe to the Aviatrix platform. ACCESS THE MARKETPLACE FROM THE AWS ROOT ACCOUNT THAT IS IN CHARGE OF YOUR AWS GOVCLOUD ACCOUNT. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
+    fi
+	
+    # Advanced mode. In GovCloud, always open it.
+    if [ ! -z $KS_ADVANCED ] || [ ! -z $KS_GOVCLOUD ]; then
 	read -n 1 -r -s -p $'\n--> Opening controller settings file. Press any key to continue.\n'
 	vim variables.tf
     fi
 
     echo -e "\n--> Now going to launch the controller. The public IP of the controller will be shared with Aviatrix for tracking purposes."
-    if [ -z $KS_ADVANCED ]; then
+    # If not advanced and not GovCloud, then default mode.
+    if [ -z $KS_ADVANCED ] && [ -z $KS_GOVCLOUD ]; then
 	echo "--> The controller will be launched in us-east-1."
     fi
 
@@ -98,7 +113,12 @@ controller_launch()
     
     # Keep them in .bashrc in case the container gets restarted.
     f=/root/.kickstart_restore
-    echo 'cd /root/controller' > $f
+
+    if [ -z $KS_GOVCLOUD ]; then
+	echo 'cd /root/controller' > $f
+    else
+	echo 'cd /root/controller-govcloud' > $f
+    fi
     echo 'export AWS_ACCOUNT=$(terraform output aws_account)' >> $f
     echo 'export CONTROLLER_PRIVATE_IP=$(terraform output controller_private_ip)' >> $f
     echo 'export CONTROLLER_PUBLIC_IP=$(terraform output controller_public_ip)' >> $f
@@ -117,7 +137,12 @@ controller_launch()
 
 controller_init()
 {
-    cd /root/controller
+    if [ -z $KS_GOVCLOUD ]; then
+	cd /root/controller
+    else
+	echo "--> AWS GovCloud controller init"
+	cd /root/controller-govcloud
+    fi
     echo
     read -p '--> Enter email for controller password recovery: ' email
     export AVIATRIX_EMAIL=$email
@@ -155,7 +180,7 @@ mcna_aws_transit()
     cd /root/mcna
 
     # Advanced mode.
-    if [ ! -z $KS_ADVANCED ]; then
+    if [ ! -z $KS_ADVANCED ] || [ ! -z $KS_GOVCLOUD ]; then
 	read -n 1 -r -s -p $'\n--> Opening settings file. Press any key to continue.\n'
 	vim variables.tf
     fi
@@ -231,10 +256,10 @@ else
     fi
 fi
 
-if [ -z $KS_ADVANCED ]; then
-    read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Region will be us-east-2. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. (y/n)? ' answer
-else
+if [ ! -z $KS_ADVANCED ] || [ ! -z $KS_GOVCLOUD ]; then
     read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. You can change the settings in the next step (y/n)? ' answer
+else
+    read -p $'\n\n--> Do you want to launch the Aviatrix transit in AWS? Region will be us-east-2. Go to https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png to view what is going to be launched. (y/n)? ' answer
 fi
 if [ "$answer" != "${answer#[Yy]}" ] ; then
     mcna_aws_transit
