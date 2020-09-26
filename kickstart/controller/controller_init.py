@@ -59,11 +59,18 @@ def onboard_controller(ctrl_url, account_id, cid, email):
 
 
 ### AWS Access Account:
-    aws_account = {'action': 'setup_account_profile', 'CID': cid, 'account_name': "aws-account", 'cloud_type': '1', 'account_email': email , 'aws_account_number': account_id,
-'aws_iam': 'true',
-'aws_role_arn': "arn:aws:iam::"+str(account_id)+":role/aviatrix-role-app",
-'aws_role_ec2': 'arn:aws:iam::'+str(account_id)+':role/aviatrix-role-ec2',
-'aws_access_key': ''}
+    aws_account = {
+        'CID': cid,
+        'action': 'setup_account_profile',
+        'account_name': 'aws-account',
+        'cloud_type': '1',
+        'account_email': email ,
+        'aws_account_number': account_id,
+        'aws_iam': 'true',
+        'aws_role_arn': "arn:aws:iam::" + str(account_id) + ":role/aviatrix-role-app",
+        'aws_role_ec2': 'arn:aws:iam::' + str(account_id) + ':role/aviatrix-role-ec2',
+        'aws_access_key': ''
+    }
     set_aws_account = requests.request("POST", ctrl_url, headers = headers, data = aws_account, files = files, verify=False)
     print("Created AWS Access Account: ", set_aws_account.text.encode('utf8'))
 
@@ -104,7 +111,7 @@ def main():
     try:
         init_cid = login(ctrl_url, password=private_ip)
     except:
-       print("Unable to connect to Controller: ", public_ip, "If you changed default password ingore this message.")
+       print("Unable to connect to Controller: ", public_ip, "If you changed default password ignore this message.")
 
     set_controller_password(ctrl_url=ctrl_url, private_ip=private_ip, cid=init_cid, password=password, email=email)
 

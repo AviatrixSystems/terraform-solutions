@@ -21,6 +21,7 @@ RUN	unzip /tmp/terraform_0.12.24_linux_amd64.zip -d /usr/local/sbin/
 
 # Aviatrix Kickstart.
 ADD     kickstart/controller /root/controller
+ADD     kickstart/controller-govcloud /root/controller-govcloud
 ADD	kickstart/mcna /root/mcna
 ADD	kickstart/kickstart.sh /root/
 ADD	kickstart/.plane /root/

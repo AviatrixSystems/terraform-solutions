@@ -48,37 +48,38 @@ def onboard_controller(ctrl_url, account_id, cid, email):
 
 #### Set email:
 
-#     new_email = {'action': 'add_admin_email_addr', 'CID': cid, 'admin_email': email}
-#     set_new_email  = requests.request("POST", ctrl_url, headers=headers, data = new_email, files = files, verify=False)
-#     print(set_new_email.text.encode('utf8'))
+    new_email = {'action': 'add_admin_email_addr', 'CID': cid, 'admin_email': email}
+    set_new_email  = requests.request("POST", ctrl_url, headers=headers, data = new_email, files = files, verify=False)
+    print(set_new_email.text.encode('utf8'))
 
-# # ### New hostname:
-#     set_name = {'action': 'set_controller_name','CID': cid,'controller_name': "Kickstart Controller"}
-#     set_hostname = requests.request("POST", ctrl_url, headers = headers, data = set_name, files = files, verify=False)
-#     print(set_hostname.text.encode('utf8'))
+# ### New hostname:
+    set_name = {'action': 'set_controller_name','CID': cid,'controller_name': "Kickstart Controller"}
+    set_hostname = requests.request("POST", ctrl_url, headers = headers, data = set_name, files = files, verify=False)
+    print(set_hostname.text.encode('utf8'))
 
 
 ### AWS Access Account:
+### https://api.aviatrix.com/#76259f3e-be0e-4cd9-be53-725fb134ce21
 ### Cloud type = 256 for AWS GovCloud
     aws_account = {
-        'action': 'setup_account_profile',
         'CID': cid,
-        'account_name': "aws-account",
+        'action': 'setup_account_profile',
+        'account_name': 'aws-govcloud',
         'cloud_type': '256',
-        'account_email': email ,
+        'account_email': email,
         'awsgov_account_number': account_id,
-        'aws_iam': 'true',
-        'aws_role_arn': "arn:aws-us-gov:iam::"+str(account_id)+":role/aviatrix-role-app",
-        'aws_role_ec2': 'arn:aws-us-gov:iam::'+str(account_id)+':role/aviatrix-role-ec2'
+        'awsgov_iam': 'true',
+        'awsgov_role_arn': "arn:aws-us-gov:iam::" + str(account_id) + ":role/aviatrix-role-app",
+        'awsgov_role_ec2': "arn:aws-us-gov:iam::" + str(account_id) + ":role/aviatrix-role-ec2"
     }
     set_aws_account = requests.request("POST", ctrl_url, headers = headers, data = aws_account, files = files, verify=False)
     print("Created AWS Access Account: ", set_aws_account.text.encode('utf8'))
 
 ### Upgrade Controller
-    # print("Upgrading controller. It can take several minutes")
-    # upgrade = {'action': 'upgrade','CID': cid, 'version' : '6.0'}
-    # upgrade_latest = requests.request("POST", ctrl_url, headers=headers, data = upgrade, files = files, verify=False)
-    # print(upgrade_latest.text.encode('utf8'))
+    print("Upgrading controller. It can take several minutes")
+    upgrade = {'action': 'upgrade','CID': cid, 'version' : '6.0'}
+    upgrade_latest = requests.request("POST", ctrl_url, headers=headers, data = upgrade, files = files, verify=False)
+    print(upgrade_latest.text.encode('utf8'))
 
 
 ### Create txt file
@@ -108,12 +109,12 @@ def main():
     password = os.environ['AVIATRIX_PASSWORD']
     ctrl_url = 'https://'+str(public_ip)+str("/v1/api")
 
-    # try:
-    #     init_cid = login(ctrl_url, password=private_ip)
-    # except:
-    #    print("Unable to connect to Controller: ", public_ip, "If you changed default password ignore this message.")
+    try:
+        init_cid = login(ctrl_url, password=private_ip)
+    except:
+       print("Unable to connect to Controller: ", public_ip, "If you changed default password ignore this message.")
 
-    # set_controller_password(ctrl_url=ctrl_url, private_ip=private_ip, cid=init_cid, password=password, email=email)
+    set_controller_password(ctrl_url=ctrl_url, private_ip=private_ip, cid=init_cid, password=password, email=email)
 
     try:
         cid = login(ctrl_url, password=password)

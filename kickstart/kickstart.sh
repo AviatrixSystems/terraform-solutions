@@ -228,6 +228,9 @@ peering()
 
 banner Aviatrix Kickstart
 cat /root/.plane
+if [ ! -z $KS_GOVCLOUD ]; then
+    echo -e "--> GovCloud mode\n"
+fi
 
 aws_configure
 
