@@ -172,12 +172,21 @@ controller_init()
 
     export KICKSTART_CONTROLLER_INIT_DONE=true
     echo 'export KICKSTART_CONTROLLER_INIT_DONE=true' >> $f
+
+    if [ ! -z $KS_GOVCLOUD ]; then
+	cat /root/.eagle
+    fi
     echo -e "\n--> Controller init has completed. Controller is ready. Do not manually change the controller version while Kickstart is running."
 }
 
 mcna_aws_transit()
 {
-    cd /root/mcna
+    if [ -z $KS_GOVCLOUD ]; then
+	cd /root/mcna
+    else
+	cd /root/mcna-govcloud
+	echo "--> AWS GovCloud transit init"
+    fi
 
     # Advanced mode.
     if [ ! -z $KS_ADVANCED ] || [ ! -z $KS_GOVCLOUD ]; then
@@ -198,9 +207,14 @@ input_aws_keypair()
 
 mcna_aws_test_instances()
 {
-    cd /root/mcna
+    if [ -z $KS_GOVCLOUD ]; then
+	cd /root/mcna
+    else
+	cd /root/mcna-govcloud
+	echo "--> AWS GovCloud EC2 test instances launch"
+    fi
+
     input_aws_keypair
-    read -n 1 -r -s -p $'\n\n--> Make sure that your AWS quota allows us to have more that 5 Elastic IPs. You can check your quota and request an increase at https://console.aws.amazon.com/servicequotas if needed. Press any key to continue.\n'
     echo "--> Launching instances now"
     terraform apply -target=aws_instance.test_instances -auto-approve
 }
@@ -256,6 +270,10 @@ else
     if [ $? != 0 ]; then
 	echo "--> Controller init failed, retrying."
 	controller_init
+	if [ $? != 0 ]; then
+	    echo "--> Controller init failed, exiting."
+	    return 1
+	fi
     fi
 fi
 

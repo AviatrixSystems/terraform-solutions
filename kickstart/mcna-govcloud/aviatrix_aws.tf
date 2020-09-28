@@ -7,7 +7,7 @@ provider "aviatrix" {
 resource "aviatrix_vpc" "aws_transit_vpcs" {
   for_each = var.aws_transit_vpcs
 
-  cloud_type           = 1 # AWS
+  cloud_type           = 256 # AWS GovCloud
   account_name         = var.aws_account_name
   region               = var.aws_region
   name                 = each.value.name
@@ -19,7 +19,7 @@ resource "aviatrix_vpc" "aws_transit_vpcs" {
 resource "aviatrix_vpc" "aws_spoke_vpcs" {
   for_each = var.aws_spoke_vpcs
 
-  cloud_type           = 1 # AWS
+  cloud_type           = 256 # AWS GovCloud
   account_name         = var.aws_account_name
   region               = var.aws_region
   name                 = each.value.name
@@ -30,7 +30,7 @@ resource "aviatrix_vpc" "aws_spoke_vpcs" {
 
 ### Aviatrix Transit gateway.
 resource "aviatrix_transit_gateway" "aws_transit_gw" {
-  cloud_type         = 1
+  cloud_type         = 256
   account_name       = var.aws_account_name
   gw_name            = var.aws_transit_gateway.name
   vpc_id             = aviatrix_vpc.aws_transit_vpcs[var.aws_transit_gateway.vpc].vpc_id
@@ -53,7 +53,7 @@ data "aws_availability_zones" "az_available" {
 resource "aviatrix_spoke_gateway" "aws_spoke_gws" {
   for_each = var.aws_spoke_gateways
 
-  cloud_type         = 1
+  cloud_type         = 256
   account_name       = var.aws_account_name
   gw_name            = each.value.name
   vpc_id             = aviatrix_vpc.aws_spoke_vpcs[each.value.vpc].vpc_id
