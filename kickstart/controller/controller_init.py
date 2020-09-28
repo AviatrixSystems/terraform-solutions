@@ -76,7 +76,7 @@ def onboard_controller(ctrl_url, account_id, cid, email):
 
 ### Upgrade Controller
     print("Upgrading controller. It can take several minutes")
-    upgrade = {'action': 'upgrade','CID': cid, 'version' : '6.1.1338'}
+    upgrade = {'action': 'upgrade','CID': cid, 'version' : '6.1'}
     upgrade_latest = requests.request("POST", ctrl_url, headers=headers, data = upgrade, files = files, verify=False)
     print(upgrade_latest.text.encode('utf8'))
 

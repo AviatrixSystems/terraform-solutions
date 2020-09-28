@@ -201,7 +201,11 @@ mcna_aws_transit()
 
 input_aws_keypair()
 {
-    read -n 1 -r -s -p $'\n\n--> Opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. This is your own key pair, not Aviatrix keys for controller or gateways. Also make sure you are in the region where the Spoke gateways were launched (if using defaults, us-east-2). Press any key to continue.\n'
+    if [ -z $KS_GOVCLOUD ]; then
+	read -n 1 -r -s -p $'\n\n--> Opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. This is your own key pair, not Aviatrix keys for controller or gateways. Also make sure you are in the region where the Spoke gateways were launched (if using defaults, us-east-2). Press any key to continue.\n'
+    else
+	read -n 1 -r -s -p $'\n\n--> Opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. This is your own key pair, not Aviatrix keys for controller or gateways. Press any key to continue.\n'
+    fi
     vim variables.tf
 }
 
