@@ -244,10 +244,25 @@ peering()
     return $?
 }
 
+custom_git()
+{
+    echo $KS_CUSTOM_GIT
+    cd /root
+    ghclone $KS_CUSTOM_GIT
+    cd ${KS_CUSTOM_GIT##*/}
+    source setup.sh
+    return $?
+}
+
 banner Aviatrix Kickstart
 cat /root/.plane
 if [ ! -z $KS_GOVCLOUD ]; then
     echo -e "--> GovCloud mode\n"
+fi
+if [ ! -z $KS_CUSTOM_GIT ]; then
+    echo -e "--> Custom Git mode\n"
+    custom_git
+    return $?
 fi
 
 aws_configure
