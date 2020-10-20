@@ -30,6 +30,8 @@ baseurl: "/terraform-solutions" # the subpath of your site, e.g. /blog
 url: "https://aviatrixsystems.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
+paginate: 5
+paginate_path: "/blog/page:num"
 
 # Build settings
 # theme: minima

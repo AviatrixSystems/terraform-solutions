@@ -10,19 +10,9 @@ show_sidebar: false
 
 <img alt="workflow" src="https://github.com/AviatrixSystems/terraform-solutions/raw/master/solutions/img/controller-launch-workflow.png">
 
-## Summary
+The process get up and running with our Terraform Provider is **Launch Controller > Setup Cloud Access Accounts > Deploy Solutions**
 
-Aviatrix controller can be launched using Terraform in AWS, Azure, and OCI (Oracle Cloud Infrastructure).
-
-In order to remain **DRY**, this repo will only contain the source code for Azure but will have links to the repos where you will find AWS and OCI.
-
-GCP institutues Marketplace requirements that create barriers to launching a Controller there. The details are *not important* but what is important is to understand that only **one** Aviatrix Controller is required to get started.
-
-Aviatrix Gateways can be launched in **any** cloud once you have a Controller up and running. 
-
-The process get up and running with our Terraform Provider is **Launch Controller > Setup Cloud Access Accounts**
-
-Once you have a Controller up and running you can use the Aviatrix Terraform Provider to build any of the Solutions. Just make sure that you have an Access Account defined for each Cloud provider you want to build in.
+Once you have a Controller up and running you can use the [Aviatrix Terraform Provider](https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest) to build any of the Solutions. Just make sure that you have an Access Account onboarded for each Cloud provider you want to build in.
 
 ## AWS
 
@@ -43,7 +33,7 @@ Instructions on how to launch a Controller in GCP can be found [here.](https://d
 Instructions on how to onboard GCP access accounts to the Controller can be found [here.](https://docs.aviatrix.com/HowTos/CreateGCloudAccount.html)
 
 
-## OCI (Oracle Cloud Infrastructure)
+## OCI 
 
 Terraform to launch a Controller in OCI can be found [here.](https://github.com/oracle-quickstart/oci-aviatrix/tree/master/controller)
 

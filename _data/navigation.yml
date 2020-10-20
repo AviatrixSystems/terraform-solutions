@@ -1,13 +1,13 @@
-- name: Controller Launch
+- name: Controller
   link: /pages/controller-launch/
-- name: Transit Networking
+- name: Multi-Cloud Transit
   link: /#
   dropdown:
     - name: OCI-Azure Transit
       link: /pages/oci-azure-basic/
     - name: AWS-GCP Transit (SaaS)
       link: /pages/aws-gcp-saas/
-- name: Transit FireNet
+- name: FireNet
   link: /#
   dropdown:
     - name: Check Point AWS
@@ -16,7 +16,7 @@
       link: /pages/pan-azure/
     - name: Check Point Azure
       link: /pages/checkpoint-azure/
-- name: User VPN
+- name: Cloud Access
   link: /#
   dropdown:
     - name: OCI User VPN
@@ -32,5 +32,5 @@
       link: /pages/mcna-interactive/
     - name: Video Series
       link: /pages/mcna-video-series/
-- name: Training
-  link: /pages/training/
+- name: Blog
+  link: /blog/
