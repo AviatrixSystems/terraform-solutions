@@ -13,6 +13,8 @@ This example will build a transit firenet (Aviatrix Transit) including everythin
 
 **Fully automated deployment of 2 PAN 9.0.1 NGFWs in Azure with supporting Transit infrastructure.**
 
+### [Link to code](https://github.com/AviatrixSystems/terraform-solutions/tree/master/solutions/transit-firenet/pan-azure)
+
 ## Prerequisites
 
 - Aviatrix Controller with Access Accounts defined for Azure
