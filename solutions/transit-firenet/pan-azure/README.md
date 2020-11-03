@@ -4,7 +4,7 @@ Aviatrix Transit FireNet (PAN) deployment in Azure
 
 ## Summary
 
-Example to build Aviatrix Transit Firenet (VNETs, GWs, Firewall instances, Inspection policies).
+Example to build Aviatrix Transit Firenet (VNETs, GWs, Firewall instances).
 
 <img alt="PAN Azure transit firenet" src="https://github.com/AviatrixSystems/terraform-solutions/raw/master/solutions/img/azure-transit-firenet-pan.png">0
 
@@ -17,12 +17,28 @@ Example to build Aviatrix Transit Firenet (VNETs, GWs, Firewall instances, Inspe
 - appropriate cpu limits in the target region
 - terraform .12
 
-## To run it
+### Workflow
+
+Replace values with REPLACE_ME in terraform.tfvars
 
 - ```terraform init```
 - ```terraform plan```
 - ```terraform apply --auto-approve```
-- To Destroy ```terraform destroy --auto-approve```
+
+### Software 
+
+Component | Version
+--- | ---
+Aviatrix Controller | (6.2) UserConnect-6.2.1742 
+Aviatrix Terraform Provider | 2.17
+Terraform | 0.12
+
+### Modules
+
+Module Name | Version | Description
+:--- | :--- | :---
+[terraform-aviatrix-modules/azure-transit-firenet/aviatrix](https://registry.terraform.io/modules/terraform-aviatrix-modules/azure-transit-firenet/aviatrix/latest) | 2.0.1 | This module deploys a VNET, Aviatrix transit gateways and firewall instances
+[terraform-aviatrix-modules/azure-spoke/aviatrix](https://registry.terraform.io/modules/terraform-aviatrix-modules/azure-spoke/aviatrix/latest) | 2.0.1 | This module deploys a VNET and an Aviatrix spoke gateway in Azure and attaches it to an Aviatrix Transit Gateway
 
 ## What to expect
 

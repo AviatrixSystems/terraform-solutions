@@ -1,7 +1,3 @@
-variable "vpc_count" {
-  default = 2
-}
-
 variable "username" {
   type    = string
   default = ""
@@ -17,37 +13,51 @@ variable "controller_ip" {
   default = ""
 }
 
-variable "cloud_type" {
-  default = 1
-}
-
-variable "hpe" {
+variable "ha_gw" {
+  type    = bool
   default = false
 }
 
-variable "region" {
-  default = "us-east-2"
+variable "firewall_size" {
+  type    = string
+  default = "Standard_D3_v2"
 }
 
-variable "key_name" {
-  default = "avtx-key"
+variable "region" {
+  default = "East US"
 }
 
 variable "azure_account_name" {
   default = ""
 }
 
-variable "avx_transit_gw" {
-  default = "transit-gw"
-}
-variable avx_gw_size {
-  default = "c5.xlarge"
+variable "transit1_cidr" {
+  default = "10.1.0.0/20"
 }
 
-variable firewall_size {
-  default = "c5.xlarge"
+variable "spoke1_cidr" {
+  default = "10.2.0.0/20"
 }
 
-variable fw_image {
-  default ="Check Point CloudGuard IaaS Next-Gen Firewall w. Threat Prevention & SandBlast BYOL"
-}       
+variable "spoke2_cidr" {
+  default = "10.3.0.0/20"
+}
+
+variable "azure_gw_size" {
+  default = "Standard_B2ms"
+}
+
+variable "firewall_image" {
+  default = "Palo Alto Networks VM-Series Next-Generation Firewall Bundle 1"
+}
+
+variable "firewall_image_version" {
+  default = "9.1.0"
+}
+
+variable "insane_mode" {
+  description = "Set to true to enable Aviatrix high performance encryption."
+  type        = bool
+  default     = false
+}
+
