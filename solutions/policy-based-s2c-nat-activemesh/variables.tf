@@ -68,18 +68,18 @@ variable "s2c_connections" {
       local_cidr   = "10.1.0.0/16,10.7.4.0/24"
       psk          = ""
     },
-    # customer5 = {
-    #   name = "AWS-UE2-C5-Spoke-S2C"
-    #   # Element from vpcs variable.
-    #   vpc = "s2c_5"
-    #   # Element from spoke_gateways variable.
-    #   avx_spoke_gw = "spoke5"
-    #   # Public IP of on-prem router.
-    #   remote_gw_ip = ""
-    #   remote_cidr  = "10.34.0.0/24"
-    #   local_cidr   = "10.1.0.0/16,10.7.5.0/24"
-    #   psk          = ""
-    # }
+    customer5 = {
+      name = "AWS-UE2-C5-Spoke-S2C"
+      # Element from vpcs variable.
+      vpc = "s2c_5"
+      # Element from spoke_gateways variable.
+      avx_spoke_gw = "spoke5"
+      # Public IP of on-prem router.
+      remote_gw_ip = "13.57.46.250"
+      remote_cidr  = "10.34.0.0/24"
+      local_cidr   = "10.1.0.0/16,10.7.5.0/24"
+      psk          = ""
+    }
   }
 }
 
@@ -94,7 +94,17 @@ variable "spoke_customized_snat_rules" {
         interface  = "eth0"
         connection = "AWS-UE2-Transit-GW" # Post-routing, so outgoing connection
       }
+    },
+    spoke5 = {
+      rule1 = {
+        src_cidr   = "10.34.0.0/24" # On-prem
+        dst_cidr   = "10.1.0.0/16"  # Cloud shared services
+        protocol   = "all"
+        interface  = "eth0"
+        connection = "AWS-UE2-Transit-GW" # Post-routing, so outgoing connection
+      }
     }
+
   }
 }
 
@@ -105,6 +115,16 @@ variable "spoke_customized_dnat_rules" {
       rule1 = {
         src_cidr   = "10.1.0.0/16"    # Cloud shared services 
         dst_cidr   = "10.134.0.42/32" # Virtual IP of on-prem workload
+        protocol   = "all"
+        interface  = "eth0"
+        connection = "AWS-UE2-Transit-GW" # Pre-routing, so incoming connection
+        dnat_ip    = "10.34.0.42"         # Real IP of on-prem workload
+      }
+    },
+    spoke5 = {
+      rule1 = {
+        src_cidr   = "10.1.0.0/16"    # Cloud shared services 
+        dst_cidr   = "10.135.0.42/32" # Virtual IP of on-prem workload
         protocol   = "all"
         interface  = "eth0"
         connection = "AWS-UE2-Transit-GW" # Pre-routing, so incoming connection

@@ -114,4 +114,57 @@ resource "aviatrix_gateway_dnat" "customized_dnat_spoke4" {
       dnat_ips   = dnat_policy.value.dnat_ip
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      dnat_policy
+    ]
+  }  
+}
+
+### On every Spoke gateway, configure customized SNAT rules.
+### We SNAT on-prem-initiated traffic to the private IP of the GW.
+### Cannot nest for_each statements, so need separate resources for each GW.
+resource "aviatrix_gateway_snat" "customized_snat_spoke5" {
+  gw_name    = var.spoke_gateways["spoke5"].name
+  snat_mode  = "customized_snat"
+  sync_to_ha = false
+
+  dynamic snat_policy {
+    for_each = var.spoke_customized_snat_rules["spoke5"]
+    content {
+      src_cidr   = snat_policy.value.src_cidr
+      dst_cidr   = snat_policy.value.dst_cidr
+      protocol   = snat_policy.value.protocol
+      connection = snat_policy.value.connection
+      # Private IP of the Spoke GW.
+      snat_ips = aviatrix_spoke_gateway.customer_spoke_gws["spoke5"].private_ip
+    }
+  }
+}
+
+### On every Spoke gateway, configure customized DNAT rules.
+### We DNAT cloud-initiated traffic (destined to a virtual IP) to the real
+### IP of the on-prem workload.
+### Cannot nest for_each statements, so need separate resources for each GW.
+resource "aviatrix_gateway_dnat" "customized_dnat_spoke5" {
+  gw_name    = var.spoke_gateways["spoke5"].name
+  sync_to_ha = false
+
+  dynamic dnat_policy {
+    for_each = var.spoke_customized_dnat_rules["spoke5"]
+    content {
+      src_cidr   = dnat_policy.value.src_cidr
+      dst_cidr   = dnat_policy.value.dst_cidr
+      protocol   = dnat_policy.value.protocol
+      connection = dnat_policy.value.connection
+      dnat_ips   = dnat_policy.value.dnat_ip
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      dnat_policy
+    ]
+  }  
 }
