@@ -45,6 +45,14 @@ resource "aviatrix_spoke_gateway" "customer_spoke_gws" {
   included_advertised_spoke_routes = each.value.customized_spoke_adv_vpc_cidr
 }
 
+### Associate the Spoke gateway to their segmentation domain.
+resource "aviatrix_segmentation_security_domain_association" "domain_associations" {
+  for_each             = var.spoke_gateways
+  attachment_name      = each.value.name
+  transit_gateway_name = var.transit_gateway
+  security_domain_name = each.value.domain
+}
+
 ### On every Spoke gateway, create S2C connection to on-prem customer.
 resource "aviatrix_site2cloud" "s2c_connections" {
   for_each = var.s2c_connections
@@ -119,7 +127,7 @@ resource "aviatrix_gateway_dnat" "customized_dnat_spoke4" {
     ignore_changes = [
       dnat_policy
     ]
-  }  
+  }
 }
 
 ### On every Spoke gateway, configure customized SNAT rules.
@@ -166,5 +174,5 @@ resource "aviatrix_gateway_dnat" "customized_dnat_spoke5" {
     ignore_changes = [
       dnat_policy
     ]
-  }  
+  }
 }

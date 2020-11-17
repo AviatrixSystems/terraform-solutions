@@ -40,6 +40,7 @@ variable "spoke_gateways" {
       single_az_ha = true
       # VPC CIDR and virtual on-prem subnet
       customized_spoke_adv_vpc_cidr = "10.7.4.0/24,10.134.0.0/24"
+      domain                        = "Prod-Domain"
     },
     spoke5 = {
       vpc          = "s2c_5"
@@ -49,6 +50,7 @@ variable "spoke_gateways" {
       single_az_ha = true
       # VPC CIDR and virtual on-prem subnet
       customized_spoke_adv_vpc_cidr = "10.7.5.0/24,10.135.0.0/24"
+      domain                        = "Prod-Domain"
     }
   }
 }
