@@ -51,19 +51,19 @@ resource "aviatrix_segmentation_security_domain_association" "domain_association
   attachment_name      = each.value.name
   transit_gateway_name = var.transit_gateway
   security_domain_name = each.value.domain
+
+  depends_on = [aviatrix_spoke_gateway.customer_spoke_gws]
 }
 
 ### On every Spoke gateway, create S2C connection to on-prem customer.
 resource "aviatrix_site2cloud" "s2c_connections" {
   for_each = var.s2c_connections
 
-  # vpc_id                     = aviatrix_vpc.vpcs[each.key].vpc_id
   vpc_id              = aviatrix_vpc.vpcs[each.value.vpc].vpc_id
   connection_name     = each.value.name
   connection_type     = "unmapped"
   remote_gateway_type = "generic"
   tunnel_type         = "policy"
-  # primary_cloud_gateway_name = var.s2c_gateways[each.key].name
   primary_cloud_gateway_name = var.spoke_gateways[each.value.avx_spoke_gw].name
   remote_gateway_ip          = each.value.remote_gw_ip
   remote_subnet_cidr         = each.value.remote_cidr
@@ -102,6 +102,8 @@ resource "aviatrix_gateway_snat" "customized_snat_spoke4" {
       snat_ips = aviatrix_spoke_gateway.customer_spoke_gws["spoke4"].private_ip
     }
   }
+
+  depends_on = [aviatrix_spoke_gateway.customer_spoke_gws]
 }
 
 ### On every Spoke gateway, configure customized DNAT rules.
@@ -128,6 +130,8 @@ resource "aviatrix_gateway_dnat" "customized_dnat_spoke4" {
       dnat_policy
     ]
   }
+
+  depends_on = [aviatrix_spoke_gateway.customer_spoke_gws]
 }
 
 ### On every Spoke gateway, configure customized SNAT rules.
@@ -149,6 +153,8 @@ resource "aviatrix_gateway_snat" "customized_snat_spoke5" {
       snat_ips = aviatrix_spoke_gateway.customer_spoke_gws["spoke5"].private_ip
     }
   }
+
+  depends_on = [aviatrix_spoke_gateway.customer_spoke_gws]
 }
 
 ### On every Spoke gateway, configure customized DNAT rules.
@@ -175,4 +181,6 @@ resource "aviatrix_gateway_dnat" "customized_dnat_spoke5" {
       dnat_policy
     ]
   }
+
+  depends_on = [aviatrix_spoke_gateway.customer_spoke_gws]
 }

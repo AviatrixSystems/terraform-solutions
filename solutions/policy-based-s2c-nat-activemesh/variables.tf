@@ -65,11 +65,11 @@ variable "s2c_connections" {
       # Element from spoke_gateways variable.
       avx_spoke_gw = "spoke4"
       # Public IP of on-prem router.
-      remote_gw_ip = "50.18.221.180"
+      remote_gw_ip = ""
       remote_cidr  = "10.34.0.0/24"
       local_cidr   = "10.1.0.0/16,10.7.4.0/24"
       psk          = ""
-    },
+    }
     customer5 = {
       name = "AWS-UE2-C5-Spoke-S2C"
       # Element from vpcs variable.
@@ -77,7 +77,7 @@ variable "s2c_connections" {
       # Element from spoke_gateways variable.
       avx_spoke_gw = "spoke5"
       # Public IP of on-prem router.
-      remote_gw_ip = "13.57.46.250"
+      remote_gw_ip = ""
       remote_cidr  = "10.34.0.0/24"
       local_cidr   = "10.1.0.0/16,10.7.5.0/24"
       psk          = ""
