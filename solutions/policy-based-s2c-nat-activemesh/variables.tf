@@ -65,10 +65,16 @@ variable "s2c_connections" {
       # Element from spoke_gateways variable.
       avx_spoke_gw = "spoke4"
       # Public IP of on-prem router.
-      remote_gw_ip = ""
-      remote_cidr  = "10.34.0.0/24"
-      local_cidr   = "10.1.0.0/16,10.7.4.0/24"
-      psk          = ""
+      remote_gw_ip           = ""
+      remote_cidr            = "10.34.0.0/24"
+      local_cidr             = "10.1.0.0/16,10.7.4.0/24"
+      psk                    = ""
+      phase_1_authentication = "SHA-1"
+      phase_2_authentication = "HMAC-SHA-1"
+      phase_1_dh_groups      = "2"
+      phase_2_dh_groups      = "2"
+      phase_1_encryption     = "AES-128-CBC"
+      phase_2_encryption     = "AES-128-CBC"
     }
     customer5 = {
       name = "AWS-UE2-C5-Spoke-S2C"
@@ -81,6 +87,12 @@ variable "s2c_connections" {
       remote_cidr  = "10.34.0.0/24"
       local_cidr   = "10.1.0.0/16,10.7.5.0/24"
       psk          = ""
+      phase_1_authentication = "SHA-1"
+      phase_2_authentication = "HMAC-SHA-1"
+      phase_1_dh_groups      = "2"
+      phase_2_dh_groups      = "2"
+      phase_1_encryption     = "AES-128-CBC"
+      phase_2_encryption     = "AES-128-CBC"
     }
   }
 }

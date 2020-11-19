@@ -59,11 +59,11 @@ resource "aviatrix_segmentation_security_domain_association" "domain_association
 resource "aviatrix_site2cloud" "s2c_connections" {
   for_each = var.s2c_connections
 
-  vpc_id              = aviatrix_vpc.vpcs[each.value.vpc].vpc_id
-  connection_name     = each.value.name
-  connection_type     = "unmapped"
-  remote_gateway_type = "generic"
-  tunnel_type         = "policy"
+  vpc_id                     = aviatrix_vpc.vpcs[each.value.vpc].vpc_id
+  connection_name            = each.value.name
+  connection_type            = "unmapped"
+  remote_gateway_type        = "generic"
+  tunnel_type                = "policy"
   primary_cloud_gateway_name = var.spoke_gateways[each.value.avx_spoke_gw].name
   remote_gateway_ip          = each.value.remote_gw_ip
   remote_subnet_cidr         = each.value.remote_cidr
@@ -71,12 +71,12 @@ resource "aviatrix_site2cloud" "s2c_connections" {
   ha_enabled                 = false
   private_route_encryption   = null
   custom_algorithms          = true
-  phase_1_authentication     = "SHA-1"
-  phase_2_authentication     = "HMAC-SHA-1"
-  phase_1_dh_groups          = "2"
-  phase_2_dh_groups          = "2"
-  phase_1_encryption         = "AES-128-CBC"
-  phase_2_encryption         = "AES-128-CBC"
+  phase_1_authentication     = each.value.phase_1_authentication
+  phase_2_authentication     = each.value.phase_2_authentication
+  phase_1_dh_groups          = each.value.phase_1_dh_groups
+  phase_2_dh_groups          = each.value.phase_2_dh_groups
+  phase_1_encryption         = each.value.phase_1_encryption
+  phase_2_encryption         = each.value.phase_2_encryption
   pre_shared_key             = each.value.psk
   enable_dead_peer_detection = true
 
