@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1540" height="239" viewBox="0 0 1540 239">
+    <defs>
+        <pattern id="pattern" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 243 54"/>
+        <style>
+            .cls-2{fill:#e24307}.cls-11,.cls-4{fill:#fff}.cls-16,.cls-4{stroke:#e24307}.cls-4{stroke-dasharray:3 4}.cls-5{fill:#404040;font-size:14px}.cls-10,.cls-5{font-family:Roboto-Regular,Roboto}.cls-10{font-size:12px}.cls-9{fill:#f1f1f1}.cls-10{fill:#515151}.cls-14{fill:#009ad2}.cls-17{stroke:#009ad2}.cls-16,.cls-17,.cls-21{fill:none}.cls-20{stroke:none}
+        </style>
+    </defs>
+    <g id="Group_114" transform="translate(-24 -85)">
+        <rect id="Rectangle_43" width="912" height="239" fill="#e24307" opacity="0.06" rx="5" transform="translate(24 85)"/>
+        <g id="Group_66" transform="translate(-461.442 -110.269)">
+            <path id="Icon_awesome-aws" d="M24.6 13.372a19.487 19.487 0 0 1-10.989 3.369A19.944 19.944 0 0 1 .12 11.608c-.278-.25-.033-.593.3-.4a27.1 27.1 0 0 0 13.48 3.574 26.792 26.792 0 0 0 10.271-2.107c.5-.213.926.332.43.7zm1.241-1.415c-.381-.49-2.52-.229-3.478-.114-.289.033-.338-.218-.076-.4 1.7-1.2 4.5-.855 4.823-.452s-.087 3.206-1.682 4.545c-.245.207-.479.1-.37-.174.356-.907 1.161-2.915.78-3.405z" class="cls-2" transform="translate(505.825 207.441)"/>
+            <path id="Icon_awesome-aws-2" fill="#373737" d="M7.2 10.4a4.062 4.062 0 0 0 .463 1.66.347.347 0 0 1-.174.267l-.544.381a.453.453 0 0 1-.239.082c-.018 0-.348.078-.871-1.089a3.342 3.342 0 0 1-2.662 1.252A2.291 2.291 0 0 1 .7 10.566a2.643 2.643 0 0 1 3.019-2.552 8.538 8.538 0 0 1 2 .267v-.665a1.616 1.616 0 0 0-1.9-1.867 5.071 5.071 0 0 0-1.949.43c-.313.144-.353.12-.457.12-.315 0-.185-.913-.125-1.029a4.934 4.934 0 0 1 2.8-.773 3.267 3.267 0 0 1 2.368.735A2.988 2.988 0 0 1 7.2 7.458V10.4zm-3.671 1.381a2.074 2.074 0 0 0 2.1-1.3 4.258 4.258 0 0 0 .082-1.161 7.307 7.307 0 0 0-1.681-.207c-.644-.048-1.82.239-1.774 1.371a1.181 1.181 0 0 0 1.274 1.3zm7.266.98a.491.491 0 0 1-.539-.441l-2.117-7a1.624 1.624 0 0 1-.082-.365.2.2 0 0 1 .164-.223h.946a.483.483 0 0 1 .534.441l1.519 5.987 1.41-5.987a.481.481 0 0 1 .544-.435h.73a.47.47 0 0 1 .539.441l1.421 6.064 1.566-6.065a.5.5 0 0 1 .539-.441h.838c.036-.006.261-.034.223.365-.018.079.145-.453-2.243 7.223a.491.491 0 0 1-.539.441h-.795a.491.491 0 0 1-.539-.457l-1.41-5.83-1.392 5.821a.49.49 0 0 1-.539.457H10.8zM22.421 13a5.743 5.743 0 0 1-2.439-.522.544.544 0 0 1-.332-.506v-.457c0-.359.264-.293.375-.25a5.837 5.837 0 0 0 1.225.408 3.222 3.222 0 0 0 2.411-.19.977.977 0 0 0 .225-1.483c-.446-.374-.658-.388-2.259-.893a2.46 2.46 0 0 1-1.862-2.226c-.026-1.2 1.065-2.388 2.955-2.379.539 0 1.974.176 2.362.664a.514.514 0 0 1 .082.3v.43q0 .283-.207.283a6 6 0 0 0-2.09-.457c-.293-.015-1.7.039-1.633 1.062-.018.806 1.131 1.108 1.263 1.143 1.55.466 2.068.544 2.683 1.258a2.31 2.31 0 0 1 .185 2.357A3.233 3.233 0 0 1 22.421 13z" transform="translate(506.292 203.355)"/>
+        </g>
+        <g id="Rectangle_42" class="cls-4" transform="translate(44 124)">
+            <rect width="166" height="180" class="cls-20" rx="5"/>
+            <rect width="165" height="179" x=".5" y=".5" class="cls-21" rx="4.5"/>
+        </g>
+        <g id="Rectangle_46" class="cls-4" transform="translate(220 124)">
+            <rect width="696" height="180" class="cls-20" rx="5"/>
+            <rect width="695" height="179" x=".5" y=".5" class="cls-21" rx="4.5"/>
+        </g>
+        <text id="us-east-1" class="cls-5" transform="translate(54 147)">
+            <tspan x="0" y="0">us-east-1</tspan>
+        </text>
+        <text id="us-east-2" class="cls-5" transform="translate(230 147)">
+            <tspan x="0" y="0">us-east-2</tspan>
+        </text>
+        <rect id="Rectangle_45" width="126" height="38" class="cls-2" rx="5" transform="translate(64 192)"/>
+        <path id="download" fill="url(#pattern)" d="M0 0H107V24H0z" transform="translate(74 200)"/>
+        <text id="AviatrixController-0" fill="#e24307" font-family="Roboto-Regular, Roboto" font-size="12px" transform="translate(127 251)">
+            <tspan x="-50.95" y="0">Aviatrix</tspan><tspan y="0" fill="#404040">Controller-0</tspan>
+        </text>
+        <g id="Group_97" transform="translate(20 15)">
+            <rect id="Rectangle_47" width="192" height="115" class="cls-9" rx="5" transform="translate(220 154)"/>
+            <text id="Spoke1-vpc" class="cls-10" transform="translate(316 175)">
+                <tspan x="-30.946" y="0">Spoke1-vpc</tspan>
+            </text>
+            <text id="VM" class="cls-10" transform="translate(261 236)">
+                <tspan x="-9.056" y="0">VM</tspan>
+            </text>
+            <text id="spoke" class="cls-10" transform="translate(366 234)">
+                <tspan x="-16.043" y="0">spoke</tspan>
+            </text>
+            <g id="Group_71" transform="translate(15090.968 12242.968)">
+                <circle id="Ellipse_58" cx="11" cy="11" r="11" class="cls-2" transform="translate(-14735.968 -12043.968)"/>
+                <path id="Icon_awesome-arrow-down" d="M5.967 4.854l.3.3a.327.327 0 0 1 0 .463L3.614 8.278a.327.327 0 0 1-.463 0L.494 5.621a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.572 1.644V2.578a.327.327 0 0 1 .328-.328H3.6a.327.327 0 0 1 .328.328v3.929L5.5 4.86a.326.326 0 0 1 .467-.006z" class="cls-11" transform="translate(-14728.458 -12033.352)"/>
+                <path id="Icon_awesome-arrow-down-2" d="M5.967 5.771l.3-.3A.327.327 0 0 0 6.27 5L3.614 2.346a.327.327 0 0 0-.463 0L.494 5a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.572-1.64v3.929a.327.327 0 0 0 .328.328H3.6a.327.327 0 0 0 .328-.328V4.118L5.5 5.765a.326.326 0 0 0 .467.006z" class="cls-11" transform="translate(-14728.458 -12043.208)"/>
+                <path id="Icon_awesome-arrow-down-3" d="M5.57 3.521l.3-.3a.327.327 0 0 0 0-.463L3.217.1a.327.327 0 0 0-.463 0L.1 2.754a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.569-1.644V5.8a.327.327 0 0 0 .328.328H3.2a.327.327 0 0 0 .331-.328V1.868L5.1 3.515a.326.326 0 0 0 .47.006z" class="cls-11" transform="rotate(-90 -13376.542 1346.56)"/>
+                <path id="Icon_awesome-arrow-down-4" d="M5.57 2.6l.3.3a.327.327 0 0 1 0 .463L3.217 6.028a.327.327 0 0 1-.463 0L.1 3.371a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.569 1.644V.328A.327.327 0 0 1 2.766 0H3.2a.327.327 0 0 1 .328.328v3.929L5.1 2.61a.326.326 0 0 1 .47-.01z" class="cls-11" transform="rotate(-90 -13381.47 1351.488)"/>
+            </g>
+            <g id="Group_78" transform="translate(-476 -108)">
+                <rect id="Rectangle_44" width="16.992" height="16.992" class="cls-11" rx="2" transform="translate(728.504 309.504)"/>
+                <g id="cpu" transform="translate(726 307)">
+                    <g id="Group_75">
+                        <g id="Group_74">
+                            <path id="Path_7" d="M22 4.033V3.3h-1.833v-.367a1.1 1.1 0 0 0-1.1-1.1H18.7V0h-.733v1.833h-.733V0H16.5v1.833h-.733V0h-.733v1.833H14.3V0h-.733v1.833h-.733V0H12.1v1.833h-.733V0h-.733v1.833H9.9V0h-.733v1.833h-.734V0H7.7v1.833h-.733V0h-.734v1.833H5.5V0h-.733v1.833h-.734V0H3.3v1.833h-.367a1.1 1.1 0 0 0-1.1 1.1V3.3H0v.733h1.833v.733H0V5.5h1.833v.733H0v.733h1.833V7.7H0v.733h1.833v.733H0V9.9h1.833v.733H0v.733h1.833v.734H0v.733h1.833v.733H0v.734h1.833v.733H0v.733h1.833v.734H0v.733h1.833v.733H0v.734h1.833v.367a1.1 1.1 0 0 0 1.1 1.1H3.3V22h.733v-1.833h.733V22H5.5v-1.833h.733V22h.733v-1.833H7.7V22h.733v-1.833h.733V22H9.9v-1.833h.733V22h.733v-1.833h.734V22h.733v-1.833h.733V22h.734v-1.833h.733V22h.733v-1.833h.734V22h.733v-1.833h.733V22h.734v-1.833h.367a1.1 1.1 0 0 0 1.1-1.1V18.7H22v-.733h-1.833v-.733H22V16.5h-1.833v-.733H22v-.733h-1.833V14.3H22v-.733h-1.833v-.733H22V12.1h-1.833v-.733H22v-.733h-1.833V9.9H22v-.733h-1.833v-.734H22V7.7h-1.833v-.733H22v-.734h-1.833V5.5H22v-.733h-1.833v-.734zm-2.567 15.034a.367.367 0 0 1-.367.367H2.933a.367.367 0 0 1-.367-.367V2.933a.367.367 0 0 1 .367-.367h16.134a.367.367 0 0 1 .367.367z" class="cls-2"/>
+                        </g>
+                    </g>
+                    <g id="Group_77" transform="translate(3.3 3.3)">
+                        <g id="Group_76">
+                            <path id="Path_8" d="M87.033 72H72.367a.367.367 0 0 0-.367.367v14.666a.367.367 0 0 0 .367.367h14.666a.367.367 0 0 0 .367-.367V72.367a.367.367 0 0 0-.367-.367zm-.367 14.667H72.733V72.733h13.934z" class="cls-2" transform="translate(-72 -72)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <g id="Group_96" transform="translate(30 16)">
+            <rect id="Rectangle_51" width="192" height="115" class="cls-9" rx="5" transform="translate(442 153)"/>
+            <text id="Spoke2-vpc" class="cls-10" transform="translate(538 174)">
+                <tspan x="-30.946" y="0">Spoke2-vpc</tspan>
+            </text>
+            <text id="VM-2" class="cls-10" transform="translate(483 235)">
+                <tspan x="-9.056" y="0">VM</tspan>
+            </text>
+            <text id="spoke-2" class="cls-10" transform="translate(588 233)">
+                <tspan x="-16.043" y="0">spoke</tspan>
+            </text>
+            <g id="Group_91" transform="translate(15312.968 12241.968)">
+                <circle id="Ellipse_58-2" cx="11" cy="11" r="11" class="cls-2" transform="translate(-14735.968 -12043.968)"/>
+                <path id="Icon_awesome-arrow-down-5" d="M5.967 4.854l.3.3a.327.327 0 0 1 0 .463L3.614 8.278a.327.327 0 0 1-.463 0L.494 5.621a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.572 1.644V2.578a.327.327 0 0 1 .328-.328H3.6a.327.327 0 0 1 .328.328v3.929L5.5 4.86a.326.326 0 0 1 .467-.006z" class="cls-11" transform="translate(-14728.458 -12033.352)"/>
+                <path id="Icon_awesome-arrow-down-6" d="M5.967 5.771l.3-.3A.327.327 0 0 0 6.27 5L3.614 2.346a.327.327 0 0 0-.463 0L.494 5a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.572-1.64v3.929a.327.327 0 0 0 .328.328H3.6a.327.327 0 0 0 .328-.328V4.118L5.5 5.765a.326.326 0 0 0 .467.006z" class="cls-11" transform="translate(-14728.458 -12043.208)"/>
+                <path id="Icon_awesome-arrow-down-7" d="M5.57 3.521l.3-.3a.327.327 0 0 0 0-.463L3.217.1a.327.327 0 0 0-.463 0L.1 2.754a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.569-1.644V5.8a.327.327 0 0 0 .328.328H3.2a.327.327 0 0 0 .331-.328V1.868L5.1 3.515a.326.326 0 0 0 .47.006z" class="cls-11" transform="rotate(-90 -13376.542 1346.56)"/>
+                <path id="Icon_awesome-arrow-down-8" d="M5.57 2.6l.3.3a.327.327 0 0 1 0 .463L3.217 6.028a.327.327 0 0 1-.463 0L.1 3.371a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.569 1.644V.328A.327.327 0 0 1 2.766 0H3.2a.327.327 0 0 1 .328.328v3.929L5.1 2.61a.326.326 0 0 1 .47-.01z" class="cls-11" transform="rotate(-90 -13381.47 1351.488)"/>
+            </g>
+            <g id="Group_92" transform="translate(-254 -109)">
+                <rect id="Rectangle_44-2" width="16.992" height="16.992" class="cls-11" rx="2" transform="translate(728.504 309.504)"/>
+                <g id="cpu-2" transform="translate(726 307)">
+                    <g id="Group_75-2">
+                        <g id="Group_74-2">
+                            <path id="Path_7-2" d="M22 4.033V3.3h-1.833v-.367a1.1 1.1 0 0 0-1.1-1.1H18.7V0h-.733v1.833h-.733V0H16.5v1.833h-.733V0h-.733v1.833H14.3V0h-.733v1.833h-.733V0H12.1v1.833h-.733V0h-.733v1.833H9.9V0h-.733v1.833h-.734V0H7.7v1.833h-.733V0h-.734v1.833H5.5V0h-.733v1.833h-.734V0H3.3v1.833h-.367a1.1 1.1 0 0 0-1.1 1.1V3.3H0v.733h1.833v.733H0V5.5h1.833v.733H0v.733h1.833V7.7H0v.733h1.833v.733H0V9.9h1.833v.733H0v.733h1.833v.734H0v.733h1.833v.733H0v.734h1.833v.733H0v.733h1.833v.734H0v.733h1.833v.733H0v.734h1.833v.367a1.1 1.1 0 0 0 1.1 1.1H3.3V22h.733v-1.833h.733V22H5.5v-1.833h.733V22h.733v-1.833H7.7V22h.733v-1.833h.733V22H9.9v-1.833h.733V22h.733v-1.833h.734V22h.733v-1.833h.733V22h.734v-1.833h.733V22h.733v-1.833h.734V22h.733v-1.833h.733V22h.734v-1.833h.367a1.1 1.1 0 0 0 1.1-1.1V18.7H22v-.733h-1.833v-.733H22V16.5h-1.833v-.733H22v-.733h-1.833V14.3H22v-.733h-1.833v-.733H22V12.1h-1.833v-.733H22v-.733h-1.833V9.9H22v-.733h-1.833v-.734H22V7.7h-1.833v-.733H22v-.734h-1.833V5.5H22v-.733h-1.833v-.734zm-2.567 15.034a.367.367 0 0 1-.367.367H2.933a.367.367 0 0 1-.367-.367V2.933a.367.367 0 0 1 .367-.367h16.134a.367.367 0 0 1 .367.367z" class="cls-2"/>
+                        </g>
+                    </g>
+                    <g id="Group_77-2" transform="translate(3.3 3.3)">
+                        <g id="Group_76-2">
+                            <path id="Path_8-2" d="M87.033 72H72.367a.367.367 0 0 0-.367.367v14.666a.367.367 0 0 0 .367.367h14.666a.367.367 0 0 0 .367-.367V72.367a.367.367 0 0 0-.367-.367zm-.367 14.667H72.733V72.733h13.934z" class="cls-2" transform="translate(-72 -72)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <g id="Group_95" transform="translate(-18 16)">
+            <rect id="Rectangle_52" width="192" height="115" class="cls-9" rx="5" transform="translate(722 153)"/>
+            <text id="Transit" class="cls-10" transform="translate(818 174)">
+                <tspan x="-18.357" y="0">Transit</tspan>
+            </text>
+            <text id="spoke-3" class="cls-10" transform="translate(818 233)">
+                <tspan x="-16.043" y="0">spoke</tspan>
+            </text>
+            <g id="Group_93" transform="translate(15542.968 12241.968)">
+                <circle id="Ellipse_58-3" cx="11" cy="11" r="11" class="cls-2" transform="translate(-14735.968 -12043.968)"/>
+                <path id="Icon_awesome-arrow-down-9" d="M5.967 4.854l.3.3a.327.327 0 0 1 0 .463L3.614 8.278a.327.327 0 0 1-.463 0L.494 5.621a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.572 1.644V2.578a.327.327 0 0 1 .328-.328H3.6a.327.327 0 0 1 .328.328v3.929L5.5 4.86a.326.326 0 0 1 .467-.006z" class="cls-11" transform="translate(-14728.458 -12033.352)"/>
+                <path id="Icon_awesome-arrow-down-10" d="M5.967 5.771l.3-.3A.327.327 0 0 0 6.27 5L3.614 2.346a.327.327 0 0 0-.463 0L.494 5a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.572-1.64v3.929a.327.327 0 0 0 .328.328H3.6a.327.327 0 0 0 .328-.328V4.118L5.5 5.765a.326.326 0 0 0 .467.006z" class="cls-11" transform="translate(-14728.458 -12043.208)"/>
+                <path id="Icon_awesome-arrow-down-11" d="M5.57 3.521l.3-.3a.327.327 0 0 0 0-.463L3.217.1a.327.327 0 0 0-.463 0L.1 2.754a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.569-1.644V5.8a.327.327 0 0 0 .328.328H3.2a.327.327 0 0 0 .331-.328V1.868L5.1 3.515a.326.326 0 0 0 .47.006z" class="cls-11" transform="rotate(-90 -13376.542 1346.56)"/>
+                <path id="Icon_awesome-arrow-down-12" d="M5.57 2.6l.3.3a.327.327 0 0 1 0 .463L3.217 6.028a.327.327 0 0 1-.463 0L.1 3.371a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.569 1.644V.328A.327.327 0 0 1 2.766 0H3.2a.327.327 0 0 1 .328.328v3.929L5.1 2.61a.326.326 0 0 1 .47-.01z" class="cls-11" transform="rotate(-90 -13381.47 1351.488)"/>
+            </g>
+        </g>
+        <rect id="Rectangle_50" width="598" height="239" fill="#009ad2" opacity="0.1" rx="5" transform="translate(966 85)"/>
+        <g id="Rectangle_53" fill="#fff" stroke="#009ad2" stroke-dasharray="3 4" transform="translate(986 124)">
+            <rect width="558" height="180" class="cls-20" rx="5"/>
+            <rect width="557" height="179" x=".5" y=".5" class="cls-21" rx="4.5"/>
+        </g>
+        <text id="us-east" class="cls-5" transform="translate(996 147)">
+            <tspan x="0" y="0">us-east</tspan>
+        </text>
+        <g id="azure" transform="translate(985.739 23.751)">
+            <path id="Path_9" d="M8.362 86.764H0l7.54-12.9 8.407-4.264z" class="cls-14"/>
+            <path id="Path_10" fill="#007caa" d="M147.535 114.612h-21.372v-1.664h11.877l-6.04-7.733 4.3-9.825z" transform="translate(-119.175 -24.363)"/>
+        </g>
+        <g id="Group_100" transform="translate(240.288 16)">
+            <rect id="Rectangle_52-2" width="140" height="115" class="cls-9" rx="5" transform="translate(765.712 153)"/>
+            <text id="Transit-2" class="cls-10" transform="translate(835.712 174)">
+                <tspan x="-18.357" y="0">Transit</tspan>
+            </text>
+            <text id="spoke-4" class="cls-10" transform="translate(835.712 233)">
+                <tspan x="-16.043" y="0">spoke</tspan>
+            </text>
+            <g id="Group_93-2" transform="translate(824.712 198)">
+                <circle id="Ellipse_58-4" cx="11" cy="11" r="11" class="cls-14"/>
+                <path id="Icon_awesome-arrow-down-13" d="M5.967 4.854l.3.3a.327.327 0 0 1 0 .463L3.614 8.278a.327.327 0 0 1-.463 0L.494 5.621a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.572 1.644V2.578a.327.327 0 0 1 .328-.328H3.6a.327.327 0 0 1 .328.328v3.929L5.5 4.86a.326.326 0 0 1 .467-.006z" class="cls-11" transform="translate(7.51 10.616)"/>
+                <path id="Icon_awesome-arrow-down-14" d="M5.967 5.771l.3-.3A.327.327 0 0 0 6.27 5L3.614 2.346a.327.327 0 0 0-.463 0L.494 5a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.572-1.64v3.929a.327.327 0 0 0 .328.328H3.6a.327.327 0 0 0 .328-.328V4.118L5.5 5.765a.326.326 0 0 0 .467.006z" class="cls-11" transform="translate(7.51 .76)"/>
+                <path id="Icon_awesome-arrow-down-15" d="M5.57 3.521l.3-.3a.327.327 0 0 0 0-.463L3.217.1a.327.327 0 0 0-.463 0L.1 2.754a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.569-1.644V5.8a.327.327 0 0 0 .328.328H3.2a.327.327 0 0 0 .331-.328V1.868L5.1 3.515a.326.326 0 0 0 .47.006z" class="cls-11" transform="rotate(-90 13.426 .56)"/>
+                <path id="Icon_awesome-arrow-down-16" d="M5.57 2.6l.3.3a.327.327 0 0 1 0 .463L3.217 6.028a.327.327 0 0 1-.463 0L.1 3.371a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.569 1.644V.328A.327.327 0 0 1 2.766 0H3.2a.327.327 0 0 1 .328.328v3.929L5.1 2.61a.326.326 0 0 1 .47-.01z" class="cls-11" transform="rotate(-90 8.498 5.487)"/>
+            </g>
+        </g>
+        <g id="Group_101" transform="translate(429.288 16)">
+            <rect id="Rectangle_52-3" width="140" height="115" class="cls-9" rx="5" transform="translate(765.712 153)"/>
+            <text id="Spoke-2-2" class="cls-10" transform="translate(835.712 174)">
+                <tspan x="-21.533" y="0">Spoke-2</tspan>
+            </text>
+            <text id="spoke-5" class="cls-10" transform="translate(835.712 233)">
+                <tspan x="-16.043" y="0">spoke</tspan>
+            </text>
+            <g id="Group_93-3" transform="translate(824.712 198)">
+                <circle id="Ellipse_58-5" cx="11" cy="11" r="11" class="cls-14"/>
+                <path id="Icon_awesome-arrow-down-17" d="M5.967 4.854l.3.3a.327.327 0 0 1 0 .463L3.614 8.278a.327.327 0 0 1-.463 0L.494 5.621a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.572 1.644V2.578a.327.327 0 0 1 .328-.328H3.6a.327.327 0 0 1 .328.328v3.929L5.5 4.86a.326.326 0 0 1 .467-.006z" class="cls-11" transform="translate(7.51 10.616)"/>
+                <path id="Icon_awesome-arrow-down-18" d="M5.967 5.771l.3-.3A.327.327 0 0 0 6.27 5L3.614 2.346a.327.327 0 0 0-.463 0L.494 5a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.572-1.64v3.929a.327.327 0 0 0 .328.328H3.6a.327.327 0 0 0 .328-.328V4.118L5.5 5.765a.326.326 0 0 0 .467.006z" class="cls-11" transform="translate(7.51 .76)"/>
+                <path id="Icon_awesome-arrow-down-19" d="M5.57 3.521l.3-.3a.327.327 0 0 0 0-.463L3.217.1a.327.327 0 0 0-.463 0L.1 2.754a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.569-1.644V5.8a.327.327 0 0 0 .328.328H3.2a.327.327 0 0 0 .331-.328V1.868L5.1 3.515a.326.326 0 0 0 .47.006z" class="cls-11" transform="rotate(-90 13.426 .56)"/>
+                <path id="Icon_awesome-arrow-down-20" d="M5.57 2.6l.3.3a.327.327 0 0 1 0 .463L3.217 6.028a.327.327 0 0 1-.463 0L.1 3.371a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.569 1.644V.328A.327.327 0 0 1 2.766 0H3.2a.327.327 0 0 1 .328.328v3.929L5.1 2.61a.326.326 0 0 1 .47-.01z" class="cls-11" transform="rotate(-90 8.498 5.487)"/>
+            </g>
+        </g>
+        <g id="Group_102" transform="translate(618.288 16)">
+            <rect id="Rectangle_52-4" width="140" height="115" class="cls-9" rx="5" transform="translate(765.712 153)"/>
+            <text id="Spoke-1" class="cls-10" transform="translate(835.712 174)">
+                <tspan x="-21.533" y="0">Spoke-1</tspan>
+            </text>
+            <text id="spoke-6" class="cls-10" transform="translate(835.712 233)">
+                <tspan x="-16.043" y="0">spoke</tspan>
+            </text>
+            <g id="Group_93-4" transform="translate(824.712 198)">
+                <circle id="Ellipse_58-6" cx="11" cy="11" r="11" class="cls-14"/>
+                <path id="Icon_awesome-arrow-down-21" d="M5.967 4.854l.3.3a.327.327 0 0 1 0 .463L3.614 8.278a.327.327 0 0 1-.463 0L.494 5.621a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.572 1.644V2.578a.327.327 0 0 1 .328-.328H3.6a.327.327 0 0 1 .328.328v3.929L5.5 4.86a.326.326 0 0 1 .467-.006z" class="cls-11" transform="translate(7.51 10.616)"/>
+                <path id="Icon_awesome-arrow-down-22" d="M5.967 5.771l.3-.3A.327.327 0 0 0 6.27 5L3.614 2.346a.327.327 0 0 0-.463 0L.494 5a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.572-1.64v3.929a.327.327 0 0 0 .328.328H3.6a.327.327 0 0 0 .328-.328V4.118L5.5 5.765a.326.326 0 0 0 .467.006z" class="cls-11" transform="translate(7.51 .76)"/>
+                <path id="Icon_awesome-arrow-down-23" d="M5.57 3.521l.3-.3a.327.327 0 0 0 0-.463L3.217.1a.327.327 0 0 0-.463 0L.1 2.754a.327.327 0 0 0 0 .463l.3.3a.328.328 0 0 0 .469-.005l1.569-1.644V5.8a.327.327 0 0 0 .328.328H3.2a.327.327 0 0 0 .331-.328V1.868L5.1 3.515a.326.326 0 0 0 .47.006z" class="cls-11" transform="rotate(-90 13.426 .56)"/>
+                <path id="Icon_awesome-arrow-down-24" d="M5.57 2.6l.3.3a.327.327 0 0 1 0 .463L3.217 6.028a.327.327 0 0 1-.463 0L.1 3.371a.327.327 0 0 1 0-.463l.3-.3a.328.328 0 0 1 .469.005l1.569 1.644V.328A.327.327 0 0 1 2.766 0H3.2a.327.327 0 0 1 .328.328v3.929L5.1 2.61a.326.326 0 0 1 .47-.01z" class="cls-11" transform="rotate(-90 8.498 5.487)"/>
+            </g>
+        </g>
+        <path id="Path_17" d="M-13432-7595.648h57.289v-65.175h315.1v67.136h22.542" class="cls-16" transform="translate(13827 7820)"/>
+        <path id="Path_18" d="M-13198.786-7595.648h18.132v-65.666" class="cls-16" transform="translate(13827 7820)"/>
+        <path id="Path_19" d="M-12740.6-7593.687h22.052v-68.606h309.707v68.606h26.462" class="cls-17" transform="translate(13827 7820)"/>
+        <path id="Path_20" d="M-12597.691-7662.293v68.661h25.428" class="cls-17" transform="translate(13827 7820)"/>
+        <path id="Path_21" fill="none" stroke="#737373" d="M-13016.017-7594.937h254.118" transform="translate(13827 7820)"/>
+        <text id="Transit_peering" fill="#404040" font-family="Roboto-Regular, Roboto" font-size="12px" transform="rotate(-90 587.5 -366)">
+            <tspan x="0" y="0">Transit peering</tspan>
+        </text>
+    </g>
+</svg>
