@@ -627,3 +627,15 @@ export const CoverImage = (
     </g>
   </svg>
 );
+
+export const helpIcon = (
+  <svg xmlns="http://www.w3.org/2000/svg" id="help" viewBox="0 0 26 26">
+    <title>help</title>
+    <path
+      id="Path_25"
+      data-name="Path 25"
+      d="M26,13A13,13,0,1,0,1.8,19.61L.05,26,6.39,24.2A13,13,0,0,0,26,13ZM11,10H9a4,4,0,1,1,6.68,2.95L14,14.47V16H12V13.59l2.34-2.14A2,2,0,1,0,11,10h0Zm1,8h2v2H12Z"
+      style={{ fill: "#ffe6e2" }}
+    />
+  </svg>
+);
