@@ -267,7 +267,6 @@ class DeleteResource(Resource):  # pylint: disable=too-few-public-methods
         """getting and assigning data from api"""
         self.message = "Deleting terraform"
 
-
     def delete(self):
         """Deleting teraform resource"""
         process = Process(target=delete_resources, args=())

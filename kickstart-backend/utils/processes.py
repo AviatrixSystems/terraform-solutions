@@ -274,7 +274,7 @@ def delete_resources():
     else:
         try:
             os.remove('state.txt')
-        except OSError:    #if file not found means file dosen't exist
+        except OSError:    # if file not found means file dosen't exist
             pass
         status_json('deleteResources', 'success', 0)
 

@@ -1,0 +1,64 @@
+@import "styles/theme.scss";
+
+.MuiButtonBase-root {
+  &.Mui-disabled {
+    font-size: 1.4rem;
+    text-transform: initial;
+  }
+  &.custom-button-style:not(.Mui-disabled) {
+    font-size: 1.4rem;
+    text-transform: initial;
+
+    &.--bordered {
+      height: 37px;
+      border-radius: 4px;
+      border: solid 1px;
+      background-color: $white_color;
+
+      &:hover,
+      &:focus {
+        background-color: $blue_color;
+      }
+    }
+
+    &.--blue {
+      &.MuiButton-contained {
+        outline: none;
+        background: $blue_color;
+        color: $white_color;
+      }
+
+      &.MuiButton-outlined {
+        color: $blue_color;
+        border-color: $blue_color;
+
+        &:hover,
+        &:focus {
+          color: $white_color;
+          border-color: $white_color;
+          background-color: $blue_color;
+        }
+      }
+    }
+
+    &.--primary-inverse {
+      &.MuiButton-contained {
+        outline: none;
+        background-color: $primary_light_color;
+        color: $primary_color;
+      }
+
+      &.MuiButton-outlined {
+        color: $primary_color;
+        border-color: $primary_color;
+
+        &:hover,
+        &:focus {
+          color: $primary_color;
+          border-color: $primary_color;
+          background-color: $primary_light_color;
+        }
+      }
+    }
+  }
+}

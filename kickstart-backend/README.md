@@ -22,5 +22,19 @@ You can create a virtual environment and install the required packages with the 
 Running  backend using Docker
 --------------------
 
+Instructions
+------------
+Install Docker if you don't already have it: https://docs.docker.com/get-docker/.
+
+Build the image:
+```docker build -t aviatrix-kickstart --file Dockerfile_backend .```
+
+Start the container:
+```
+docker volume create TF
+docker run -v TF:/root -p 5000:5000 aviatrix-kickstart
+```
+
+Launch Aviatrix Kickstart by navigating to http://0.0.0.0:5000/
 
 

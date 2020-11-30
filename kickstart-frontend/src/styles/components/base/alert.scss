@@ -1,0 +1,25 @@
+@import "styles/theme.scss";
+
+.MuiAlert-root {
+  &.custom-alert-style {
+    position: absolute;
+    max-width: 393px;
+    top: 38px;
+    right: 30px;
+    font-size: 1.4rem;
+
+    &.MuiAlert-standardSuccess {
+      background: rgba($success_color, 0.1);
+      * {
+        color: $success_color;
+      }
+    }
+
+    &.MuiAlert-standardError {
+      background: rgba($error_color, 0.1);
+      * {
+        color: $error_color;
+      }
+    }
+  }
+}
