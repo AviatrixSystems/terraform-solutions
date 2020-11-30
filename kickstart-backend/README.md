@@ -32,7 +32,7 @@ Build the image:
 Start the container:
 ```
 docker volume create TF
-docker run -v TF:/root -p 5000:5000 aviatrix-kickstart
+docker run -v TF:/root -p 5000:5000 -d aviatrix-kickstart
 ```
 
 Launch Aviatrix Kickstart by navigating to http://0.0.0.0:5000/
