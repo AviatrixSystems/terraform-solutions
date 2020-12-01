@@ -32,7 +32,7 @@ class AwsConfiguration(Resource):  # pylint: disable=too-few-public-methods
         process = Process(target=aws_configuration_process,
                           args=(key_id, secret_key))
         process.start()
-        return {"message": 'Aws configuration Updated'}, 200
+        return {"message": 'AWS Configuration Updated Successfully'}, 200
 
 
 class SubscribeService(Resource):  # pylint: disable=too-few-public-methods
@@ -60,7 +60,7 @@ class SubscribeService(Resource):  # pylint: disable=too-few-public-methods
 
 
 class LaunchController(Resource):  # pylint: disable=too-few-public-methods
-    """Launcing controller"""
+    """Launching controller"""
 
     def __init__(self):
         """getting and assigning data from api"""
@@ -96,7 +96,7 @@ class LaunchController(Resource):  # pylint: disable=too-few-public-methods
                           args=(email, recovery_email, password, confirm_password))
         process.start()
 
-        return {"message": "Controller Data Launched"}, 200
+        return {"message": "Controller Launched Successfully"}, 200
 
 
 class SkipLaunchController(Resource):  # pylint: disable=too-few-public-methods
@@ -135,73 +135,73 @@ class SkipLaunchController(Resource):  # pylint: disable=too-few-public-methods
 
 
 class LaunchTransitAWS(Resource):  # pylint: disable=too-few-public-methods
-    """Launcing Avitric Transit"""
+    """Launching Aviatrix Transit"""
 
     def __init__(self):
         """getting and assigning data from api"""
         self.data = json.loads(request.data.decode('utf-8'))
 
     def post(self):
-        """launch avitric transit by command"""
+        """launch Aviatrix transit by command"""
         command = self.data.get("command", None)
 
         if command is True:
             command = 'yes'
             process = Process(target=launch_transit, args=(command,))
             process.start()
-            return {"message": "Launch Aviatrix Transit Started"}, 200
+            return {"message": "Aviatrix Transit Launched Successfully"}, 200
         elif command is False:
             command = 'no'
             process = Process(target=launch_transit, args=(command,))
             process.start()
-            return {"message": "Launch Aviatrix Transit Skipped"}, 200
+            return {"message": "Skipped Aviatrix Transit"}, 200
 
 
 class LaunchAwsSpoke(Resource):  # pylint: disable=too-few-public-methods
-    """Launcing Avitric Transit"""
+    """Launching Aviatrix Transit"""
 
     def __init__(self):
         """getting and assigning data from api"""
         self.data = json.loads(request.data.decode('utf-8'))
 
     def post(self):
-        """launch avitric transit by command"""
+        """launch Aviatrix transit by command"""
         command = self.data.get("command", None)
         if command is True:
             process = Process(target=launch_aws_vpc, args=(command,))
             process.start()
-            return {"message": "Launch EC2 instance in AWS spoke VPCs Started"}, 200
+            return {"message": "EC2 instances in AWS Spoke VPCs Initiated Successfully"}, 200
         elif command is False:
             process = Process(target=launch_aws_vpc, args=(command,))
             process.start()
-            return {"message": "Launch EC2 instance in AWS spoke VPCs Skipped"}, 200
+            return {"message": "EC2 instances in AWS Spoke VPCs Skipped"}, 200
 
 
 class SpokeVPCInstanceKeyName(Resource):  # pylint: disable=too-few-public-methods
-    """Launcing VPC instance"""
+    """Launching VPC instance"""
 
     def __init__(self):
         """getting and assigning data from api"""
         self.data = json.loads(request.data.decode('utf-8'))
 
     def post(self):
-        """Launcing VPC instance"""
+        """Launching VPC instance"""
         keyname = self.data.get("keyname", None)
 
         process = Process(target=aws_spoke_vpc, args=(keyname,))
         process.start()
 
-        return {"message": "Spoke VPC Instance Initiated"}, 200
+        return {"message": "EC2 instances in AWS Spoke VPCs Launched Successfully"}, 200
 
 
 class TransitAzureSkip(Resource):  # pylint: disable=too-few-public-methods
-    """Skiping Azure transit"""
+    """Skipping Azure transit"""
 
     def __init__(self):
         self.data = json.loads(request.data.decode('utf-8'))
 
     def post(self):
-        """Skiping Azure transit"""
+        """Skipping Azure transit"""
         command = self.data.get("command", None)
 
         if command is True:
@@ -210,18 +210,18 @@ class TransitAzureSkip(Resource):  # pylint: disable=too-few-public-methods
 
             return {"message": "Aviatrix Transit Skipped, Getting IP .."}, 200
         else:
-            return {"message": "Unknow argument for this command"}, 200
+            return {"message": "Unknown argument for this command"}, 200
 
 
 class LaunchTransitAzure(Resource):  # pylint: disable=too-few-public-methods
-    """Launcing Avitric Transit in Azure"""
+    """Launching Aviatrix Transit in Azure"""
 
     def __init__(self):
         """getting and assigning data from api"""
         self.data = json.loads(request.data.decode('utf-8'))
 
     def post(self):
-        """launch avitric transit in azure """
+        """launch Aviatrix transit in azure """
         azure_subscription_id = self.data.get("azure_subscription_id", None)
         azure_directory_id = self.data.get("azure_directory_id", None)
         azure_application_id = self.data.get("azure_application_id", None)
@@ -232,7 +232,7 @@ class LaunchTransitAzure(Resource):  # pylint: disable=too-few-public-methods
             azure_application_id, azure_application_key))
         process.start()
 
-        return {"message": "Aviatrix Transit launching"}, 200
+        return {"message": "Launched Aviatrix Transit in Azure Successfully"}, 200
 
 
 class AzureAwsPeering(Resource):  # pylint: disable=too-few-public-methods
@@ -251,13 +251,13 @@ class AzureAwsPeering(Resource):  # pylint: disable=too-few-public-methods
             process = Process(target=aws_azure_peering, args=(
                 command,))
             process.start()
-            return {"message": "Transit Peering between Azure and AWS started"}, 200
+            return {"message": "Transit Peering between AWS & Azure Built Successfully"}, 200
         elif command is False:
             command = 'no'
             process = Process(target=aws_azure_peering, args=(
                 command,))
             process.start()
-            return {"message": "Transit Peering between Azure and AWS skipped"}, 200
+            return {"message": "Transit Peering between AWS & Azure Skipped"}, 200
 
 
 class DeleteResource(Resource):  # pylint: disable=too-few-public-methods
@@ -265,10 +265,10 @@ class DeleteResource(Resource):  # pylint: disable=too-few-public-methods
 
     def __init__(self):
         """getting and assigning data from api"""
-        self.message = "Deleting terraform"
+        self.message = "Reset Successfully"
 
     def delete(self):
-        """Deleting teraform resource"""
+        """Deleting terraform resource"""
         process = Process(target=delete_resources, args=())
         process.start()
         return {"message": self.message}, 200
@@ -282,7 +282,7 @@ class GetStateStatus(Resource):  # pylint: disable=too-few-public-methods
         self.data = {}
 
     def get(self):
-        """Get state of proccess """
+        """Get state of process """
         try:
             with open('state.txt') as json_file:
                 self.data = json.load(json_file)

@@ -45,7 +45,7 @@ export default function LaunchController() {
                   >
                     Subscribe
                   </a>{" "}
-                  Subscribe to Aviatrix platform on AWS marketplace. Also, the
+                  to Aviatrix platform on AWS marketplace. Also, the
                   controller will be launched in us-east-1 region.
                 </span>
               }
