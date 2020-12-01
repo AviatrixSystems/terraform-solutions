@@ -27,7 +27,7 @@ Instructions
 Install Docker if you don't already have it: https://docs.docker.com/get-docker/.
 
 Build the image:
-```docker build -t aviatrix-kickstart --file Dockerfile_backend .```
+```docker build -t aviatrix-kickstart --file Dockerfile_kickstart_web .```
 
 Start the container:
 ```
