@@ -208,7 +208,7 @@ class TransitAzureSkip(Resource):  # pylint: disable=too-few-public-methods
             process = Process(target=get_controller_ip, args=())
             process.start()
 
-            return {"message": "Aviatrix Transit Skipped, Getting IP .."}, 200
+            return {"message": "Aviatrix Transit Skipped"}, 200
         else:
             return {"message": "Unknown argument for this command"}, 200
 

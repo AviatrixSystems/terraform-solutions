@@ -341,7 +341,8 @@ input_aws_keypair()
 	read -n 1 -r -s -p $'\n\n--> Opening the settings file. Make sure your key pair name is correct under aws_ec2_key_name. This is your own key pair, not Aviatrix keys for controller or gateways. Press any key to continue.\n'
     fi
 
-    sed -i "s/\"aws_ec2_key_name\" { default = \"nicolas\" }/\"aws_ec2_key_name\" { default = \"$name\" }/g" /root/mcna/variables.tf
+    sed -i "s/variable \"aws_ec2_key_name\".*/variable \"aws_ec2_key_name\" { default = \"$name\" }/g" /root/mcna/variables.tf
+#    sed -i "s/\"aws_ec2_key_name\" { default = \"nicolas\" }/\"aws_ec2_key_name\" { default = \"$name\" }/g" /root/mcna/variables.tf
     echo "done"
 #    vim variables.tf
 }
