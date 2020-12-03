@@ -30,7 +30,7 @@ export default function ImportKeyPair() {
             <Heading customClasses="--dark" text="Import Key Pair"></Heading>
             <Paragraph
               customClasses="--light"
-              text="Enter Amazon EC2 Key Pair Name"
+              text="Enter Amazon EC2 Key Pair Name (make sure your key pair name is correct). This is your own key pair, not Aviatrix keys for controller or gateways. Also make sure you are in the region where the Spoke gateways were launched (if using defaults, us-east-2)."
             ></Paragraph>
           </div>
           <Input

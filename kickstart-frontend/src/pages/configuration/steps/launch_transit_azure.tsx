@@ -55,9 +55,14 @@ export default function LaunchTransitAzure() {
             <Paragraph
               customClasses="--light"
               text={
-                azureResponse === undefined
-                  ? "Launch Aviatrix Transit in Azure"
-                  : "Enter Azure account details to proceed"
+                azureResponse === undefined ? (
+                  "Do you want to launch the Aviatrix transit in Azure?"
+                ) : (
+                  <span>
+                    Enter your Azure API keys for the Azure deployment. Perform
+                    the pre-requisites at <a target="blank" href="https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html">https://docs.aviatrix.com/HowTos/Aviatrix_Account_Azure.html</a>
+                  </span>
+                )
               }
             />
           </div>

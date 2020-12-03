@@ -26,19 +26,11 @@ export const FORM_CONFIGS = {
   launch_controller: {
     initialValues: {
       email_address: "",
-      recovery_email_address: "",
       password: "",
       re_enter_password: "",
     },
     validations: yup.object({
       email_address: yup
-        .string()
-        .required("Required")
-        .matches(
-          /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-          "Must be a valid email"
-        ),
-      recovery_email_address: yup
         .string()
         .required("Required")
         .matches(

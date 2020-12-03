@@ -18,7 +18,7 @@ export default function LaunchEC2() {
       <div className="text-block">
         <Heading
           customClasses="--dark"
-          text="Launch EC2 instances in the AWS Spoke VPCs"
+          text="Do you want to launch test EC2 instances in the AWS Spoke VPCs?"
         ></Heading>
         <Paragraph
           customClasses="--light"

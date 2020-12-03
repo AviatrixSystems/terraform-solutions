@@ -10,7 +10,10 @@ export default function AppBar() {
   const dispatch = useDispatch();
 
   const onDelete = useCallback(() => {
-    dispatch(deleteConfig());
+    const response = window.confirm("Are you sure you want to destroy?");
+    if (response) {
+      dispatch(deleteConfig());
+    }
   }, [dispatch]);
 
   return (
@@ -22,12 +25,13 @@ export default function AppBar() {
         {helpIcon}
       </a>
       <Button
+        title="Terraform Destroy"
         variant="contained"
         customClasses="--primary-inverse"
         onClick={onDelete}
         startIcon={reloadIcon}
       >
-        Reset
+        Destroy
       </Button>
     </header>
   );

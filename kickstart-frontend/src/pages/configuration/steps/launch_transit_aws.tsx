@@ -22,7 +22,16 @@ export default function LaunchTransitAWS() {
         ></Heading>
         <Paragraph
           customClasses="--light"
-          text="Do you want to launch the Aviatrix transit in AWS? Region will be us-east-2 (Ohio)."
+          text={
+            <span>
+              Do you want to launch the Aviatrix transit in AWS? Region will be
+              us-east-2. Go to{" "}
+              <a href="https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png">
+                https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png
+              </a>{" "}
+              to view what is going to be launched.
+            </span>
+          }
         ></Paragraph>
       </div>
       <span>

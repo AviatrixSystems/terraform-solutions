@@ -35,7 +35,7 @@ export default function Credentials() {
             <Heading customClasses="--dark" text="AWS Credentials"></Heading>
             <Paragraph
               customClasses="--light"
-              text="Enter AWS Account details to proceed"
+              text="Going to get your AWS API access keys. They are required to launch the Aviatrix controller in AWS. They stay local to this container and are not shared. Access keys can be created in AWS console under Account -> My Security Credentials -> Access keys for CLI, SDK, & API access."
             ></Paragraph>
           </div>
           <Input

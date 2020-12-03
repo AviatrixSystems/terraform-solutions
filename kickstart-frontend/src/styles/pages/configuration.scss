@@ -21,6 +21,14 @@
       position: relative;
       flex: 1;
       padding: 50px 150px 0 150px;
+
+      .text-block {
+        .paragraph {
+          > span > a {
+            color: $blue_color;
+          }
+        }
+      }
     }
   }
 }

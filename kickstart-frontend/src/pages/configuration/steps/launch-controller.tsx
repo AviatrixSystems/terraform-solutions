@@ -16,7 +16,7 @@ export default function LaunchController() {
       dispatch(
         launchController({
           email: values.email_address,
-          recovery_email: values.recovery_email_address,
+          recovery_email: values.email_address,
           password: values.password,
           confirm_password: values.re_enter_password,
         })
@@ -39,14 +39,18 @@ export default function LaunchController() {
               customClasses="--light"
               text={
                 <span>
+                  Enter email for controller password recovery and for Aviatrix
+                  support to reach out in case of issues (the email will be
+                  shared with Aviatrix) <br /> Perform the pre-requisites at{" "}
                   <a
                     target="blank"
                     href="https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k"
                   >
-                    Subscribe
+                    https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k
                   </a>{" "}
-                  to Aviatrix platform on AWS marketplace. Also, the
-                  controller will be launched in us-east-1 region.
+                  and subscribe to the Aviatrix platform. Click on "Continue to
+                  subscribe", and accept the terms. Do NOT click on "Continue to
+                  Configuration".
                 </span>
               }
             ></Paragraph>
@@ -61,17 +65,6 @@ export default function LaunchController() {
             onChange={handleChange}
             error={Boolean(errors.email_address)}
             helperText={errors.email_address}
-          />
-          <Input
-            value={values.recovery_email_address}
-            name="recovery_email_address"
-            label="Recovery Email Address"
-            variant="outlined"
-            fullWidth={false}
-            customClasses="--small --blue"
-            onChange={handleChange}
-            error={Boolean(errors.recovery_email_address)}
-            helperText={errors.recovery_email_address}
           />
           <Input
             type="password"

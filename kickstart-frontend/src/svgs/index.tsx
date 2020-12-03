@@ -176,16 +176,16 @@ export const CoverImage = (
             d="M987.7,84h130c2.8,0,5,2.2,5,5v105c0,2.8-2.2,5-5,5h-130c-2.8,0-5-2.2-5-5V89     C982.7,86.2,984.9,84,987.7,84z"
           />
           <text
-            transform="matrix(1 0 0 1 1031.267 109)"
+            transform="matrix(1 0 0 1 990.267 109)"
             className="st15 st6 st9"
           >
-            Transit
+            Transit-VNET
           </text>
           <text
             transform="matrix(1 0 0 1 1033.9668 172)"
             className="st15 st6 st9"
           >
-            spoke
+            Transit-GW
           </text>
           <g id="Group_93-2" transform="translate(824.712 198)">
             <circle
@@ -573,13 +573,13 @@ export const CoverImage = (
             transform="matrix(1 0 0 1 755.0353 109)"
             className="st15 st6 st9"
           >
-            Transit
+            Transit-VPC
           </text>
           <text
             transform="matrix(1 0 0 1 757.7354 172)"
             className="st15 st6 st9"
           >
-            spoke
+            Transit-GW
           </text>
           <g id="Group_93" transform="translate(15542.968 12241.968)">
             <circle
@@ -630,7 +630,7 @@ export const CoverImage = (
 
 export const helpIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" id="help" viewBox="0 0 26 26">
-    <title>help</title>
+    <title>Help</title>
     <path
       id="Path_25"
       data-name="Path 25"
