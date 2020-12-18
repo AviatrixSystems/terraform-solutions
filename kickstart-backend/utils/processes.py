@@ -359,6 +359,7 @@ def aws_spoke_vpc(keyname):
 def launch_transit_azure(keys_data):
     """Step six (launch transit )"""
     stored_state = 6
+    status_json('launchAzureTransit', 'in-progress', stored_state)
     saved_mode = check_mode()
     if saved_mode:
         mcna_file_change_azure(keys_data)
@@ -402,6 +403,7 @@ def skip_azure_transit(command):
 
 def aws_azure_peering(command):
     """Peering between aws and  azure"""
+    status_json('peering', 'in-progress', 7)
     if command == 'yes':
         command_bash = ['bash', '-c', '. /root/kickstart_web.sh;'
                                       ' transit_peering_aws_azure ' + command]

@@ -237,8 +237,9 @@ class GetStateStatus(Resource):  # pylint: disable=too-few-public-methods
 
         except FileNotFoundError:  # pylint:disable=undefined-variable
             msg = "No record found"
-            return {"message": msg, "data": self.data}, 404
-
+            return {"message": msg}, 404
+        except ValueError:
+            return {"message": 'file is not ready'}, 206
         return {"message": "Resource Data", "data": self.data}, 200
 
 
