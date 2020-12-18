@@ -1,3 +1,4 @@
+"""main app file"""
 import logging.config
 
 from flask import Flask

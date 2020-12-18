@@ -5,18 +5,243 @@ timer()
     temp_cnt=$1
     while [[ ${temp_cnt} -gt 0 ]];
     do
-	printf "\r%2d second(s)" ${temp_cnt}
+	# printf "\r%2d second(s)" ${temp_cnt}
 	sleep 1
 	((temp_cnt--))
     done
     echo ""
 }
 
+#change controller file
+controller_file_change(){
+
+  local region=$1
+  local az=$2
+  local vpc_cidr=$3
+  local vpc_subnet=$4
+
+  sed -i "s/variable \"region\".*/variable \"region\" { default = \"$region\" }/g" /root/controller/variables.tf
+  sed -i "s/variable \"az\".*/variable \"az\" { default = \"$az\" }/g" /root/controller/variables.tf
+  sed -i "s#variable \"vpc_cidr\".*#variable \"vpc_cidr\" { default = \"$vpc_cidr\" }#g"  /root/controller/variables.tf
+  sed -i "s#variable \"vpc_subnet\".*#variable \"vpc_subnet\" { default = \"$vpc_subnet\" }#g"  /root/controller/variables.tf
+
+}
+
+#generic function to change pattren with spoke vars
+change_variable_with_spoke(){
+  spke=$1
+  var=$2
+  val=$3
+  clp=$4
+
+  awk -v spke="$spke" -v var="$var" -v val="$val" -v clp="$clp" '/variable/ { cloudp=gensub(/(^variable[[:space:]]")(.*)(".*$)/,"\\2",$0) } /'$spke'[[:space:]]=/ { spoke=$1 } spoke==spke && $1==var && cloudp ~ clp { $0=gensub(/(^.*=[[:space:]]")(.*)(".*$)/,"\\1"val"\\3",$0) }1'   /root/mcna/variables.tf > /root/mcna/file.temp && mv -f /root/mcna/file.temp /root/mcna/variables.tf
+
+
+}
+
+#generic function to change pattren without spoke vars
+change_variable_without_spoke(){
+
+  var=$1
+  val=$2
+  clp=$3
+
+  awk  -v var="$var" -v val="$val" -v clp="$clp" '/variable/ { cloudp=gensub(/(^variable[[:space:]]")(.*)(".*$)/,"\\2",$0) }  $1==var && cloudp ~ clp { $0=gensub(/(^.*=[[:space:]]")(.*)(".*$)/,"\\1"val"\\3",$0) }1'  /root/mcna/variables.tf > /root/mcna/file.temp && mv -f /root/mcna/file.temp /root/mcna/variables.tf
+}
+
+#generic function to change pattren with spoke digits
+change_variable_with_spoke_digit(){
+
+  spke=$1
+  var=$2
+  val=$3
+  clp=$4
+
+  awk -v spke="$spke" -v var="$var" -v val="$val" -v clp="$clp" '/variable/ { cloudp=gensub(/(^variable[[:space:]]")(.*)(".*$)/,"\\2",$0) } /spoke[[:digit:]][[:space:]]=/ { spoke=$1 } spoke==spke && $1==var && cloudp ~ clp { $0=gensub(/(^.*=[[:space:]]")(.*)(".*$)/,"\\1"val"\\3",$0) }1'   /root/mcna/variables.tf > /root/mcna/file.temp && mv -f /root/mcna/file.temp /root/mcna/variables.tf
+
+}
+
+#change controller file
+mcna_aws_file_change_vpcs(){
+
+  local aws_transit_vpc_name=$1
+  local aws_transit_vpc_cidr=$2
+  local aws_spoke1_vpc_name=$3
+  local aws_spoke1_vpc_cidr=$4
+  local aws_spoke2_vpc_name=$5
+  local aws_spoke2_vpc_cidr=$6
+
+
+  spke="aws_transit_vpc"
+  var="name"
+  val=$aws_transit_vpc_name
+  clp="aws_transit_vpcs"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  spke="aws_transit_vpc"
+  var="cidr"
+  val=$aws_transit_vpc_cidr
+  clp="aws_transit_vpcs"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  spke="aws_spoke1_vpc"
+  var="name"
+  val=$aws_spoke1_vpc_name
+  clp="aws_spoke_vpcs"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  spke="aws_spoke1_vpc"
+  var="cidr"
+  val=$aws_spoke1_vpc_cidr
+  clp="aws_spoke_vpcs"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  spke="aws_spoke2_vpc"
+  var="name"
+  val=$aws_spoke2_vpc_name
+  clp="aws_spoke_vpcs"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  spke="aws_spoke2_vpc"
+  var="cidr"
+  val=$aws_spoke2_vpc_cidr
+  clp="aws_spoke_vpcs"
+
+  change_variable_with_spoke  $spke $var $val $clp
+}
+
+#gateways change aws
+mcna_aws_file_change_gateways(){
+
+  local aws_transit_gateway_name=$1
+  local aws_spoke1_gateways_name=$2
+  local aws_spoke1_vpc_name=$3
+  local aws_region=$4
+
+  sed -i "s#variable \"aws_region\".*#variable \"aws_region\" { default = \"$aws_region\" }#g"  /root/mcna/variables.tf
+
+  var="name"
+  val=$aws_transit_gateway_name
+  clp="aws_transit_gateway"
+
+  change_variable_without_spoke  $var $val $clp
+
+  spke="spoke1"
+  var="name"
+  val=$aws_spoke1_gateways_name
+  clp="aws_spoke_gateways"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  spke="spoke2"
+  var="name"
+  val=$aws_spoke1_vpc_name
+  clp="aws_spoke_gateways"
+
+  change_variable_with_spoke  $spke $var $val $clp
+}
+
+
+#change mcna azure vpcs
+mcna_azure_file_change_vpcs(){
+
+  local azure_vnets_name=$1
+  local azure_vnets_name_cidr=$2
+  local azure_spoke1_vnet_name=$3
+  local azure_spoke1_vnet_cidr=$4
+  local azure_spoke2_vnet_name=$5
+  local azure_spoke2_vnet_cidr=$6
+
+  #first
+  spke="azure_transit_vnet"
+  var="name"
+  val=$azure_vnets_name
+  clp="azure_vnets"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  #Second
+  spke="azure_transit_vnet"
+  var="cidr"
+  val=$azure_vnets_name_cidr
+  clp="azure_vnets"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  #third
+  spke="azure_spoke1_vnet"
+  var="name"
+  val=$azure_spoke1_vnet_name
+  clp="azure_vnets"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  #forth
+  spke="azure_spoke1_vnet"
+  var="cidr"
+  val=$azure_spoke1_vnet_cidr
+  clp="azure_vnets"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  #fifth
+  spke="azure_spoke2_vnet"
+  var="name"
+  val=$azure_spoke2_vnet_name
+  clp="azure_vnets"
+
+  change_variable_with_spoke  $spke $var $val $clp
+
+  #sixth
+  spke="azure_spoke2_vnet"
+  var="cidr"
+  val=$azure_spoke2_vnet_cidr
+  clp="azure_vnets"
+
+  change_variable_with_spoke  $spke $var $val $clp
+}
+
+#gateways change azure
+mcna_azure_file_change_gateways(){
+
+  local azure_transit_gateway=$1
+  local azure_spoke1_gateways_name=$2
+  local azure_spoke2_gateways_name=$3
+  local azure_region=$4
+
+  sed -i "s#variable \"azure_region\".*#variable \"azure_region\" { default = \"$azure_region\" }#g"  /root/mcna/variables.tf
+
+  var="name"
+  val=$azure_transit_gateway
+  clp="azure_transit_gateway"
+
+  change_variable_without_spoke  $var $val $clp
+
+  spke="spoke1"
+  var="name"
+  val=$azure_spoke1_gateways_name
+  clp="azure_spoke_gateways"
+
+  change_variable_with_spoke_digit  $spke $var $val $clp
+
+  spke="spoke2"
+  var="name"
+  val=$azure_spoke2_gateways_name
+  clp="azure_spoke_gateways"
+
+  change_variable_with_spoke_digit  $spke $var $val $clp
+
+}
+
 #write IP's to sh file for use during launch transit etc
 writekeys_controller_launch() {
 
   cd /root/
-  echo "Into write keys "
   local AWS_ACCOUNT=$1
   local CONTROLLER_PRIVATE_IP=$2
   local CONTROLLER_PUBLIC_IP=$3
@@ -35,7 +260,6 @@ writekeys_controller_init() {
   cd /root/
   . keys.sh;
 
-  echo "Into write keys 2"
   local AVIATRIX_EMAIL=$1
   local AVIATRIX_PASSWORD=$2
   local AVIATRIX_USERNAME=$3
@@ -50,7 +274,6 @@ check_data_test() {
     cd /root/
     . keys.sh # Load variables from file
 
-    echo "test"
     echo "$AWS_ACCOUNT"
     printf 'AWS_ACCOUNT=%s\n' "$AWS_ACCOUNT"
     printf 'CONTROLLER_PRIVATE_IP=%s\n' "$CONTROLLER_PRIVATE_IP"
@@ -68,7 +291,7 @@ check_data_test() {
 aws_configure()
 {
     #calling banner from first API
-    banner_initilize
+#    banner_initilize
 
     if [ -d "/root/.aws" ]
     then
@@ -470,6 +693,8 @@ launch_controller()
         fi
     fi
 
+    return 0
+
 
 }
 
@@ -538,6 +763,9 @@ launch_azure_transit()
 #peering transit aws,azure initiated here
 transit_peering_aws_azure()
 {
+
+    cd /root/
+    . keys.sh
 #if [ $azure ]; then
 #    read -p $'\n\n--> Do you want to build a transit peering between AWS and Azure? (y/n)? ' answer
 #    if [ "$answer" != "${answer#[Yy]}" ] ; then
