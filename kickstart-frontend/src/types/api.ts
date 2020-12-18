@@ -8,7 +8,11 @@ export type UrlNames =
   | "launch_ec2"
   | "launch_transit_azure"
   | "skip_transit_azure"
-  | "built_transit";
+  | "built_transit"
+  | "set_is_advance"
+  | "step2_variables"
+  | "step3_variables"
+  | "step6_variables";
 export type UrlConfigs = {
   [key in UrlNames]: {
     url: string;
@@ -31,7 +35,82 @@ export type GetStepResponse = {
     status: "success" | "in-progress" | "failed";
     state: number;
     stateName: string;
+    error: string[] | null;
+    progress: string | null;
+    processedData: {
+      awsConfigurations?: {
+        key_id: "AKIAVUD4EMLDFNZS7VQI";
+        secret_key: "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";
+      };
+      controller?: {
+        confirm_password: "P@ssw0rd1234";
+        email: "inam.rehman@emumba.com";
+        password: "P@ssw0rd1234";
+        recovery_email: "inam.rehman@emumba.com";
+      };
+      launchAviatrixTransit?: {
+        state: "yes" | "no";
+      };
+      ec2SpokeVpc?: {
+        state: "yes" | "no";
+      };
+      avaitrixTransitAzure?: {
+        state: "yes" | "no";
+      };
+      peering?: {
+        state: "yes" | "no";
+      };
+    };
     controllerIP?: string;
+    ips?: {
+      privateSpokeVm1: string;
+      privateSpokeVm2: string;
+      publicSpokeVm1: string;
+      publicSpokeVm2: string;
+    };
+    is_advance?: boolean;
+  };
+  message: string;
+};
+
+export type Step2Variables = {
+  data: {
+    region: string;
+    az: string;
+    vpc_cidr: string;
+    vpc_subnet: string;
+  };
+  message: string;
+};
+
+export type Step3Variables = {
+  data: {
+    aws_region: string;
+    aws_transit_vpc_name: string;
+    aws_transit_vpc_cidr: string;
+    aws_spoke1_vpc_name: string;
+    aws_spoke1_vpc_cidr: string;
+    aws_spoke2_vpc_name: string;
+    aws_spoke2_vpc_cidr: string;
+    aws_transit_gateway_name: string;
+    aws_spoke1_gateways_name: string;
+    aws_spoke2_gateways_name: string;
+  };
+  message: string;
+};
+
+export type Step6Variables = {
+  data: {
+    azure_region: string;
+    azure_vnets_name: string;
+    azure_vnets_name_cidr: string;
+    azure_spoke1_vnet_name: string;
+    azure_spoke1_vnet_cidr: string;
+    azure_spoke2_vnet_name: string;
+    azure_spoke2_vnet_cidr: string;
+    azure_transit_gateway: string;
+    azure_spoke1_gateways_name: string;
+    azure_spoke2_gateways_name: string;
   };
   message: string;
 };

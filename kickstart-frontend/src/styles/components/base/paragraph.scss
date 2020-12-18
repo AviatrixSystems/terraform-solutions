@@ -10,8 +10,7 @@
 
   &.--light {
     line-height: 1.38;
-    color: $gray_color;
-    opacity: 0.5;
+    color: rgba($gray_color, 0.5);
   }
 
   &.--light-without-opacity {

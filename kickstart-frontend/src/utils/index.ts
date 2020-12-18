@@ -1,7 +1,9 @@
-import axios from "axios";
 import { useEffect, useRef } from "react";
+import axios from "axios";
+
 import { UrlNames } from "types/api";
-import { URL_CONFIGS } from "./constants";
+import { ConfigurationState } from "types/store";
+import { ROUTES, URL_CONFIGS } from "./constants";
 
 export const classNames = (classesObj: Object) => {
   const classes = Object.entries(classesObj).map(([key, value]) =>
@@ -67,4 +69,72 @@ export function copyToClipboard(text: string, elementId: string) {
   textField.select();
   document.execCommand("copy");
   parentElement?.removeChild(textField);
+}
+
+export function redirectToNextPage(
+  data: ConfigurationState["processedData"] = {},
+  history: any[],
+  step: number,
+  actionPendingPageNo?: number
+) {
+  switch (actionPendingPageNo) {
+    case 3:
+      if (data?.ec2SpokeVpc?.state === "no") {
+        history.push(getRoute(`${ROUTES.configuration}/${4}`));
+      } else if (data?.avaitrixTransitAzure?.state === "no") {
+        history.push(getRoute(`${ROUTES.configuration}/${6}`));
+      } else if (data?.peering?.state === "no") {
+        history.push(getRoute(`${ROUTES.configuration}/${7}`));
+      } else {
+        history.push(getRoute(`${ROUTES.configuration}/${step}`));
+      }
+      break;
+    case 4:
+      if (data?.ec2SpokeVpc?.state === null) {
+        history.push(getRoute(`${ROUTES.configuration}/${5}`));
+      } else if (data?.avaitrixTransitAzure?.state === "no") {
+        history.push(getRoute(`${ROUTES.configuration}/${6}`));
+      } else if (data?.peering?.state === "no") {
+        history.push(getRoute(`${ROUTES.configuration}/${7}`));
+      } else {
+        history.push(getRoute(`${ROUTES.configuration}/${step}`));
+      }
+      break;
+    case 5:
+      if (data?.avaitrixTransitAzure?.state === "no") {
+        history.push(getRoute(`${ROUTES.configuration}/${6}`));
+      } else if (data?.peering?.state === "no") {
+        history.push(getRoute(`${ROUTES.configuration}/${7}`));
+      } else {
+        history.push(getRoute(`${ROUTES.configuration}/${step}`));
+      }
+      break;
+    case 6:
+      if (data?.avaitrixTransitAzure?.state === "yes") {
+        history.push(getRoute(`${ROUTES.configuration}/${7}`));
+      } else {
+        history.push(getRoute(`${ROUTES.configuration}/${step}`));
+      }
+      break;
+    default:
+      history.push(getRoute(`${ROUTES.configuration}/${step}`));
+      break;
+  }
+}
+
+export function getCurrentPageNo(
+  data: ConfigurationState["processedData"] = {},
+  step: number
+) {
+  if (data?.launchAviatrixTransit?.state === "no") {
+    return 3;
+  } else if (data?.ec2SpokeVpc?.state === "no") {
+    return 4;
+  } else if (data?.avaitrixTransitAzure?.state === "no") {
+    return 6;
+  } else if (data?.peering?.state === "no") {
+    return 7;
+  } else {
+    return step;
+  }
 }

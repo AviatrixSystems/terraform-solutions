@@ -1,42 +1,134 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSelector } from "react-redux";
 
-import { Heading, Paragraph, Input } from "components/base";
+import { Heading, Paragraph, Input, Button } from "components/base";
 import { AppState } from "store";
-import { copyIcon } from "svgs";
 import { copyToClipboard } from "utils";
 
 export default function Success() {
-  const { controllerIP = "" } = useSelector<
+  const { controllerIP = "", ips } = useSelector<
     AppState,
     AppState["configuration"]
   >((state) => state.configuration);
+  const onCopy = useCallback(
+    (ip: string) => {
+      copyToClipboard(`https://${ip}`, "root");
+    },
+    []
+  );
 
   return (
     <div className="success-page">
       <Heading text={"Success!"} customClasses="--success-title" />
       <Paragraph
         customClasses="--light-without-opacity "
-        text="Kickstart is completed. Copy the IP address to and paste it into the web
-browser to access the Controller. Be sure you have it so you can use it later."
+        text={
+          <span>
+            Kickstart is completed successfully. Access the below link to open
+            the controller <br />
+            <a target="blank" href={`https://${controllerIP}`}>{`https://${controllerIP}`}</a>
+          </span>
+        }
       />
-      <div className="copy-to-clipborad-container">
-        <label className="controller-label" htmlFor="controller-ip">
-          Controller IP
-        </label>
-        <Input
-          disabled
-          id="controller-ip"
-          value={controllerIP}
-          variant="filled"
-          InputProps={{
-            endAdornment: copyIcon(() => {
-              controllerIP &&
-                copyToClipboard(`https://${controllerIP}`, "root");
-            }),
-          }}
-        />
-      </div>
+      {ips && (
+        <>
+          <div className="ip-section">
+            <Heading text={"Private IPs"} customClasses="--dark" />
+            <div className="copy-to-clipborad-container">
+              <label className="controller-label" htmlFor="privateSpokeVm1">
+                Spoke1-VM
+              </label>
+              <Input
+                disabled
+                id="privateSpokeVm1"
+                value={ips?.privateSpokeVm1}
+                variant="filled"
+                InputProps={{
+                  endAdornment: (
+                    <Button
+                      variant="contained"
+                      customClasses="--blue"
+                      onClick={() => onCopy(ips?.privateSpokeVm1 || "")}
+                    >
+                      Copy
+                    </Button>
+                  ),
+                }}
+              />
+            </div>
+            <div className="copy-to-clipborad-container">
+              <label className="controller-label" htmlFor="privateSpokeVm2">
+                Spoke2-VM
+              </label>
+              <Input
+                disabled
+                id="privateSpokeVm2"
+                value={ips?.privateSpokeVm2}
+                variant="filled"
+                InputProps={{
+                  endAdornment: (
+                    <Button
+                      variant="contained"
+                      customClasses="--blue"
+                      onClick={() => onCopy(ips?.privateSpokeVm2 || "")}
+                    >
+                      Copy
+                    </Button>
+                  ),
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="ip-section">
+            <Heading text={"Public IPs"} customClasses="--dark" />
+            <div className="copy-to-clipborad-container">
+              <label className="controller-label" htmlFor="publicSpokeVm1">
+                Spoke1-VM
+              </label>
+              <Input
+                disabled
+                id="publicSpokeVm1"
+                value={ips.publicSpokeVm1}
+                variant="filled"
+                InputProps={{
+                  endAdornment: (
+                    <Button
+                      variant="contained"
+                      customClasses="--blue"
+                      onClick={() => onCopy(ips?.publicSpokeVm1 || "")}
+                    >
+                      Copy
+                    </Button>
+                  ),
+                }}
+              />
+            </div>
+            <div className="copy-to-clipborad-container">
+              <label className="controller-label" htmlFor="publicSpokeVm2">
+                Spoke2-VM
+              </label>
+              <Input
+                disabled
+                id="publicSpokeVm2"
+                value={ips?.publicSpokeVm2}
+                variant="filled"
+                InputProps={{
+                  endAdornment: (
+                    <Button
+                      variant="contained"
+                      customClasses="--blue"
+                      onClick={() => onCopy(ips?.publicSpokeVm2 || "")}
+                    >
+                      Copy
+                    </Button>
+                  ),
+                }}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

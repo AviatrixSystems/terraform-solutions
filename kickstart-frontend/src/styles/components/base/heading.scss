@@ -10,6 +10,10 @@
     font-family: Roboto-Light;
   }
 
+  &.--sub-heading {
+    font-size: 1.8rem;
+  }
+
   &.--inverse {
     color: $white_color;
   }
@@ -18,10 +22,17 @@
     font-family: Roboto-Medium;
   }
 
+  &.--extra-dark {
+    font-family: Roboto-Bold;
+  }
+
+  &.--light-black {
+    color: $gray_color;
+  }
+
   &.--disabled {
     font-family: Roboto;
-    color: $gray_color;
-    opacity: 0.5;
+    color: rgba($gray_color, 0.5);
     font-size: $text2_size;
   }
 

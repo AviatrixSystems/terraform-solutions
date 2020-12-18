@@ -3,9 +3,9 @@ import { Redirect, useParams } from "react-router-dom";
 
 import Credentials from "./credentials";
 import LaunchController from "./launch-controller";
-import LaunchTransitAWS from "./launch_transit_aws";
-import LaunchTransitAzure from "./launch_transit_azure";
-import LaunchEC2 from "./launch_ec2";
+import LaunchTransitAWS from "./launch-transit-aws";
+import LaunchTransitAzure from "./launch-transit-azure";
+import LaunchEC2 from "./launch-ec2";
 import BuiltTransit from "./built-transit";
 import ImportKeyPair from "./import-key-pair";
 import Success from "./success";

@@ -11,14 +11,6 @@
     display: flex;
     position: relative;
 
-    &:nth-of-type(4) {
-      .step-row {
-        > .heading {
-          padding-top: inherit;
-        }
-      }
-    }
-
     .step-row {
       > .heading {
         padding-top: 10px;

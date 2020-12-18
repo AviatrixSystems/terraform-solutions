@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Provider, useSelector } from "react-redux";
 
-import { AppBar, LoadingBar } from "components";
+import { AppBar, LoadingBar, Drawer, InitialModal } from "components";
 import { Configuration } from "pages";
 import { ROUTES } from "utils/constants";
 import configureStore, { AppState } from "store";
@@ -19,11 +19,13 @@ function Routes() {
     (state) => state.configuration
   );
   return (
-    <div className="app">
-      <AppBar />
-      {isInProgress && <LoadingBar />}
-      <main>
-        <Router>
+    <Router>
+      <div className="app">
+        <InitialModal />
+        <AppBar />
+        {isInProgress && <LoadingBar />}
+        <Drawer />
+        <main>
           <Switch>
             <Route path={ROUTES.configuration} component={Configuration} />
             <Route
@@ -35,9 +37,9 @@ function Routes() {
               component={() => <Redirect to={ROUTES.configuration} />}
             />
           </Switch>
-        </Router>
-      </main>
-    </div>
+        </main>
+      </div>
+    </Router>
   );
 }
 

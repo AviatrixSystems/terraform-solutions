@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 import { Button, Paragraph } from "components/base";
-import { deleteConfig } from "store/actions";
 
 interface ComponentProps {
   stepNo: number;
@@ -10,11 +9,9 @@ interface ComponentProps {
 
 export default function DebugBar(props: ComponentProps) {
   const { stepNo } = props;
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const onDelete = useCallback(() => {
-    dispatch(deleteConfig());
-  }, [dispatch]);
+  const onDelete = useCallback(() => {}, []);
 
   return (
     <nav className="debug-bar">

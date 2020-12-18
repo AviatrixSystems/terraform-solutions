@@ -8,14 +8,14 @@ import {
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { StepsAside } from "components";
-import Steps from "./steps";
-import { getRoute, useCustomPolling } from "utils";
-import { AppState } from "store";
 import Alert from "components/base/alert";
-import { clearResponseStatus, setStep } from "store/actions";
+import Steps from "./steps";
+import { clearResponseStatus, initialization, setStep } from "store/actions";
+import { StepsAside } from "components";
+import { useCustomPolling } from "utils";
+import { SEC_15 } from "utils/constants";
+import { AppState } from "store";
 import { CoverImage } from "svgs";
-import { ROUTES } from "utils/constants";
 
 export default function Configuration() {
   const { path } = useRouteMatch();
@@ -23,31 +23,31 @@ export default function Configuration() {
   const {
     location: { pathname },
   } = history;
-  const { step, responseMessage, responseStatus } = useSelector<
+  const { responseMessage, responseStatus, isFirstTime } = useSelector<
     AppState,
     AppState["configuration"]
   >((state) => state.configuration);
   const dispatch = useDispatch();
-
-  const stepNo = Number.parseInt(pathname.slice(-1));
-
   const onAlertClose = useCallback(() => {
     dispatch(clearResponseStatus());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (step !== stepNo) {
-      history.push(getRoute(`${ROUTES.configuration}/${step}`));
-    }
-  }, [step, stepNo]);
-
   useCustomPolling(
     () => {
-      dispatch(setStep());
+      if (!isFirstTime) {
+        dispatch(setStep(history));
+      }
     },
-    15000,
+    SEC_15,
     []
   );
+
+  useEffect(() => {
+    if (isFirstTime) {
+      dispatch(initialization(history));
+    }
+  }, [isFirstTime, history, dispatch]);
+
+  const stepNo = Number.parseInt(pathname.slice(-1));
 
   return (
     <>
@@ -55,7 +55,7 @@ export default function Configuration() {
       <section className="configuration-section">
         <div className="content">
           <aside className="left-nav">
-            <StepsAside stepNo={step} />
+            <StepsAside stepNo={stepNo} />
           </aside>
           <section className="right-section">
             {responseStatus && (

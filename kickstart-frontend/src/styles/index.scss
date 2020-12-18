@@ -6,10 +6,13 @@
 @import "./components/base/heading.scss";
 @import "./components/base/paragraph.scss";
 @import "./components/base/alert.scss";
+@import "./components/base/separator.scss";
 @import "./components/steps-aside/step-circle.scss";
 @import "./components/steps-aside/step-number.scss";
 @import "./components/steps-aside/steps-aside.scss";
 @import "./components/loading-bar.scss";
+@import "./components/drawer.scss";
+@import "./components/initial-modal.scss";
 
 @import "./pages/configuration.scss";
 @import "./pages/steps/credentials.scss";
@@ -38,12 +41,30 @@
     url("../fonts/Roboto-Medium.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Roboto-Bold";
+  src: local("Roboto-Bold"), url("../fonts/Roboto-Bold.ttf") format("truetype");
+}
+
 :root {
   font-size: 10px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: $border_color;
 }
 
 body {

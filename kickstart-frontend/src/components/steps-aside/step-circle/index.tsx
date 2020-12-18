@@ -8,10 +8,12 @@ interface ComponentProps {
   value: string;
   disabled?: boolean;
   isViewedStep?: boolean;
+  skipForNow?: boolean;
+  onClick?: () => void;
 }
 
 export default function StepCircle(props: ComponentProps) {
-  const { value, disabled, isViewedStep } = props;
+  const { value, disabled, isViewedStep, skipForNow = false, onClick } = props;
   const outerClasses = classNames({
     "outer-circle": true,
     "--disabled": disabled,
@@ -19,7 +21,12 @@ export default function StepCircle(props: ComponentProps) {
   });
 
   return (
-    <div className={outerClasses}>
+    <div
+      role="button"
+      className={outerClasses}
+      skip-for-now={skipForNow.toString()}
+      onClick={onClick}
+    >
       <div className="inner-circle">
         {isViewedStep ? (
           checkIcon
