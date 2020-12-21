@@ -42,6 +42,15 @@ export function setMachineState(machineState: ConfigurationState): Actions {
   };
 }
 
+export function setIsInProgress(
+  isInProgress: ConfigurationState["isInProgress"]
+): Actions {
+  return {
+    type: "SET_IS_IN_PROGRESS",
+    payload: isInProgress,
+  };
+}
+
 export function setSuccessResponseStatus(
   responseMessage: string = "Request successful"
 ): Actions {
@@ -114,8 +123,16 @@ export function setStep(history: any) {
       configuration: { actionPending },
     } = getState();
     getApiResponse<GetStepResponse>({ urlName: "get_status" })
-      .then(({ data: { data } }) => {
-        if (Object.keys(data).length) {
+      .then((response) => {
+        const {
+          data: { data },
+        } = response;
+
+        if (response?.status === 206) {
+          dispatch(setIsInProgress(true));
+        }
+
+        if (Object.keys(data).length && response.status !== 206) {
           const stepNo =
             data.status === "success" && data.state < 8
               ? data.state + 1
@@ -173,8 +190,16 @@ export function setStep(history: any) {
 export function initialization(history: any) {
   return (dispatch: Dispatch) => {
     getApiResponse<GetStepResponse>({ urlName: "get_status" })
-      .then(({ data: { data } }) => {
-        if (Object.keys(data).length) {
+      .then((response) => {
+        const {
+          data: { data },
+        } = response;
+
+        if (response?.status === 206) {
+          dispatch(setIsInProgress(true));
+        }
+
+        if (Object.keys(data).length && response.status !== 206) {
           const stepNo =
             data.status === "success" && data.state < 8
               ? data.state + 1

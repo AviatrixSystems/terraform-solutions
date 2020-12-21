@@ -26,6 +26,8 @@ export default function configuration(
       return { ...state, actionPending: action.payload };
     case "SET_IS_FIRST_TIME":
       return { ...state, isFirstTime: action.payload };
+    case "SET_IS_IN_PROGRESS":
+      return { ...state, isInProgress: action.payload };
     default:
       return state;
   }

@@ -69,4 +69,8 @@ export type Actions =
       type: "SET_IS_FIRST_TIME";
       payload: ConfigurationState["isFirstTime"];
     }
+  | {
+      type: "SET_IS_IN_PROGRESS";
+      payload: ConfigurationState["isInProgress"];
+    }
   | SetVariableAction;
