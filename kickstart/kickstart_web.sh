@@ -447,10 +447,6 @@ controller_init()
     password=$2
     confirm_password=$3
 
-    echo "$email"
-    echo "$password"
-    echo "$confirm_password"
-
     if [ -z $KS_GOVCLOUD ]; then
     echo 'Into govt'
 	cd /root/controller
@@ -503,16 +499,6 @@ mcna_aws_transit()
     cd /root/
     . keys.sh # Load variables from file
 
-    echo "$AWS_ACCOUNT"
-    echo "$CONTROLLER_PRIVATE_IP"
-    echo "$CONTROLLER_PUBLIC_IP"
-    echo "$AVIATRIX_CONTROLLER_IP"
-
-    echo "$AVIATRIX_EMAIL"
-    echo "$AVIATRIX_PASSWORD"
-    echo "$AVIATRIX_USERNAME"
-    echo "$KICKSTART_CONTROLLER_INIT_DONE"
-
 
     if [ -z $KS_GOVCLOUD ]; then
 	cd /root/mcna
@@ -540,16 +526,6 @@ input_aws_keypair()
     cd /root/
     . keys.sh # Load variables from file
 
-    echo "$AWS_ACCOUNT"
-    echo "$CONTROLLER_PRIVATE_IP"
-    echo "$CONTROLLER_PUBLIC_IP"
-    echo "$AVIATRIX_CONTROLLER_IP"
-
-    echo "$AVIATRIX_EMAIL"
-    echo "$AVIATRIX_PASSWORD"
-    echo "$AVIATRIX_USERNAME"
-    echo "$KICKSTART_CONTROLLER_INIT_DONE"
-
     if [ -z $KS_GOVCLOUD ]; then
 	cd /root/mcna
     else
@@ -575,17 +551,6 @@ mcna_aws_test_instances()
 {
     cd /root/
     . keys.sh # Load variables from file
-
-    echo "$AWS_ACCOUNT"
-    echo "$CONTROLLER_PRIVATE_IP"
-    echo "$CONTROLLER_PUBLIC_IP"
-    echo "$AVIATRIX_CONTROLLER_IP"
-
-    echo "$AVIATRIX_EMAIL"
-    echo "$AVIATRIX_PASSWORD"
-    echo "$AVIATRIX_USERNAME"
-    echo "$KICKSTART_CONTROLLER_INIT_DONE"
-
 
     name=$1
     if [ -z $KS_GOVCLOUD ]; then
@@ -734,20 +699,10 @@ launch_azure_transit()
         cd /root/
         . keys.sh # Load variables from file
 
-        echo "$AWS_ACCOUNT"
-        echo "$CONTROLLER_PRIVATE_IP"
-        echo "$CONTROLLER_PUBLIC_IP"
-        echo "$AVIATRIX_CONTROLLER_IP"
-
-        echo "$AVIATRIX_EMAIL"
-        echo "$AVIATRIX_PASSWORD"
-        echo "$AVIATRIX_USERNAME"
-        echo "$KICKSTART_CONTROLLER_INIT_DONE"
-
-        sed -i "s/\"azure_subscription_id\" { default = \"""\" }/\"azure_subscription_id\" { default = \"$1\" }/g" /root/mcna/variables.tf
-        sed -i "s/\"azure_directory_id\" { default = \"""\" }/\"azure_directory_id\" { default = \"$2\" }/g" /root/mcna/variables.tf
-        sed -i "s/\"azure_application_id\" { default = \"""\" }/\"azure_application_id\" { default = \"$3\" }/g" /root/mcna/variables.tf
-        sed -i "s/\"azure_application_key\" { default = \"""\" }/\"azure_application_key\" { default = \"$4\" }/g" /root/mcna/variables.tf
+        sed -i "s#variable \"azure_subscription_id\".*#variable \"azure_subscription_id\" { default = \"$1\" }#g"  /root/mcna/variables.tf
+        sed -i "s#variable \"azure_directory_id\".*#variable \"azure_directory_id\" { default = \"$2\" }#g"  /root/mcna/variables.tf
+        sed -i "s#variable \"azure_application_id\".*#variable \"azure_application_id\" { default = \"$3\" }#g"  /root/mcna/variables.tf
+        sed -i "s#variable \"azure_application_key\".*#variable \"azure_application_key\" { default = \"$4\" }#g"  /root/mcna/variables.tf
 
 #        vim /root/mcna/variables.tf
         mcna_azure_transit
@@ -795,16 +750,6 @@ delete_terraform()
 {
     cd /root/
     . keys.sh # Load variables from file
-
-    echo "$AWS_ACCOUNT"
-    echo "$CONTROLLER_PRIVATE_IP"
-    echo "$CONTROLLER_PUBLIC_IP"
-    echo "$AVIATRIX_CONTROLLER_IP"
-
-    echo "$AVIATRIX_EMAIL"
-    echo "$AVIATRIX_PASSWORD"
-    echo "$AVIATRIX_USERNAME"
-    echo "$KICKSTART_CONTROLLER_INIT_DONE"
 
     terraform init
     cd /root/mcna
