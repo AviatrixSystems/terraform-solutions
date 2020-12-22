@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { Button, Heading, Paragraph } from "components/base";
+import { Button, Heading } from "components/base";
 import Logo from "../../images/logo.png";
 import { deleteConfig } from "store/actions";
 import { helpIcon, reloadIcon } from "svgs";

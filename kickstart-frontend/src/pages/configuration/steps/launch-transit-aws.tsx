@@ -32,7 +32,7 @@ export default function LaunchTransitAWS() {
     if (!is_advance) {
       dispatch(launchTransit({ command: true }, history));
     }
-  }, [dispatch, history, step3_variables, is_advance]);
+  }, [dispatch, history, is_advance]);
 
   const onNo = useCallback(() => {
     setAwsResponse(false);
@@ -63,7 +63,7 @@ export default function LaunchTransitAWS() {
             <Paragraph
               customClasses="--light"
               text={
-                awsResponse === undefined ? (
+                !is_advance ? (
                   <span>
                     Do you want to launch the Aviatrix transit in AWS? Region
                     will be us-east-2. Go to{" "}
@@ -73,7 +73,14 @@ export default function LaunchTransitAWS() {
                     to view what is going to be launched.
                   </span>
                 ) : (
-                  "Advanced options for launching the Aviatrix transit in AWS "
+                  <span>
+                    Do you want to launch the Aviatrix transit in AWS? Go to
+                    <a href="https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png">
+                      https://raw.githubusercontent.com/AviatrixSystems/terraform-solutions/master/solutions/img/kickstart.png
+                    </a>
+                    to view what is going to be launched. You can change the
+                    settings in the next step.
+                  </span>
                 )
               }
             ></Paragraph>

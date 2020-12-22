@@ -10,12 +10,9 @@ export default function Success() {
     AppState,
     AppState["configuration"]
   >((state) => state.configuration);
-  const onCopy = useCallback(
-    (ip: string) => {
-      copyToClipboard(`https://${ip}`, "root");
-    },
-    []
-  );
+  const onCopy = useCallback((ip: string) => {
+    copyToClipboard(ip, "root");
+  }, []);
 
   return (
     <div className="success-page">
@@ -26,7 +23,10 @@ export default function Success() {
           <span>
             Kickstart is completed successfully. Access the below link to open
             the controller <br />
-            <a target="blank" href={`https://${controllerIP}`}>{`https://${controllerIP}`}</a>
+            <a
+              target="blank"
+              href={`https://${controllerIP}`}
+            >{`https://${controllerIP}`}</a>
           </span>
         }
       />

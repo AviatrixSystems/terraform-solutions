@@ -39,14 +39,14 @@ export type GetStepResponse = {
     progress: string | null;
     processedData: {
       awsConfigurations?: {
-        key_id: "AKIAVUD4EMLDFNZS7VQI";
-        secret_key: "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";
+        key_id: string;
+        secret_key: string;
       };
       controller?: {
-        confirm_password: "P@ssw0rd1234";
-        email: "inam.rehman@emumba.com";
-        password: "P@ssw0rd1234";
-        recovery_email: "inam.rehman@emumba.com";
+        confirm_password: string;
+        email: string;
+        password: string;
+        recovery_email: string;
       };
       launchAviatrixTransit?: {
         state: "yes" | "no";

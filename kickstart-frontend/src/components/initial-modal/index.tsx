@@ -18,10 +18,10 @@ export default function InitialModal() {
   );
   const onStandard = useCallback(() => {
     dispatch(setIsAdvance({ is_advance: false }, history));
-  }, []);
+  }, [dispatch, history]);
   const onClickOk = useCallback(() => {
     dispatch(setIsAdvance({ is_advance: switchBool }, history));
-  }, [switchBool]);
+  }, [switchBool, dispatch, history]);
   const switchCallback = useCallback((checked: boolean) => {
     setSwitchBool(checked);
   }, []);
