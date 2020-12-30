@@ -218,7 +218,7 @@ export default function LaunchTransitAWS() {
               <Separator />
               <Heading
                 customClasses="--dark --sub-heading"
-                text="AWS Transit Gateway"
+                text="AWS Spoke Gateways"
               />
               <Input
                 value={values.aws_spoke1_gateways_name}

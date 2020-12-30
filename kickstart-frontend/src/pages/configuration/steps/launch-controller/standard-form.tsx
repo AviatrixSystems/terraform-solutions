@@ -50,6 +50,17 @@ export default function StandardForm(props: ComponentProps) {
       initialValues={inputValues}
       onSubmit={onSubmit}
       validationSchema={validations}
+      validate={(values) => {
+        const errors: { confirm_password?: string } = {};
+        if (
+          values.password &&
+          values.confirm_password &&
+          values.password !== values.confirm_password
+        ) {
+          errors.confirm_password = "Password is not same";
+        }
+        return errors;
+      }}
     >
       {({ values, handleChange, handleSubmit, errors }) => (
         <form onSubmit={handleSubmit} className="launch-controller-grid">
@@ -109,15 +120,8 @@ export default function StandardForm(props: ComponentProps) {
             variant="outlined"
             customClasses="--small --blue"
             onChange={handleChange}
-            error={
-              values.password !== values.confirm_password ||
-              Boolean(errors.confirm_password)
-            }
-            helperText={
-              values.password !== values.confirm_password
-                ? "Password is not same"
-                : errors.confirm_password
-            }
+            error={Boolean(errors.confirm_password)}
+            helperText={errors.confirm_password}
             disabled={pageDisabled}
           />
 
