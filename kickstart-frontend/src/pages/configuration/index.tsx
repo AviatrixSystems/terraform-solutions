@@ -23,10 +23,14 @@ export default function Configuration() {
   const {
     location: { pathname },
   } = history;
-  const { responseMessage, responseStatus, isFirstTime } = useSelector<
-    AppState,
-    AppState["configuration"]
-  >((state) => state.configuration);
+  const {
+    responseMessage,
+    responseStatus,
+    isFirstTime,
+    actionPending,
+  } = useSelector<AppState, AppState["configuration"]>(
+    (state) => state.configuration
+  );
   const dispatch = useDispatch();
   const onAlertClose = useCallback(() => {
     dispatch(clearResponseStatus());
@@ -58,7 +62,7 @@ export default function Configuration() {
             <StepsAside stepNo={stepNo} />
           </aside>
           <section className="right-section">
-            {responseStatus && (
+            {responseStatus && !actionPending && (
               <Alert
                 icon={false}
                 onClose={onAlertClose}

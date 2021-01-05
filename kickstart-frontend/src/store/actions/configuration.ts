@@ -65,13 +65,16 @@ export function setSuccessResponseStatus(
 
 export function setFailureResponseStatus(
   responseMessage: string = "Request failed"
-): Actions {
-  return {
-    type: "SET_FAILURE_RESPONSE_STATUS",
-    payload: {
-      responseMessage,
-      responseStatus: "failure",
-    },
+) {
+  return (dispatch: any) => {
+    dispatch(setActionPending(undefined));
+    dispatch({
+      type: "SET_FAILURE_RESPONSE_STATUS",
+      payload: {
+        responseMessage,
+        responseStatus: "failure",
+      },
+    });
   };
 }
 
@@ -118,7 +121,7 @@ export function deleteConfig(history: any) {
 }
 
 export function setStep(history: any) {
-  return (dispatch: Dispatch, getState: () => AppState) => {
+  return (dispatch: any, getState: () => AppState) => {
     const {
       configuration: { actionPending },
     } = getState();
@@ -188,7 +191,7 @@ export function setStep(history: any) {
  * @param history
  */
 export function initialization(history: any) {
-  return (dispatch: Dispatch) => {
+  return (dispatch: any) => {
     getApiResponse<GetStepResponse>({ urlName: "get_status" })
       .then((response) => {
         const {
