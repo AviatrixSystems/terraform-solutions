@@ -1,0 +1,37 @@
+@import "styles/theme.scss";
+
+.configuration-section {
+  display: flex;
+  flex-direction: column;
+  border: $default_border;
+  height: 677px;
+  margin-bottom: 2.4rem;
+
+  .content {
+    flex: 1;
+    width: calc(100% - 6rem);
+    display: flex;
+    margin-left: 6rem;
+    min-height: 0;
+
+    .left-nav {
+      width: 26.5%;
+      // padding: 5.9rem 0;
+    }
+
+    .right-section {
+      position: relative;
+      flex: 1;
+      padding: 50px 150px;
+      overflow: auto;
+
+      .text-block {
+        .paragraph {
+          > span > a {
+            color: $blue_color;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "styles/theme.scss";
+
+.heading {
+  font-size: $text1_size;
+
+  &.--title {
+    color: $white_color;
+    font-weight: 300;
+    font-stretch: normal;
+    font-family: Roboto-Light;
+  }
+
+  &.--sub-heading {
+    font-size: 1.8rem;
+  }
+
+  &.--inverse {
+    color: $white_color;
+  }
+
+  &.--dark {
+    font-family: Roboto-Medium;
+  }
+
+  &.--extra-dark {
+    font-family: Roboto-Bold;
+  }
+
+  &.--light-black {
+    color: $gray_color;
+  }
+
+  &.--disabled {
+    font-family: Roboto;
+    color: rgba($gray_color, 0.5);
+    font-size: $text2_size;
+  }
+
+  &.--success-title {
+    color: $success_color;
+    font-size: $text0_size;
+    font-weight: 500;
+    font-family: Roboto-Medium;
+  }
+}

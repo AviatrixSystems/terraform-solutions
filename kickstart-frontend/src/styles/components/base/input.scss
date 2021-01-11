@@ -1,0 +1,69 @@
+@import "styles/theme.scss";
+
+.MuiFormControl-root {
+  &.custom-input-style {
+    font-size: 1.4rem;
+
+    > * {
+      font-size: inherit;
+    }
+
+    .MuiFormLabel-root {
+      color: rgba($gray_color, 0.3);
+
+      &.MuiFormLabel-filled {
+        color: $black_color;
+      }
+    }
+
+    .MuiInputBase-root {
+      > fieldset {
+        border-color: rgba($gray_color, 0.3);
+      }
+    }
+
+    .Mui-error {
+      color: $error_color;
+    }
+
+    .Mui-error + .MuiInputBase-root {
+      > fieldset {
+        border-color: $error_color;
+      }
+    }
+
+    &.--standard {
+      .MuiFormLabel-root {
+        top: -4px;
+      }
+
+      .MuiInputBase-root {
+        width: 470px;
+        height: 45px;
+      }
+    }
+
+    &.--small {
+      .MuiFormLabel-root {
+        top: -4px;
+      }
+
+      .MuiInputBase-root {
+        width: 362px;
+        height: 45px;
+      }
+    }
+
+    &.--blue {
+      .Mui-focused {
+        color: $blue_color;
+      }
+
+      .Mui-focused + .MuiInputBase-root {
+        > fieldset {
+          border-color: $blue_color;
+        }
+      }
+    }
+  }
+}

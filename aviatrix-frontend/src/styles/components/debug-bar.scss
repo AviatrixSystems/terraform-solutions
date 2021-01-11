@@ -1,0 +1,18 @@
+@import "styles/theme.scss";
+
+.debug-bar {
+  display: flex;
+  align-items: center;
+  min-height: 57px;
+  background: $light_gray_color;
+  border-bottom: 1px solid $border_color;
+  padding: 0 3rem;
+
+  .paragraph {
+    flex: 1;
+  }
+
+  .custom-button-style {
+    float: right;
+  }
+}

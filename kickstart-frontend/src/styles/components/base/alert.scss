@@ -1,0 +1,27 @@
+@import "styles/theme.scss";
+
+.MuiAlert-root {
+  z-index: 10;
+
+  &.custom-alert-style {
+    position: absolute;
+    max-width: 393px;
+    top: 38px;
+    right: 30px;
+    font-size: 1.4rem;
+
+    &.MuiAlert-standardSuccess {
+      background: $success_light_color;
+      * {
+        color: $success_color;
+      }
+    }
+
+    &.MuiAlert-standardError {
+      background: $error_light_color;
+      * {
+        color: $error_color;
+      }
+    }
+  }
+}

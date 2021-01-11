@@ -1,0 +1,63 @@
+@import "styles/theme.scss";
+
+.success-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 22px;
+  max-width: 569px;
+
+  .--light-without-opacity {
+    line-height: 1.5;
+  }
+
+  .ip-section {
+    margin-top: 30px;
+
+    .heading {
+      &.--dark {
+        font-size: 1.8rem;
+        font-weight: 500;
+        color: $gray_color;
+      }
+    }
+
+    .copy-to-clipborad-container {
+      display: flex;
+      align-items: center;
+      margin-top: 19px;
+
+      .controller-label {
+        font-size: 1.4rem;
+        color: $gray_color;
+        margin-right: 14px;
+      }
+
+      .custom-input-style {
+        height: 37px;
+        width: 221px;
+        font-size: 1.6rem;
+
+        .MuiInputBase-root {
+          height: inherit;
+          pointer-events: visible;
+          background: #f5f5f5;
+          border-radius: 4px;
+
+          &::before {
+            border-bottom-style: none;
+          }
+
+          .MuiInputBase-input {
+            padding: 0 12px;
+            color: $blue_color;
+          }
+
+          > button {
+            width: 60px;
+            height: 25px;
+          }
+        }
+      }
+    }
+  }
+}

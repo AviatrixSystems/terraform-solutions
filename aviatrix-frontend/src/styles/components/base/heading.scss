@@ -1,0 +1,27 @@
+@import "styles/theme.scss";
+
+.heading {
+  font-size: $text1_size;
+
+  &.--title {
+    color: $white_color;
+    font-weight: 300;
+    font-stretch: normal;
+    font-family: Roboto-Light;
+  }
+
+  &.--inverse {
+    color: $white_color;
+  }
+
+  &.--dark {
+    font-family: Roboto-Medium;
+  }
+
+  &.--disabled {
+    font-family: Roboto;
+    color: $gray_color;
+    opacity: 0.5;
+    font-size: $text2_size;
+  }
+}

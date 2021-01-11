@@ -1,0 +1,43 @@
+@import "styles/theme.scss";
+
+@keyframes loading-animation {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  min-width: 100vw;
+  top: 65px;
+  height: calc(100vh - 65px);
+  z-index: 100;
+
+  .loading-bar {
+    height: 5px;
+    background: $border_color;
+
+    .__inner {
+      height: inherit;
+      width: 50%;
+      position: relative;
+      animation: loading-animation;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      background: $blue_color;
+    }
+  }
+
+  .blank-wrapper {
+    flex: 1;
+    background: $white_color;
+    opacity: 0.6;
+  }
+}

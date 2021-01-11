@@ -1,0 +1,58 @@
+@import "styles/theme.scss";
+
+.initial-modal {
+  top: 65px !important;
+
+  > div {
+    &:nth-of-type(1) {
+      top: 65px !important;
+    }
+  }
+
+  .__body {
+    display: flex;
+    flex-direction: column;
+    background: $white_color;
+    width: 572px;
+    height: 305px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
+    margin: 135px auto 0;
+    padding: 36px;
+    font-size: $text3_size;
+
+    &:focus {
+      outline: none;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+
+      .close-icon {
+        cursor: pointer;
+        margin-left: auto;
+      }
+    }
+
+    > .paragraph {
+      margin: 24px 0;
+      line-height: 1.5;
+    }
+
+    .MuiTypography-root {
+      font-size: 1.6rem;
+      color: rgba($gray_color, 0.5);
+    }
+
+    .button-group {
+      margin-top: auto;
+
+      .--blue {
+        &:nth-of-type(2) {
+          margin-left: 12px;
+        }
+      }
+    }
+  }
+}

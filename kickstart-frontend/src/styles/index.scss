@@ -1,0 +1,94 @@
+@import "./components/app-bar.scss";
+@import "./components/debug-bar.scss";
+@import "./components/base/button.scss";
+@import "./components/base/checkbox.scss";
+@import "./components/base/input.scss";
+@import "./components/base/heading.scss";
+@import "./components/base/paragraph.scss";
+@import "./components/base/alert.scss";
+@import "./components/base/separator.scss";
+@import "./components/steps-aside/step-circle.scss";
+@import "./components/steps-aside/step-number.scss";
+@import "./components/steps-aside/steps-aside.scss";
+@import "./components/loading-bar.scss";
+@import "./components/drawer.scss";
+@import "./components/initial-modal.scss";
+
+@import "./pages/configuration.scss";
+@import "./pages/steps/credentials.scss";
+@import "./pages/steps/launch-controller.scss";
+@import "./pages/steps/launch-transit-aws.scss";
+@import "./pages/steps/launch-transit-azure.scss";
+@import "./pages/steps/launch-ec2.scss";
+@import "./pages/steps/built-transit.scss";
+@import "./pages/steps/import-key-pair.scss";
+@import "./pages/steps/success.scss";
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-Light";
+  src: local("Roboto-Light"),
+    url("../fonts/Roboto-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-Medium";
+  src: local("Roboto-Medium"),
+    url("../fonts/Roboto-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-Bold";
+  src: local("Roboto-Bold"), url("../fonts/Roboto-Bold.ttf") format("truetype");
+}
+
+:root {
+  font-size: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: $border_color;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Roboto;
+
+  main {
+    position: relative;
+    top: 6.5rem;
+    margin: 0 auto;
+    max-width: 1600px;
+    min-width: 1360px;
+    min-height: 69.8rem;
+    height: 90rem;
+    padding: 2.4rem;
+
+    > figure {
+      margin: 0 0 2.4rem 0;
+
+      > img {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import "styles/theme.scss";
+
+.custom-drawer-root {
+  top: 65px !important;
+
+  .MuiBackdrop-root,
+  .custom-drawer-paper {
+    top: 65px;
+  }
+
+  .custom-drawer-paper {
+    width: 664px;
+    padding: 30px;
+
+    .paper-header {
+      display: flex;
+
+      .__text {
+        display: flex;
+        align-items: center;
+
+        .__icon {
+          margin-right: 10px;
+        }
+      }
+
+      .__btn-close {
+        margin-left: auto;
+        cursor: pointer;
+
+        &:hover {
+          svg {
+            path {
+              fill: $blue_color;
+            }
+          }
+        }
+      }
+    }
+
+    .paper-main {
+      margin-top: 24px;
+      margin-bottom: 44px;
+      height: calc(100% - 137px);
+      background: rgba($border_color, 0.3);
+      border-radius: 5px;
+      font-size: $text3_size;
+      color: $gray_color;
+      padding: 20px;
+      line-height: 1.5;
+      overflow: auto;
+
+      .error-log {
+        color: $error_color;
+      }
+    }
+  }
+}
+
+.btn-floating-debug {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  right: 45px;
+  bottom: 45px;
+  border-radius: 50%;
+  background-color: $blue_color;
+  cursor: pointer;
+  z-index: 200;
+
+  > svg {
+    .cls-1 {
+      fill: $white_color;
+    }
+  }
+}

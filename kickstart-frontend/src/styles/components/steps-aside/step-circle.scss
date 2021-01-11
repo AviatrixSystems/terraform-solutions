@@ -1,0 +1,68 @@
+@import "styles/theme.scss";
+
+.outer-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.8rem;
+  height: 3.8rem;
+  border: 1px solid $primary_color;
+  background: $white_color;
+  border-radius: 50%;
+  order: 2;
+  cursor: pointer;
+
+  &:hover {
+    ~ .heading {
+      color: $black_color;
+    }
+  }
+
+  .inner-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: $primary_color;
+    border-radius: inherit;
+    cursor: pointer;
+
+    > .heading {
+      cursor: pointer;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    background: $border_color;
+    width: 1px;
+    height: 133%;
+    z-index: -1;
+  }
+
+  &.--disabled {
+    border: 1px solid rgba($primary_color, 0.5);
+    .inner-circle {
+      background: rgba($primary_color, 0.5);
+    }
+  }
+
+  &.--transparent {
+    border-color: $white_color;
+  }
+
+  &[skip-for-now="true"] {
+    ::before {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      top: 28px;
+      right: 0;
+      background: $blue_color;
+      border-radius: 50%;
+    }
+  }
+}

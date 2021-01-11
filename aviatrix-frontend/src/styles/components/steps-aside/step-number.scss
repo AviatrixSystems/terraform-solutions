@@ -1,0 +1,12 @@
+.step-row {
+  flex: 1;
+  display: flex;
+  margin-top: auto;
+  min-height: 6.2rem;
+
+  > .heading {
+    flex: 1;
+    margin-right: 2rem;
+    text-align: right;
+  }
+}

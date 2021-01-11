@@ -1,0 +1,20 @@
+.steps-list {
+  height: 96%;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+
+  .step-item {
+    flex: 1;
+    display: flex;
+    position: relative;
+
+    .step-row {
+      > .heading {
+        padding-top: 10px;
+      }
+    }
+  }
+}

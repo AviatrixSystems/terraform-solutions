@@ -1,0 +1,19 @@
+.launch-controller-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 22px;
+  max-width: 530px;
+
+  .text-block {
+    margin-bottom: 1rem;
+    .paragraph {
+      margin-top: 1rem;
+    }
+  }
+
+  > span {
+    :nth-of-type(2) {
+      margin-left: 15px;
+    }
+  }
+}

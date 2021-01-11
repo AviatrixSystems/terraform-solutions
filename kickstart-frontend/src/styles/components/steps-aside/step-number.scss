@@ -1,0 +1,25 @@
+@import "styles/theme.scss";
+
+.step-row {
+  flex: 1;
+  display: flex;
+  margin-top: auto;
+  min-height: 6.2rem;
+
+  &.disabled-row {
+    pointer-events: none;
+  }
+
+  > .heading {
+    flex: 1;
+    margin-right: 2rem;
+    text-align: right;
+
+    > label {
+      &:hover {
+        cursor: pointer;
+        color: $black_color;
+      }
+    }
+  }
+}

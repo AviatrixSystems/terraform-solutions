@@ -1,0 +1,27 @@
+@import "styles/theme.scss";
+
+.paragraph {
+  margin: 0;
+  font-size: $text2_size;
+
+  &.--dark {
+    color: $black_color;
+  }
+
+  &.--light {
+    line-height: 1.38;
+    color: rgba($gray_color, 0.5);
+  }
+
+  &.--light-without-opacity {
+    color: $gray_color;
+  }
+
+  &.--inverse {
+    color: $white_color;
+  }
+
+  &.--small {
+    font-size: $text3_size;
+  }
+}

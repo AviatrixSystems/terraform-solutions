@@ -1,0 +1,13 @@
+.import-key-pair-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 22px;
+  max-width: 566px;
+
+  .text-block {
+    margin-bottom: 1rem;
+    .paragraph {
+      margin-top: 1rem;
+    }
+  }
+}
