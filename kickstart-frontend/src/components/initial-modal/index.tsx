@@ -38,7 +38,7 @@ export default function InitialModal() {
       <div className="__body">
         <div className="modal-header">
           <Heading
-            text="Aviatrix Kickstart"
+            text="Aviatrix Sandbox Starter"
             customClasses="--extra-dark --light-black"
           />
           <span className="close-icon" onClick={onStandard}>
@@ -46,7 +46,7 @@ export default function InitialModal() {
           </span>
         </div>
         <Paragraph
-          text="Welcome to Aviatrix Kickstart Platform! Please select the preferred
+          text="Welcome to Aviatrix Sandbox Starter. Please select the preferred
 mode."
           customClasses="--light"
         />
@@ -54,7 +54,7 @@ mode."
         <Switch
           state={switchBool}
           callback={switchCallback}
-          options={{ left: "Standard", right: "Advance" }}
+          options={{ left: "Standard", right: "Advanced" }}
         />
         <div className="button-group">
           <Button

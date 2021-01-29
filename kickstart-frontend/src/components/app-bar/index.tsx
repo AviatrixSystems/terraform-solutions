@@ -26,9 +26,9 @@ export default function AppBar() {
     <header className="app-header">
       <img className="app-logo__logo" src={Logo} alt="Aviatrix logo" />
       <div className="app-logo__divider" />
-      <Heading text="KICKSTART" customClasses="--title" />
+      <Heading text="Sandbox Starter" customClasses="--title" />
       <Heading
-        text={is_advance ? "Advance Mode" : "Standard Mode"}
+        text={is_advance ? "Advanced Mode" : "Standard Mode"}
         customClasses="--inverse --mode"
       />
       <div className="vertical-separator" />
