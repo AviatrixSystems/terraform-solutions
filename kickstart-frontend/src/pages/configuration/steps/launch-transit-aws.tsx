@@ -121,7 +121,7 @@ export default function LaunchTransitAWS() {
               <Separator />
               <Heading
                 customClasses="--dark --sub-heading"
-                text="Aws Transit VPCs"
+                text="AWS Transit VPCs"
               />
               <Input
                 value={values.aws_transit_vpc_name}

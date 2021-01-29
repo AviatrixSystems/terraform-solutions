@@ -21,8 +21,8 @@ export default function Success() {
         customClasses="--light-without-opacity "
         text={
           <span>
-            Kickstart is completed successfully. Access the below link to open
-            the controller <br />
+            Sandbox Starter is completed successfully. Access the below link to open
+            the controller: <br />
             <a
               target="blank"
               href={`https://${controllerIP}`}
