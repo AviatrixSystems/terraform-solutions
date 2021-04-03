@@ -1,29 +1,17 @@
-- name: Controller
+- name: Learn Terraform
+  link: /pages/training-outline/
+- name: Launch Controller
   link: /pages/controller-launch/
-- name: Multi-Cloud Transit
+- name: Example Deployments
   link: /#
   dropdown:
-    - name: OCI-Azure Transit
-      link: /pages/oci-azure-basic/
-    - name: AWS-GCP Transit (SaaS)
-      link: /pages/aws-gcp-saas/
-- name: FireNet
-  link: /#
-  dropdown:
-    - name: Check Point AWS
-      link: /pages/checkpoint-aws/
-    - name: Palo Alto Azure
-      link: /pages/pan-azure/
-    - name: Check Point Azure
-      link: /pages/checkpoint-azure/
-- name: Cloud Access
-  link: /#
-  dropdown:
-    - name: OCI User VPN
-      link: /pages/oci-user-vpn/
-    - name: AWS User VPN Okta SAML
-      link: /pages/aws-okta-vpn/
-- name: MCNA
+    - name: Simple Azure OCI Transit (AKS & Autonomous DB)
+      link: https://github.com/trvsmtchll/aviatrix-transit-azure-oci-simple
+    - name: Azure AKS
+      link: https://github.com/trvsmtchll/aviatrix-transit-azure-aks-insane
+    - name: OCI Transit with Flex VMs
+      link: https://github.com/trvsmtchll/aviatrix-transit-oci-flex-vm 
+- name: Multi-Cloud Network Architecture
   link: /#
   dropdown:
     - name: Big Picture
