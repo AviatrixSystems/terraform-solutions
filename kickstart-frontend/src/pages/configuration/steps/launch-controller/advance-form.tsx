@@ -95,9 +95,9 @@ export default function AdvanceForm(props: ComponentProps) {
                   shared with Aviatrix) <br /> Perform the pre-requisites at{" "}
                   <a
                     target="blank"
-                    href="https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k"
+                    href="https://aws.amazon.com/marketplace/pp/B08NTSDHKG"
                   >
-                    https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k
+                    https://aws.amazon.com/marketplace/pp/B08NTSDHKG
                   </a>{" "}
                   and subscribe to the Aviatrix platform. Click on "Continue to
                   subscribe", and accept the terms. Do NOT click on "Continue to

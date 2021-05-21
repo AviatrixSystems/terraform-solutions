@@ -16,7 +16,7 @@ const stepsList = [
   "Launch EC2 instances in the AWS Spoke VPCs",
   "Key Pair Name",
   "Launch Aviatrix Transit in Azure",
-  "Built Transit Peering between AWS & Azure",
+  "Build Transit Peering between AWS & Azure",
 ];
 
 export default function StepsAside(props: ComponentProps) {

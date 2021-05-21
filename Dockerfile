@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.10.1
+FROM phusion/baseimage:focal-1.0.0
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
@@ -16,8 +16,8 @@ RUN	/tmp/aws/install
 RUN	pip3 install requests urllib3
 
 # Terraform install.
-RUN	wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip -P /tmp
-RUN	unzip /tmp/terraform_0.12.24_linux_amd64.zip -d /usr/local/sbin/
+RUN	wget https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip -P /tmp
+RUN	unzip /tmp/terraform_0.15.4_linux_amd64.zip -d /usr/local/sbin/
 
 # Terraform Aviatrix solutions.
 RUN	mkdir /root/terraform-solutions
