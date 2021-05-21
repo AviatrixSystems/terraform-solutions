@@ -1,6 +1,6 @@
 FROM alpine:3.12.1
 
-ENV TERRAFORM_VERSION=0.12.24
+ENV TERRAFORM_VERSION=0.15.4
 
 # Dependencies. #Terraform # Awscli # make directory
 RUN apk update && \

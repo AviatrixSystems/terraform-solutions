@@ -1,8 +1,4 @@
-provider "aviatrix" {
-  # Make sure to keep the version up to date with the controller version.
-  # https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs/guides/release-compatibility.
-  version = "~> 2.16.3"
-}
+provider "aviatrix" {}
 
 resource "aviatrix_vpc" "aws_transit_vpcs" {
   for_each = var.aws_transit_vpcs

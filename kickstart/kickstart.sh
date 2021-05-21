@@ -77,9 +77,9 @@ controller_launch()
     fi
 
     if [ -z $KS_GOVCLOUD ]; then
-	read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k and subscribe to the Aviatrix platform. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
+	read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp/B08NTSDHKG and subscribe to the Aviatrix platform. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
     else
-	read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp?sku=b03hn7ck7yp392plmk8bet56k and subscribe to the Aviatrix platform. ACCESS THE MARKETPLACE FROM THE AWS ROOT ACCOUNT THAT IS IN CHARGE OF YOUR AWS GOVCLOUD ACCOUNT. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
+	read -n 1 -r -s -p $'\n--> Go to https://aws.amazon.com/marketplace/pp/B08NTSDHKG and subscribe to the Aviatrix platform. ACCESS THE MARKETPLACE FROM THE AWS ROOT ACCOUNT THAT IS IN CHARGE OF YOUR AWS GOVCLOUD ACCOUNT. Click on "Continue to subscribe", and accept the terms. Do NOT click on "Continue to Configuration". Press any key once you have subscribed.\n'
     fi
 	
     # Advanced mode. In GovCloud, always open it.
@@ -106,9 +106,9 @@ controller_launch()
     fi
 
     # Store the outputs in environment variables for the controller init to use.
-    export AWS_ACCOUNT=$(terraform output aws_account)
-    export CONTROLLER_PRIVATE_IP=$(terraform output controller_private_ip)
-    export CONTROLLER_PUBLIC_IP=$(terraform output controller_public_ip)
+    export AWS_ACCOUNT=$(terraform output -raw aws_account)
+    export CONTROLLER_PRIVATE_IP=$(terraform output -raw controller_private_ip)
+    export CONTROLLER_PUBLIC_IP=$(terraform output -raw controller_public_ip)
     export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP
     
     # Keep them in .bashrc in case the container gets restarted.
@@ -119,9 +119,9 @@ controller_launch()
     else
 	echo 'cd /root/controller-govcloud' > $f
     fi
-    echo 'export AWS_ACCOUNT=$(terraform output aws_account)' >> $f
-    echo 'export CONTROLLER_PRIVATE_IP=$(terraform output controller_private_ip)' >> $f
-    echo 'export CONTROLLER_PUBLIC_IP=$(terraform output controller_public_ip)' >> $f
+    echo 'export AWS_ACCOUNT=$(terraform output -raw aws_account)' >> $f
+    echo 'export CONTROLLER_PRIVATE_IP=$(terraform output -raw controller_private_ip)' >> $f
+    echo 'export CONTROLLER_PUBLIC_IP=$(terraform output -raw controller_public_ip)' >> $f
     echo 'export AVIATRIX_CONTROLLER_IP=$CONTROLLER_PUBLIC_IP' >> $f
     
     echo AWS_ACCOUNT: $AWS_ACCOUNT

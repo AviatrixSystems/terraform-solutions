@@ -31,7 +31,7 @@ export default function BuiltTransit() {
       <div className="text-block">
         <Heading
           customClasses="--dark"
-          text="Built Transit Peering between AWS & Azure"
+          text="Build Transit Peering between AWS & Azure"
         ></Heading>
         <Paragraph
           customClasses="--light"
