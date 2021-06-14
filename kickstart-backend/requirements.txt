@@ -1,4 +1,0 @@
-Flask==1.1.2
-Flask-RESTful==0.3.8
-flask-Cors==3.0.8
-pyhcl==0.4.4
